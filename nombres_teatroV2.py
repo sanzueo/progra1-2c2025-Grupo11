@@ -51,6 +51,4 @@ datos_globales_reserva = []
 
 matriz = datos_globales
 
-matriz_ordenada= sorted(matriz, key=lambda x: x[5])
-
 

@@ -28,7 +28,6 @@ while start:
     #region program princ
     #PROGRAMA PRINCIPAL
     while menu==True:
-
         print("\n1-Shows\n2-Reserva\n3-Usuario\n4-Cerrar sesion\n5-SALIR")
         usuario = int(input("Elige una opcion: "))
 
@@ -161,7 +160,6 @@ while start:
                 for i in datos_globales:
                     if i[5] == fecha:
                         lista_temp.append(i)
-
 
                 suma = 0
                 columna = 2

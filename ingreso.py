@@ -11,7 +11,22 @@ def imprimir_ingreso():
     ))
     return ingreso
 
+def banner():
+    print("=" * 50)
+    print(" " * 15 + " SISTEMA DE LOGIN ")
+    print("=" * 50)
 
+def menu_login():
+    banner()
+    print("\n")
+    print(" " * 10 + "1) Iniciar Sesión")
+    print(" " * 10 + "2) Registrarse")
+    print(" " * 10 + "3) Recuperar Contraseña")
+    print(" " * 10 + "0) Salir")
+    print("\n" + "=" * 50)
+
+    opcion = input("👉 Elige una opción: ")
+    return opcion
 
 def login():
     dni_ingres=int(input("escriba su dni para verificacion "))
