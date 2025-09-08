@@ -66,6 +66,25 @@ while start:
                     else:
                         print("No coincide con ningún id.")
 
+                elif elec == 2:
+                
+                    año = int(input("ingrese año"))
+                    mes = int(input("ingrese mes"))
+                    dia = int(input("ingrese dia: "))
+                    fecha_buscada = datetime(año, mes, dia).date()
+
+                    lista_temp = []
+
+                    for i in datos_globales:
+                        if i[5] == fecha_buscada:
+                            lista_temp.append(i)
+
+
+                    if len(lista_temp) > 0:
+                        ver_m(lista_temp) 
+                    else:
+                        print("no hay fechas disponibles")
+
 
             elif usuario_i == 3 and admin==True: #BORRAR SHOW
                 eleccion = int(input("Ingrese id del show: "))
