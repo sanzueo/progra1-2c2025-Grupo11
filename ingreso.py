@@ -63,14 +63,17 @@ def login():
             dni_ingres=int(input("\033[36m escriba su dni para verificacion: \033[0m"))
         elif vuelta==2:
             contraseña=(input("\033[36m escriba su contraseña para verificacion: \033[0m"))
-
-
+    dni_en_uso=[]
 
     if contraseña in contraseñas_admin and dni_ingres in dni_admins:
         print("\033[92m Ingreso conseguido como ADMIN\033[0m")
+        dni_en_uso.append(dni_ingres)
         return "ADMIN"
+  
     elif busqueda(dni_ingres, contraseña):
+        dni_en_uso.append(dni_ingres)  
         print("\033[32m Ingreso conseguido como USUARIO\033[0m")
+      
         return "Usuario"
 
 
