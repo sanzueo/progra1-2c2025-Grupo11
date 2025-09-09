@@ -21,7 +21,7 @@ while start:
                 menu = True
                 inicio = False
         elif ingreso_op == 1:
-            _ = registrar()
+            ingr = registrar()
 
     # PROGRAMA PRINCIPAL
     while menu == True:
@@ -30,13 +30,13 @@ while start:
 
         # SUBMENÚS
         if usuario == 1:
-            shows.menu_shows(admin)
+            menu_shows(admin)
 
         elif usuario == 2:
-            reservas.menu_reservas(admin)
+            menu_reservas(admin)
 
         elif usuario == 3:
-            usuarios.menu_usuarios(admin)
+            menu_usuarios(admin)
 
         elif usuario == 4:  # CERRAR SESION
             admin = False
