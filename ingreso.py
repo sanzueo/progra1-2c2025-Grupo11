@@ -2,79 +2,75 @@ from nombres_teatroV2 import *
 from funciones_de_teatroV2 import *
 import re
 
-def imprimir_ingreso():
-    ingreso = int(input(
-    "\n=== MENÚ DE INGRESO ===\n"
-    "0 - Ingresar con un usuario existente\n"
-    "1 - Crear un usuario nuevo\n"
-    "Seleccione una opción: "
-    ))
-    return ingreso
 
-def banner():
-    print("=" * 50)
-    print(" " * 15 + " SISTEMA DE LOGIN ")
-    print("=" * 50)
 
 def menu_login():
-    banner()
-    print("\n")
-    print(" " * 10 + "1) Iniciar Sesión")
-    print(" " * 10 + "2) Registrarse")
-    print(" " * 10 + "3) Recuperar Contraseña")
-    print(" " * 10 + "0) Salir")
-    print("\n" + "=" * 50)
+# Marco verde brillante
+    print("\033[92m╔════════════════════════════╗\033[0m")
+    print("\033[92m║\033[0m       \033[93mMENÚ DE INGRESO\033[0m      \033[92m║\033[0m")
+    print("\033[92m╠════════════════════════════╣\033[0m")
 
-    opcion = input("👉 Elige una opción: ")
-    return opcion
+    # Opciones cyan
+    print("\033[92m║\033[0m  \033[96m0 → Iniciar Sesión\033[0m        \033[92m║\033[0m")
+    print("\033[92m║\033[0m  \033[96m1 → Registrarse\033[0m           \033[92m║\033[0m")
+
+    # Cierre verde
+    print("\033[92m╚════════════════════════════╝\033[0m")
+
+    ingreso = input(f"\033[1;35m Seleccione una opción: \033[0m")
+    while ingreso not in ("0", "1"):
+        print(f"\033[91m Opción inválida, intente de nuevo.\033[0m")
+        ingreso = input(f"\033[1;35m Seleccione una opción: \033[0m")
+
+    return int(ingreso)
 
 def login():
-    dni_ingres=int(input("escriba su dni para verificacion "))
+    dni_ingres=int(input("\033[36m escriba su dni para verificacion \033[0m"))
     while dni_ingres not in datos_de_ingreso_dni and dni_ingres not in dni_admins:
-        print("id no encontrado revise que este bien su dni")
-        dni_ingres=int(input("escriba su dni para verificacion "))
+        print("\033[91m id no encontrado revise que este bien su dni\033[0m")
+        dni_ingres=int(input("\033[36m escriba su dni para verificacion \033[0m"))
 
-
-    contraseña=input("escriba su contraseña de usuario ")
-        
+    print()
+    contraseña=input("\033[36m escriba su contraseña de usuario: \033[0m")
+    print()
+    
     while not (
         (dni_ingres in datos_de_ingreso_dni and contraseña in datos_globales_contraseñas) or
         (dni_ingres in dni_admins and contraseña in contraseñas_admin)
     ):
-
-        print("su contraseña o dni no son correctos")
+        print("\033[91m DNI o contraseña incorrectos \033[0m")
         vuelta = int(input(
-            "\n=== MENÚ DE INGRESO ===\n"
-            "0 - volver al menu de ingreso\n"
-            "1 - Ingresar nuevamente el dni\n"
-            "2 - ingresar nuevamente la contraseña\n"
-            "Seleccione una opción: "
+            "\n\033[92m=== MENÚ DE REINTENTO ===\033[0m\n"
+            f"\033[35m  → [0] Volver al menú de ingreso\033[0m\n"
+            "\033[35m  → [1] Reingresar el Dni\033[0m\n"
+            "\033[35m  → [2] Reingresar la Contraseña\033[0m\n"
+            "\033[1;35m Seleccione una opción: \033[0m"
         ))
 
         while vuelta !=0 and vuelta!=1 and vuelta!=2:
-            print("ese numero no esta dentro del rango")#0 es menu 1 ese dni 2 es contraseña
+            print("\033[91m DNI o contraseña incorrectos \033[0m")
             vuelta = int(input(
-                "\n=== MENÚ DE INGRESO ===\n"
-                "0 - volver al menu de ingreso\n"
-                "1 - Ingresar nuevamente el dni\n"
-                "2 - ingresar nuevamente la contraseña\n"
-                "Seleccione una opción: "
+                "\n\033[92m=== MENÚ DE REINTENTO ===\033[0m\n"
+                f"\033[35m  → [0] Volver al menú de ingreso\033[0m\n"
+                "\033[35m  → [1] Reingresar el Dni\033[0m\n"
+                "\033[35m  → [2] Reingresar la Contraseña\033[0m\n"
+                "\033[1;35m Seleccione una opción: \033[0m"
             ))
         if vuelta==0:
-            registrar()  #habria que ver
+            return "Fallo"  #habria que ver
         elif vuelta==1:
-            dni_ingres=int(input("escriba su dni para verificacion: "))
+            dni_ingres=int(input("\033[36m escriba su dni para verificacion: \033[0m"))
         elif vuelta==2:
-            contraseña=(input("escriba su contraseña para verificacion: "))
+            contraseña=(input("\033[36m escriba su contraseña para verificacion: \033[0m"))
 
 
 
     if contraseña in contraseñas_admin and dni_ingres in dni_admins:
-        print("Ingreso conseguido como ADMIN")
-        return True
+        print("\033[92m Ingreso conseguido como ADMIN\033[0m")
+        return "ADMIN"
     elif busqueda(dni_ingres, contraseña):
-        print("Ingreso conseguido como USUARIO")
-        return False
+        print("\033[96m Ingreso conseguido como USUARIO\033[0m")
+        return "Usuario"
 
 
 def registrar():
@@ -104,11 +100,14 @@ def registrar():
     activo = True
     contraseña = input("Escriba la contraseña que desea: ")
 
-
-    print(f"se a creado su usuario con la siguiente informacion")
-    print(f"-"*25)
-    print(f"numero de usuario: {num_usuario}\nnombre: {nombre}\ndni: {dni_cread}\nnumero: {telefono_organizado}\nemail:{email}")
-    print("-"*25)
+    print("Usuario creado con éxito con la siguiente información:")
+    print("\n" + "-" * 50)
+    print(f"  - ID usuario : {num_usuario}")
+    print(f"  - Nombre     : {nombre}")
+    print(f"  - DNI        : {dni_cread}")
+    print(f"  - Teléfono   : {telefono_organizado}")
+    print(f"  - Email      : {email}")
+    print("-" * 50 + "\n")
 
     datos_de_ingreso_dni.append(dni_cread)
     datos_globales_contraseñas.append(contraseña)

@@ -7,22 +7,19 @@ start = True
 #region ingreso
 while start:
     while inicio==True:
-        ingreso=imprimir_ingreso()
-        if ingreso!=0 and ingreso!=1:
-            print("numero fuera del rango")
-            ingreso=imprimir_ingreso()
-
-        elif ingreso==0:
+        ingreso=menu_login()
+        
+        if ingreso==0:
             log=login()
-            if log==True:
+            if log=="ADMIN":
                 admin=True
                 menu=True
                 inicio=False
-            elif log==False:
+            elif log=="Usuario":
                 menu=True
                 inicio=False
                 admin=False
-        elif ingreso==1:
+        elif ingreso=="Fallo":
             ingr=registrar()
         
     #region program princ
@@ -116,12 +113,11 @@ while start:
 
                         fecha = i[5]
 
-                        lista_temp2 = []
                         suma = 0
 
                         for u in datos_globales:
                             if u[5] == fecha:
-                                lista_temp2.append(u)
+                                suma +=u[2]
 
                         if suma <= 750:
                             suma_aux = int(input("ingresa la cantidad de minutos: "))
