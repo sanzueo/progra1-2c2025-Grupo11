@@ -11,13 +11,14 @@ def menu_login():
     print("\033[92m╠════════════════════════════╣\033[0m")
 
     # Opciones cyan
-    print("\033[92m║\033[0m  \033[96m0 → Iniciar Sesión\033[0m        \033[92m║\033[0m")
-    print("\033[92m║\033[0m  \033[96m1 → Registrarse\033[0m           \033[92m║\033[0m")
+    print("\033[92m║\033[0m  \033[96m 0 → Iniciar Sesión\033[0m       \033[92m║\033[0m")
+    print("\033[92m║\033[0m  \033[96m 1 → Registrarse\033[0m          \033[92m║\033[0m")
 
     # Cierre verde
     print("\033[92m╚════════════════════════════╝\033[0m")
 
     ingreso = input(f"\033[1;35m Seleccione una opción: \033[0m")
+
     while ingreso not in ("0", "1"):
         print(f"\033[91m Opción inválida, intente de nuevo.\033[0m")
         ingreso = input(f"\033[1;35m Seleccione una opción: \033[0m")
@@ -33,7 +34,7 @@ def login():
     print()
     contraseña=input("\033[36m escriba su contraseña de usuario: \033[0m")
     print()
-    
+
     while not (
         (dni_ingres in datos_de_ingreso_dni and contraseña in datos_globales_contraseñas) or
         (dni_ingres in dni_admins and contraseña in contraseñas_admin)
@@ -57,7 +58,7 @@ def login():
                 "\033[1;35m Seleccione una opción: \033[0m"
             ))
         if vuelta==0:
-            return "Fallo"  #habria que ver
+            return 1  #habria que ver
         elif vuelta==1:
             dni_ingres=int(input("\033[36m escriba su dni para verificacion: \033[0m"))
         elif vuelta==2:
@@ -69,51 +70,51 @@ def login():
         print("\033[92m Ingreso conseguido como ADMIN\033[0m")
         return "ADMIN"
     elif busqueda(dni_ingres, contraseña):
-        print("\033[96m Ingreso conseguido como USUARIO\033[0m")
+        print("\033[32m Ingreso conseguido como USUARIO\033[0m")
         return "Usuario"
 
 
 def registrar():
     num_usuario = id_user()
-    nombre = str(input("Escriba el nombre que desee usar: "))
-    dni_cread = int(input("Escriba el número de su DNI: "))
+    nombre = str(input("\033[36m Escriba el nombre que desee usar: \033[0m"))
+    dni_cread = int(input("\033[36m Escriba el número de su DNI: \033[0m"))
     while dni_cread < 0:
-        print("El DNI no puede ser negativo, intente de nuevo")
-        dni_cread = int(input("Escriba el número de su DNI: "))
+        print("\033[91m El DNI no puede ser negativo, intente de nuevo\033[0m")
+        dni_cread = int(input("\033[36m Escriba el número de su DNI: \033[0m"))
 
-    telefono_cread = int(input("Escriba su número de teléfono sin código de área: "))
+    telefono_cread = int(input("\033[36m Escriba su número de teléfono sin código de área: \033[0m"))
     while telefono_cread < 1100000000 or telefono_cread > 1199999999:
-        print("Número no válido (1100000000 a 1199999999)")
-        telefono_cread = int(input("Escriba su número de teléfono sin código de área: "))    
+        print("\033 [91m Número no válido (1100000000 a 1199999999)\033 [0m")
+        telefono_cread = int(input("\033[36m Escriba su número de teléfono sin código de área: \033[0m")) 
     telefono_cread=str(telefono_cread)
     patron= "[1]{2}-[0-9]{4}-[0-9]{4}"
     numero_oculto="11-XXXX-XXXX"
     telefono_organizado=re.sub(patron,numero_oculto,telefono_cread)
 
 
-    email = input("Escriba su email: ")
+    email = input("\033[36m Escriba su email: \033[0m")
     coincidencias = re.findall("@", email)       
     if coincidencias==None:
-        print("Email inválido, debe ser @gmail.com, @hotmail.com o @yahoo.com")
-        email = input("Escriba su email: ")
+        print("\033[36m Email inválido, debe ser @gmail.com, @hotmail.com o @yahoo.com \033[0m")
+        email = input("\033[36m Escriba su email: \033[0m")
 
     activo = True
-    contraseña = input("Escriba la contraseña que desea: ")
+    contraseña = input("\033[36m Escriba la contraseña que desea: \033[0m")
 
-    print("Usuario creado con éxito con la siguiente información:")
-    print("\n" + "-" * 50)
-    print(f"  - ID usuario : {num_usuario}")
-    print(f"  - Nombre     : {nombre}")
-    print(f"  - DNI        : {dni_cread}")
-    print(f"  - Teléfono   : {telefono_organizado}")
-    print(f"  - Email      : {email}")
-    print("-" * 50 + "\n")
+    print("\033[Usuario creado con éxito con la siguiente información:\033[0m")
+    print(f"\033[92m \n",( "═" * 50),"\033[0m")
+    print(f"\033[35m  - ID usuario : {num_usuario}\033[0m")
+    print(f"\033[35m  - Nombre     : {nombre}\033[0m")
+    print(f"\033[35m  - DNI        : {dni_cread}\033[0m")
+    print(f"\033[35m  - Teléfono   : {telefono_organizado}\033[0m")
+    print(f"\033[35m  - Email      : {email}\033[0m")
+    print("\033[92m",( "═" * 50),"\033[0m")
 
     datos_de_ingreso_dni.append(dni_cread)
     datos_globales_contraseñas.append(contraseña)
     datos_globales_usuarios.append([num_usuario, nombre, dni_cread, telefono_cread, email, activo])
 
-    print("Usuario registrado con éxito")
+    print("\033[1;36m Usuario registrado con éxito \033[0m")
     print("")
 """testeo de las variables"""
 #region testeo

@@ -19,7 +19,7 @@ while start:
                 menu=True
                 inicio=False
                 admin=False
-        elif ingreso=="Fallo":
+        elif ingreso==1:
             ingr=registrar()
         
     #region program princ
