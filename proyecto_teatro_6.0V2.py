@@ -20,7 +20,7 @@ while start:
                 admin = False
                 menu = True
                 inicio = False
-        elif ingreso_op == "Fallo":
+        elif ingreso_op == 1:
             _ = registrar()
 
     # PROGRAMA PRINCIPAL
