@@ -1,7 +1,9 @@
 from nombres_teatroV2 import *
 from ingreso import *
 from entidades import *
-from Opciones import *
+from opciones_usuarios import *
+from opciones_shows import *
+from opciones_reservas import *
 
 inicio = True
 start = True

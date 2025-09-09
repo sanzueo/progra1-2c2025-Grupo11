@@ -1,5 +1,5 @@
 from nombres_teatroV2 import *
-from ingreso import *
+from ingreso import * 
 from entidades import *
 
 def menu_usuarios(admin):

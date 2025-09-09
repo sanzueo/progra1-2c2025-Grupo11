@@ -23,6 +23,8 @@ ubicacion = ["platea    "
 
 datos_globales_usuarios = []
 
+dni_en_uso=[]
+
 id_usuarios = []
 
 solo_ids_usuario = []
