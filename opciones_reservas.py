@@ -7,48 +7,20 @@ def menu_reservas(admin):
     if admin==False:
         print("\n1-Ver reserva\n2-Generar reserva")
     if admin==True:
-        print("\n1-Ver reserva\n2-Generar reserva\n3-Borrar reserva\n4-Gererar reserva (pregunta)\n5-Editar reserva")
+        print("\n1-Ver reserva\n2-Generar reserva\n3-Buscar reserva\n4-Borrar reserva (falta acceso)\n5-Editar reserva")
     usuario_i = int(input("Elige una opcion: "))
 
     if usuario_i == 1:  #ver reserva     
         ver_m2(matriz2)
 
     elif usuario_i == 2: #GENERAR RESERVA
-    
-        año = int(input("Ingrese año: "))
-        mes = int(input("Ingrese mes: "))
-        dia = int(input("Ingrese dia: "))
-        fecha_buscada = datetime(año, mes, dia).date()
-
-        lista_temp = []
-
-        for i in datos_globales:
-            if i[5] == fecha_buscada:
-                lista_temp.append(i)
-
-
-        if len(lista_temp) > 0:
-            ver_m(lista_temp) 
-        else:
-            print("No hay fechas disponibles.")
-
-    elif usuario_i == 3 and admin==True: #BORRAR RESERVA
-        eleccion = int(input("Seleccione id de reserva a eliminar: "))
-
-
-        for i in datos_globales_reserva[:]:
-            if i[0] == eleccion:
-                datos_globales_reserva.remove(i)
-        print("Reserva eliminada")
-
-    elif usuario_i == 4 and admin==True: #GENERAR RESERVA
 
         id_reserva = id_alt_r()  # Llamar a la función
 
-        dni_usuario = int(input("Ingresar el numero de id: "))
-        while id_usuario not in datos_de_ingreso_dni:
+        """ dni_usuario = int(input("Ingresar el numero de id: "))
+        while dni_usuario not in datos_de_ingreso_dni or dni_usuario not in id_usuarios:
             print("Id inexistente")
-            dni_usuario = int(input("Ingresar el numero de id: "))
+            dni_usuario = int(input("Ingresar el numero de id: ")) """
         id_usuario=id_user()
         
         print("-----------------")
@@ -77,6 +49,36 @@ def menu_reservas(admin):
             if i[0] == show:
                 i[4] = i[4] - 1
         datos_globales_reserva.append([id_reserva, id_usuario, ubicacion_e, show])
+
+    elif usuario_i == 3: #BUSCAR RESERVA
+    
+        año = int(input("Ingrese año: "))
+        mes = int(input("Ingrese mes: "))
+        dia = int(input("Ingrese dia: "))
+        fecha_buscada = datetime(año, mes, dia).date()
+
+        lista_temp = []
+
+        for i in datos_globales:
+            if i[5] == fecha_buscada:
+                lista_temp.append(i)
+
+
+        if len(lista_temp) > 0:
+            ver_m(lista_temp) 
+        else:
+            print("No hay fechas disponibles.")
+
+    elif usuario_i == 4 and admin==True: #BORRAR RESERVA
+        eleccion = int(input("Seleccione id de reserva a eliminar: "))
+
+
+        for i in datos_globales_reserva[:]:
+            if i[0] == eleccion:
+                datos_globales_reserva.remove(i)
+        print("Reserva eliminada")
+
+    
 
     elif usuario_i == 5 and admin==True: #EDITAR RESERVA
 

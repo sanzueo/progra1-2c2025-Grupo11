@@ -45,6 +45,7 @@ def menu_usuarios(admin):
         eleccion = int(input("Seleccione el dni de usuario a editar: "))
 
         for i in datos_globales_usuarios:
+            if i[0] == eleccion:
                 opcion = int(input(
                 "\n\033[92m=== MENU DE EDICIÓN ===\033[0m\n"
                 "\033[35m  → [0] Editar nombre\033[0m\n"
@@ -53,7 +54,7 @@ def menu_usuarios(admin):
                 "\033[35m  → [3] Editar correo\033[0m\n"
                 "\033[1;35m Seleccione una opción: \033[0m"
                 ))
-                while opcion not in (0, 1, 2):
+                while opcion not in (0, 1, 2, 3):
                     print("\033 [91m Numero fuera de rango.\033[0m")
                     opcion = int(input(
                     "\n\033[92m=== MENÚ DE EDICIÓN ===\033[0m\n"
@@ -84,7 +85,7 @@ def menu_usuarios(admin):
         print("\033[1;91 por favor vuelva a dar confirmacion\033[0m")
         opcion = int(input("\033[35m  → [4] Eliminar cuenta\033[0m\n"
             "\033[35m  → [2] Volver al menu\033[0m\n"
-            f"\033[96m{"="*30}\033[0m\n"))
+            "\033[96m",("="*30),"\033[0m\n"))
         for i in datos_globales_usuarios:
             if i[0] == eleccion:
                 i[5] = False

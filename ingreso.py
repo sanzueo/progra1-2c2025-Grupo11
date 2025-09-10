@@ -24,13 +24,13 @@ def menu_login():
     return int(ingreso)
 
 def login():
-    dni_ingres=int(input("\033[36m escriba su dni para verificacion \033[0m"))
+    dni_ingres=int(input("\033[36m Escriba su dni para verificacion: \033[0m"))
     while dni_ingres not in datos_de_ingreso_dni and dni_ingres not in dni_admins:
-        print("\033[91m id no encontrado revise que este bien su dni\033[0m")
-        dni_ingres=int(input("\033[36m escriba su dni para verificacion \033[0m"))
+        print("\033[91m Id no encontrado revise que este bien su dni.\033[0m")
+        dni_ingres=int(input("\033[36m Escriba su dni para verificacion: \033[0m"))
 
     print()
-    contraseña=input("\033[36m escriba su contraseña de usuario: \033[0m")
+    contraseña=input("\033[36m Escriba su contraseña de usuario: \033[0m")
     print()
 
     while not (
@@ -58,18 +58,18 @@ def login():
         if vuelta==0:
             return 1  #habria que ver
         elif vuelta==1:
-            dni_ingres=int(input("\033[36m escriba su dni para verificacion: \033[0m"))
+            dni_ingres=int(input("\033[36m Escriba su dni para verificacion: \033[0m"))
         elif vuelta==2:
-            contraseña=(input("\033[36m escriba su contraseña para verificacion: \033[0m"))
+            contraseña=(input("\033[36m Escriba su contraseña para verificacion: \033[0m"))
 
     dni_en_uso.append(dni_ingres)
 
     if contraseña in contraseñas_admin and dni_ingres in dni_admins:
-        print("\033[92m Ingreso conseguido como ADMIN\033[0m")
+        print("\033[92m Ingreso conseguido como ADMIN.\033[0m")
         return "ADMIN"
   
     elif busqueda(dni_ingres, contraseña):
-        print("\033[32m Ingreso conseguido como USUARIO\033[0m")
+        print("\033[32m Ingreso conseguido como USUARIO.\033[0m")
         return "Usuario"
 
 

@@ -39,7 +39,7 @@ datos_de_ingreso_dni=[]
 
 contraseñas_admin=["admin"]
 
-dni_admins=[47346945]
+dni_admins=[47346945, 46915515]
 
 ids_shows=[]
 
