@@ -20,6 +20,16 @@ while len(datos_globales_usuarios) != len(nombres):
     while len(correo) < 25:
         correo += " "
     Activo_conf = random.choice([True, False])
+
+    #forma de que sea ordenada mas facilmente y usando .just o usando las demas cosas del profe
+    # puede necesitar retoques depende de algunas ocasiones
+    id_usuario = str(id_usuario).rjust(6)
+    nombre = nombre.ljust(12)
+    dni = str(dni).rjust(10)
+    telefono = str(telefono).rjust(12)
+    correo = correo.ljust(25)
+    Activo_conf = Activo_conf.center(10)
+
     datos_globales_usuarios.append([id_usuario, nombre, dni, telefono, correo, Activo_conf])
 
 matriz3 = datos_globales_usuarios

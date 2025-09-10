@@ -23,6 +23,8 @@ ubicacion = ["platea    "
 
 datos_globales_usuarios = []
 
+dni_en_uso=[]
+
 id_usuarios = []
 
 ids_usuario = []
@@ -38,8 +40,6 @@ datos_de_ingreso_dni=[]
 contraseñas_admin=["admin"]
 
 dni_admins=[47346945]
-
-datos_globales_dni=[47346945,46624535,000]
 
 ids_shows=[]
 

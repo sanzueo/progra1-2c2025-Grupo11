@@ -37,13 +37,14 @@ while start:
         elif usuario == 2:
             menu_reservas(admin)
 
-        elif usuario == 3:
+        elif usuario == 3: 
             menu_usuarios(admin)
 
         elif usuario == 4:  # CERRAR SESION
             admin = False
             inicio = True
             menu = False
+            dni_en_uso=[]
 
         elif usuario == 5:  # SALIR
             menu = False

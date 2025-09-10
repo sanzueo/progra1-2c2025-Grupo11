@@ -2,8 +2,6 @@ from nombres_teatroV2 import *
 from funciones_de_teatroV2 import *
 import re
 
-
-
 def menu_login():
 # Marco verde brillante
     print("\033[92m╔════════════════════════════╗\033[0m")
@@ -63,17 +61,15 @@ def login():
             dni_ingres=int(input("\033[36m escriba su dni para verificacion: \033[0m"))
         elif vuelta==2:
             contraseña=(input("\033[36m escriba su contraseña para verificacion: \033[0m"))
-    dni_en_uso=[]
+
+    dni_en_uso.append(dni_ingres)
 
     if contraseña in contraseñas_admin and dni_ingres in dni_admins:
         print("\033[92m Ingreso conseguido como ADMIN\033[0m")
-        dni_en_uso.append(dni_ingres)
         return "ADMIN"
   
     elif busqueda(dni_ingres, contraseña):
-        dni_en_uso.append(dni_ingres)  
         print("\033[32m Ingreso conseguido como USUARIO\033[0m")
-      
         return "Usuario"
 
 
@@ -101,7 +97,6 @@ def registrar():
         print("\033[36m Email inválido, debe ser @gmail.com, @hotmail.com o @yahoo.com \033[0m")
         email = input("\033[36m Escriba su email: \033[0m")
 
-    activo = True
     contraseña = input("\033[36m Escriba la contraseña que desea: \033[0m")
 
     print("\033[Usuario creado con éxito con la siguiente información:\033[0m")
@@ -112,10 +107,19 @@ def registrar():
     print(f"\033[35m  - Teléfono   : {telefono_organizado}\033[0m")
     print(f"\033[35m  - Email      : {email}\033[0m")
     print("\033[92m",( "═" * 50),"\033[0m")
+    
+    #ajustes para su correctaa impresion 
+    id_usuario = str(num_usuario).rjust(6)
+    nombre = nombre.ljust(12)
+    dni = str(dni_cread).rjust(8)
+    telefono = str(telefono_cread).rjust(10)
+    correo = email.ljust(25)
+    estado = "ACTIVO"
+    estado = estado.center(10)
 
     datos_de_ingreso_dni.append(dni_cread)
     datos_globales_contraseñas.append(contraseña)
-    datos_globales_usuarios.append([num_usuario, nombre, dni_cread, telefono_cread, email, activo])
+    datos_globales_usuarios.append([num_usuario, nombre, dni, telefono, correo, Activo_conf])
 
     print("\033[1;36m Usuario registrado con éxito \033[0m")
     print("")
