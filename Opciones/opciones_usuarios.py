@@ -3,10 +3,20 @@ from entidades.Usuarios import ver_m3
 
 def menu_usuarios(admin):
     if admin==False:
-        print("\n1-Ver usuario\n2-¿¿¿¿Editar usuario????")
+            usuario_i=(input(
+            "\n\033[92m=== MENÚ DE USUARIO ===          \033[0m\n"
+            "\033[35m  → [1] VER USUARIO                \033[0m\n"
+            "\033[35m  → [2] EDITAR SHOW                \033[0m\n"
+            "\033[35m  → [3] VOLVER AL MENU DE OPCIONES \033[0m\n"
+            ))
     if admin==True:
-        print("\n1-Ver usuario\n2-Editar usuario\n3-Borrar usuario")
-    usuario_i = int(input("Elige una opcion: "))
+            usuario_i=(input(
+            "\n\033[92m=== MENÚ DE USUARIO ===          \033[0m\n"
+            "\033[35m  → [1] VER USUARIO                \033[0m\n"
+            "\033[35m  → [2] EDITAR SHOW                \033[0m\n"
+            "\033[35m  → [3] BORRAR USUARIO             \033[0m\n"
+            "\033[35m  → [4] VOLVER AL MENU DE OPCIONES \033[0m\n"
+            ))
     if usuario_i == 1: #VER USUARIOS
         ver_m3(datos_globales_usuarios) 
 
@@ -94,3 +104,7 @@ def menu_usuarios(admin):
         for i in datos_globales_reserva[:]:
             if i[1] == eleccion:
                 datos_globales_reserva.remove(i)
+
+
+    elif usuario_i==4 and admin==True or usuario_i==3 and admin==False:
+        return -1

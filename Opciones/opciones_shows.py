@@ -5,10 +5,25 @@ import random
 
 def menu_shows(admin):
     if admin==False:
-        print("\n1-Ver show\n2-Buscar show")
+            usuario_i=(input(
+            "\n\033[92m=== MENÚ DE SHOWS ===         \033[0m\n"
+            "\033[35m  → [1] VER SHOWS               \033[0m\n"
+            "\033[35m  → [2] BUSCAR SHOWS            \033[0m\n"
+            "\033[35m  → [3] VOLVER AL MENU PRINCIPAL\033[0m\n"
+            "\033[1;35m Seleccione una opción:       \033[0m" ))
+
     if admin==True:
-        print("\n1-Ver show\n2-Buscar show\n3-Borrar show\n4-Editar show \n5-Generar show")
-    usuario_i = int(input("Elige una opcion: "))
+            usuario_i=(input(
+            "\n\033[92m=== MENÚ DE SHOWS ===         \033[0m\n"
+            "\033[35m  → [1] VER SHOWS               \033[0m\n"
+            "\033[35m  → [2] BUSCAR SHOWS            \033[0m\n"
+            "\033[35m  → [3] BORRAR SHOW             \033[0m\n"
+            "\033[35m  → [4] EDITAR SHOW             \033[0m\n"
+            "\033[35m  → [5] GENERAR SHOW            \033[0m\n"
+            "\033[35m  → [6] VOLVER AL MENU PRINCIPAL\033[0m\n"
+            "\033[1;35m Seleccione una opción:       \033[0m" ))
+
+    
 
     if usuario_i == 1:   #VER SHOW
         matriz_ordenada = sorted(datos_globales, key=lambda x: x[5])
@@ -139,3 +154,6 @@ def menu_shows(admin):
             datos_globales.append([id_show,tipo_Evento,duracion,espectadores,espacios_disponibles,fecha])
         else:
             print("No hay espacio en el dia para el show ingresado.")
+
+    elif usuario_i==6 and admin==True or usuario_i==3 and admin==False:
+        return -1

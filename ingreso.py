@@ -98,11 +98,16 @@ def registrar():
     telefono_organizado=re.sub(patron,numero_oculto,telefono_cread)
 
 
+
     email = input("\033[36m Escriba su email: \033[0m")
-    coincidencias = re.findall("@", email)       
-    if coincidencias==None:
-        print("\033[36m Email inválido, debe ser @gmail.com, @hotmail.com o @yahoo.com \033[0m")
-        email = input("\033[36m Escriba su email: \033[0m")
+
+    arroba = re.findall("@", email)
+    punto  = re.findall("\.", email)   # el punto se escapa con \.
+
+    if len(arroba) > 0 and len(punto) > 0:
+        print("\033[32m Email válido \033[0m")
+    else:
+        print("\033[91m Email inválido, debe contener '@' y '.' \033[0m")
 
     contraseña = input("\033[36m Escriba la contraseña que desea: \033[0m")
 

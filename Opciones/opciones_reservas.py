@@ -7,10 +7,24 @@ from datetime import datetime
 
 def menu_reservas(admin):
     if admin==False:
-        print("\n1-Ver reserva\n2-Generar reserva")
+        usuario_i = int(input(
+            "\n\033[92m=== MENÚ DE RESERVA ===\033[0m\n"
+            "\033[35m  → [1] VER RESERVA\033[0m\n"
+            "\033[35m  → [2] GENERAR RESERVA\033[0m\n"
+            "\033[35m  → [3] VOLVER AL MENU DE OPCIONES\033[0m\n"
+            "\033[1;35m Seleccione una opción: \033[0m"
+            ))
     if admin==True:
-        print("\n1-Ver reserva\n2-Generar reserva\n3-Buscar reserva\n4-Borrar reserva (falta acceso)\n5-Editar reserva")
-    usuario_i = int(input("Elige una opcion: "))
+        usuario_i = int(input(
+            "\n\033[92m=== MENÚ DE RESERVA ===\033[0m\n"
+            "\033[35m  → [1] VER RESERVA\033[0m\n"
+            "\033[35m  → [2] GENERAR RESERVA\033[0m\n"
+            "\033[35m  → [3] BUSCAR RESERVA\033[0m\n"
+            "\033[35m  → [4] BORRAR RESERVA\033[0m\n"
+            "\033[35m  → [5] EDITAR RESERVA\033[0m\n"
+            "\033[35m  → [6] VOLVER AL MENU DE OPCIONES\033[0m\n"
+            "\033[1;35m Seleccione una opción: \033[0m"
+        ))
 
     if usuario_i == 1:  #ver reserva     
         ver_m2(datos_globales_reserva)
@@ -53,7 +67,7 @@ def menu_reservas(admin):
                 i[4] = i[4] - 1
         datos_globales_reserva.append([id_reserva, id_usuario, ubicacion_e, show])
 
-    elif usuario_i == 3: #BUSCAR RESERVA
+    elif usuario_i == 3 and admin==True: #BUSCAR RESERVA
     
         año = int(input("Ingrese año: "))
         mes = int(input("Ingrese mes: "))
@@ -72,6 +86,17 @@ def menu_reservas(admin):
         else:
             print("No hay fechas disponibles.")
 
+
+    elif usuario_i == 4 and admin==False: #BORRAR RESERVA
+        eleccion = int(input("Seleccione id de reserva a eliminar: "))
+        
+
+        for i in datos_globales_reserva[:]:
+            if i[0] == eleccion:
+                datos_globales_reserva.remove(i)
+        print("Reserva eliminada")
+
+    
     elif usuario_i == 4 and admin==True: #BORRAR RESERVA
         eleccion = int(input("Seleccione id de reserva a eliminar: "))
 
@@ -91,3 +116,6 @@ def menu_reservas(admin):
             if i[0] == eleccion:
                 i[2] = int(input("Ingrese ubicacion: "))
                 i[3] = input("Ingresar show: ")
+
+    elif usuario_i==6:
+        return -1

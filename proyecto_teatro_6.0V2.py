@@ -15,28 +15,62 @@ while start:
             if log == "ADMIN":
                 admin = True
                 menu = True
-                inicio = False
+                capture_data = False
             elif log == "Usuario":
                 admin = False
                 menu = True
-                inicio = False
+                capture_data = False
         elif ingreso_nivel == 1:
             ingr = registrar()
 
     # PROGRAMA PRINCIPAL
     while menu == True:
-        print("\n1-Shows\n2-Reserva\n3-Usuario\n4-Cerrar sesion\n5-SALIR")
-        usuario = int(input("Elige una opcion: "))
+        usuario =int(input(
+                "\n\033[92m=== MENÚ DE OPCIONES ===\033[0m\n"
+                "\033[35m  → [1] SHOWS             \033[0m\n"
+                "\033[35m  → [2] RESERVAS          \033[0m\n"
+                "\033[35m  → [3] Usuarios          \033[0m\n"
+                "\033[35m  → [4] SALIR DE LA SESION\033[0m\n"
+                "\033[35m  → [5] SALIR DEL PROGRAMA\033[0m\n"
+                "\033[1;35m Seleccione una opción: \033[0m"
+            ))
 
         # SUBMENÚS
         if usuario == 1:
             menu_shows(admin)
+            if menu_shows==-1:
+                usuario =int(input(
+                "\n\033[92m=== MENÚ DE REINTENTO ===\033[0m\n"
+                "\033[35m  → [0] Volver al menú de ingreso\033[0m\n"
+                "\033[35m  → [1] Reingresar el Dni\033[0m\n"
+                "\033[35m  → [2] Reingresar la Contraseña\033[0m\n"
+                "\033[1;35m Seleccione una opción: \033[0m"
+            ))
             
         elif usuario == 2:
             menu_reservas(admin)
-
+            if menu_reservas==-1:
+                usuario =int(input(
+                        "\n\033[92m=== MENÚ DE OPCIONES ===\033[0m\n"
+                        "\033[35m  → [1] SHOWS             \033[0m\n"
+                        "\033[35m  → [2] RESERVAS          \033[0m\n"
+                        "\033[35m  → [3] Usuarios          \033[0m\n"
+                        "\033[35m  → [4] SALIR DE LA SESION\033[0m\n"
+                        "\033[35m  → [5] SALIR DEL PROGRAMA\033[0m\n"
+                        "\033[1;35m Seleccione una opción: \033[0m"
+                    ))  
         elif usuario == 3: 
             menu_usuarios(admin)
+            if menu_usuarios==-1:
+                usuario =int(input(
+                        "\n\033[92m=== MENÚ DE OPCIONES ===\033[0m\n"
+                        "\033[35m  → [1] SHOWS             \033[0m\n"
+                        "\033[35m  → [2] RESERVAS          \033[0m\n"
+                        "\033[35m  → [3] Usuarios          \033[0m\n"
+                        "\033[35m  → [4] SALIR DE LA SESION\033[0m\n"
+                        "\033[35m  → [5] SALIR DEL PROGRAMA\033[0m\n"
+                        "\033[1;35m Seleccione una opción: \033[0m"
+                    ))
 
         elif usuario == 4:  # CERRAR SESION
             admin = False
