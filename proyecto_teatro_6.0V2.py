@@ -1,30 +1,28 @@
-from nombres_teatroV2 import *
 from ingreso import *
-from entidades import *
-from opciones_usuarios import *
-from opciones_shows import *
-from opciones_reservas import *
+from Opciones.opciones_reservas import menu_reservas
+from Opciones.opciones_usuarios import menu_usuarios
+from Opciones.opciones_shows import menu_shows
 
-inicio = True
+capture_data = True
 start = True
 
 
 
 while start:
-    while inicio == True:
-        ingreso_op = menu_login()
+    while capture_data == True:
+        ingreso_nivel = menu_login()
 
-        if ingreso_op == 0:
+        if ingreso_nivel == 0:
             log = login()
             if log == "ADMIN":
                 admin = True
                 menu = True
-                inicio = False
+                capture_data= False
             elif log == "Usuario":
                 admin = False
                 menu = True
-                inicio = False
-        elif ingreso_op == 1:
+                capture_data= False
+        elif ingreso_nivel == 1:
             ingr = registrar()
 
     # PROGRAMA PRINCIPAL
@@ -35,7 +33,7 @@ while start:
         # SUBMENÚS
         if usuario == 1:
             menu_shows(admin)
-
+            
         elif usuario == 2:
             menu_reservas(admin)
 
@@ -44,7 +42,7 @@ while start:
 
         elif usuario == 4:  # CERRAR SESION
             admin = False
-            inicio = True
+            capture_data = True
             menu = False
             dni_en_uso=[]
 

@@ -1,8 +1,13 @@
 from nombres_teatroV2 import *
-from funciones_de_teatroV2 import *
+from entidades.Usuarios import id_user
 import re
 
 
+def busqueda(dni, contraseña):
+    for i in range(len(datos_de_ingreso_dni)):
+        if datos_de_ingreso_dni[i] == dni and datos_globales_contraseñas[i] == contraseña:
+            return True
+    return False
 
 def menu_login():
 # Marco verde brillante
@@ -87,11 +92,11 @@ def registrar():
 
     telefono_cread = int(input("\033[36m Escriba su número de teléfono sin código de área: \033[0m"))
     while telefono_cread < 1100000000 or telefono_cread > 1199999999:
-        print("\033 [91m Número no válido (1100000000 a 1199999999)\033 [0m")
+        print("\033[91m Número no válido (1100000000 a 1199999999) \033[0m")
         telefono_cread = int(input("\033[36m Escriba su número de teléfono sin código de área: \033[0m")) 
     telefono_cread=str(telefono_cread)
-    patron= "[1]{2}-[0-9]{4}-[0-9]{4}"
-    numero_oculto="11-XXXX-XXXX"
+    patron= "(11)(\\d{6})(\\d{2})"
+    numero_oculto="\\1-XXXX-XX\\3"
     telefono_organizado=re.sub(patron,numero_oculto,telefono_cread)
 
 
@@ -103,7 +108,9 @@ def registrar():
 
     contraseña = input("\033[36m Escriba la contraseña que desea: \033[0m")
 
-    print("\033[Usuario creado con éxito con la siguiente información:\033[0m")
+    estado=True
+
+    print("\033[1;92m Usuario creado con éxito con la siguiente información:\033[0m")
     print(f"\033[92m \n",( "═" * 50),"\033[0m")
     print(f"\033[35m  - ID usuario : {num_usuario}\033[0m")
     print(f"\033[35m  - Nombre     : {nombre}\033[0m")
