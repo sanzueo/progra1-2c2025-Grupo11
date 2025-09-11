@@ -1,6 +1,5 @@
-from nombres_teatroV2 import *
-from ingreso import *
-from entidades import *
+from nombres_teatroV2 import datos_globales_usuarios, dni_en_uso, datos_globales_reserva
+from entidades.Usuarios import ver_m3
 
 def menu_usuarios(admin):
     if admin==False:
@@ -9,7 +8,9 @@ def menu_usuarios(admin):
         print("\n1-Ver usuario\n2-Editar usuario\n3-Borrar usuario")
     usuario_i = int(input("Elige una opcion: "))
     if usuario_i == 1: #VER USUARIOS
-        ver_m3(matriz3) 
+        ver_m3(datos_globales_usuarios) 
+
+
     elif usuario_i == 2:  # EDITAR USUARIO
         for i in datos_globales_usuarios:
             if i[2] == dni_en_uso[0]:

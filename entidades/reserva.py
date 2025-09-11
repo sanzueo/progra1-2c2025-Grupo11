@@ -1,5 +1,6 @@
 import random
-from nombres_teatroV2 import *
+from nombres_teatroV2 import datos_globales_reserva,ubicacion, ids_usuario, nombres, ids_reserva
+from entidades.shows import solo_ids_show
 
 # Función para generar IDs de reserva
 def id_alt_r():

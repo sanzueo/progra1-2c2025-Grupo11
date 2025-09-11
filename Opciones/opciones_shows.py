@@ -1,6 +1,5 @@
-from nombres_teatroV2 import *
-from ingreso import *
-from entidades import *
+from nombres_teatroV2 import datos_globales, datos_globales_reserva, solo_ids_show
+from entidades.shows import ver_m, id_alt
 from datetime import datetime
 import random
 

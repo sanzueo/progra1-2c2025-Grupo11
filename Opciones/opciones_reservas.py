@@ -1,6 +1,8 @@
-from nombres_teatroV2 import *
-from ingreso import *
-from entidades import *
+from nombres_teatroV2 import datos_globales_reserva, datos_globales, solo_ids_show
+from entidades.reserva import ver_m2, id_alt_r
+"""crear un archivo para los ids exclusivamente"""
+from entidades.Usuarios import id_user
+from entidades.shows import ver_m
 from datetime import datetime
 
 def menu_reservas(admin):
@@ -11,7 +13,7 @@ def menu_reservas(admin):
     usuario_i = int(input("Elige una opcion: "))
 
     if usuario_i == 1:  #ver reserva     
-        ver_m2(matriz2)
+        ver_m2(datos_globales_reserva)
 
     elif usuario_i == 2: #GENERAR RESERVA
 
@@ -21,6 +23,7 @@ def menu_reservas(admin):
         while dni_usuario not in datos_de_ingreso_dni or dni_usuario not in id_usuarios:
             print("Id inexistente")
             dni_usuario = int(input("Ingresar el numero de id: ")) """
+        
         id_usuario=id_user()
         
         print("-----------------")
@@ -40,7 +43,7 @@ def menu_reservas(admin):
         elif ubicacion_u == 3:
             ubicacion_e = "Vip       "
 
-        ver_m(matriz) 
+        ver_m(datos_globales) 
         show = int(input("Ingrese el numero de id del show que desea asistir: "))
         while show not in solo_ids_show:
             print("El id ingresado no existe, por favor ingrese un id valido.")
