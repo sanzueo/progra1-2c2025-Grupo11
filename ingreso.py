@@ -2,6 +2,8 @@ from nombres_teatroV2 import *
 from funciones_de_teatroV2 import *
 import re
 
+
+
 def menu_login():
 # Marco verde brillante
     print("\033[92m╔════════════════════════════╗\033[0m")
@@ -64,6 +66,8 @@ def login():
 
     dni_en_uso.append(dni_ingres)
 
+    
+
     if contraseña in contraseñas_admin and dni_ingres in dni_admins:
         print("\033[92m Ingreso conseguido como ADMIN.\033[0m")
         return "ADMIN"
@@ -116,10 +120,11 @@ def registrar():
     correo = email.ljust(25)
     estado = "ACTIVO"
     estado = estado.center(10)
+    Activo_conf_u = True
 
     datos_de_ingreso_dni.append(dni_cread)
     datos_globales_contraseñas.append(contraseña)
-    datos_globales_usuarios.append([num_usuario, nombre, dni, telefono, correo, Activo_conf])
+    datos_globales_usuarios.append([num_usuario, nombre, dni, telefono, correo, Activo_conf_u])
 
     print("\033[1;36m Usuario registrado con éxito \033[0m")
     print("")
