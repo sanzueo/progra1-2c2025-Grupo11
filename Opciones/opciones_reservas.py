@@ -1,4 +1,4 @@
-from nombres_teatroV2 import datos_globales_reserva, datos_globales, solo_ids_show
+from nombres_teatroV2 import datos_globales_reserva, datos_globales, solo_ids_show,datos_globales_usuarios, dni_en_uso
 from entidades.reserva import ver_m2, id_alt_r
 """crear un archivo para los ids exclusivamente"""
 from entidades.Usuarios import id_user
@@ -24,8 +24,10 @@ def menu_reservas(admin):
             print("Id inexistente")
             dni_usuario = int(input("Ingresar el numero de id: ")) """
         
-        id_usuario=id_user()
         
+        for i in datos_globales_usuarios:
+            if i[2] == dni_en_uso[0]:
+                id_usuario = i[0]
         print("-----------------")
         print("Para platea elija 1")
         print("Para campo elija 2")
@@ -51,6 +53,13 @@ def menu_reservas(admin):
         for i in datos_globales:
             if i[0] == show:
                 i[4] = i[4] - 1
+                if i[4] < 0:
+                    print("No hay mas entradas disponibles para este show.")
+                    i[4] = 0
+                    show = int(input("Se agogaton las entadas, ingrese otro id:"))
+                else:
+                    print("Reserva realizada con exito.")
+
         datos_globales_reserva.append([id_reserva, id_usuario, ubicacion_e, show])
 
     elif usuario_i == 3: #BUSCAR RESERVA
