@@ -5,15 +5,55 @@ from entidades.Usuarios import id_user
 from entidades.shows import ver_m
 from datetime import datetime
 
+
+matriz_act = []
+
+def obt_id_Actual():
+
+    dni_act = str(dni_en_uso[0])
+    user_act = []
+
+
+    for i in datos_globales_usuarios:
+        if i[2] == dni_act:
+            user_act.append(i[0])
+
+    return user_act[0]
+
+
+
 def menu_reservas(admin):
     if admin==False:
         print("\n1-Ver reserva\n2-Generar reserva")
     if admin==True:
         print("\n1-Ver reserva\n2-Generar reserva\n3-Buscar reserva\n4-Borrar reserva (falta acceso)\n5-Editar reserva")
+
+    
+
+
     usuario_i = int(input("Elige una opcion: "))
 
-    if usuario_i == 1:  #ver reserva     
-        ver_m2(datos_globales_reserva)
+    if usuario_i == 1:  #ver reserva
+        if admin:     
+            ver_m2(datos_globales_reserva)
+        elif admin == False:
+
+            matriz_act.clear()
+
+            usuario_Act = obt_id_Actual()
+
+            for i in datos_globales_reserva:
+                if int(i[1]) == usuario_Act:  
+                    matriz_act.append(i)
+
+            if len(matriz_act) > 0:
+                ver_m2(matriz_act)
+                #ver_m2(matriz2)
+                #ver_m3(matriz3)
+            else:
+                print("no hay nada papu lince")
+
+
 
     elif usuario_i == 2: #GENERAR RESERVA
 
@@ -23,6 +63,7 @@ def menu_reservas(admin):
         while dni_usuario not in datos_de_ingreso_dni or dni_usuario not in id_usuarios:
             print("Id inexistente")
             dni_usuario = int(input("Ingresar el numero de id: ")) """
+        id_usuario= obt_id_Actual()
         
         
         for i in datos_globales_usuarios:

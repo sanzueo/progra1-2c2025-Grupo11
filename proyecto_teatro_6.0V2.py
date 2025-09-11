@@ -6,6 +6,8 @@ from Opciones.opciones_shows import menu_shows
 capture_data = True
 start = True
 
+
+
 while start:
     while capture_data == True:
         ingreso_nivel = menu_login()
