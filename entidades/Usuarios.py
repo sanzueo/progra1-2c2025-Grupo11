@@ -46,7 +46,7 @@ def ver_m3(matriz):
     filas = len(matriz)
     columnas = len(matriz[0])
 
-    columnas_t = ["id","nombre     ","dni    ","        TELEFONO","MAIL","                                ESTADO"]
+    columnas_t = ["ID","Nombre     ","DNI    ","        Telefono","Mail","                                Estado"]
 
     print("-"*111)
     for col in columnas_t:

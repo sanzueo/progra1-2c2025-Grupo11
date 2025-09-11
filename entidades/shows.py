@@ -37,7 +37,7 @@ for i in datos_globales:
 def ver_m(matriz):
     filas = len(matriz)
     columnas = len(matriz[0])
-    columnas_t = ["ids", "tipo evento", "duracion", "cant_e", "esp_d", "fecha"]
+    columnas_t = ["ID'S", "Tipo de Evento", "Duración", "Cant. esp.", "Esp. dispo.", "Fecha"]
     print("-"*66)
     print("\t".join(columnas_t))
     print("-"*66)
