@@ -15,11 +15,11 @@ while start:
             if log == "ADMIN":
                 admin = True
                 menu = True
-                inicio = False
+                capture_data = False
             elif log == "Usuario":
                 admin = False
                 menu = True
-                inicio = False
+                capture_data = False
         elif ingreso_nivel == 1:
             ingr = registrar()
 

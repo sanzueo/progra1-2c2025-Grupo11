@@ -20,7 +20,7 @@ while len(datos_globales_reserva) != len(nombres):
 
 # Función para mostrar reservas
 def ver_m2(matriz):
-    columnas_t = ["ids","id us","ubicacion","id_show"]
+    columnas_t = ["ID'S","ID Usuario","Ubicación","ID Show"]
     print("-"*50)
     print("\t".join(columnas_t))
     print("-"*50)
