@@ -87,10 +87,10 @@ def menu_reservas(admin):
         print("Para vip elija 3")
         print("-----------------")
 
-        ubicacion_u = int(input("Elegi tipo de ubiacion: "))
+        ubicacion_u = int(input("Elegi tipo de ubicación: "))
         while ubicacion_u >3 or ubicacion_u <=0:
-            print("Numero invalido, por favor ingrese un numero valido.")
-            ubicacion_u = int(input("Elegi tipo de ubiacion: "))
+            print("Numero inválido, por favor ingrese un numero válido.")
+            ubicacion_u = int(input("Elegi tipo de ubicación: "))
         if ubicacion_u == 1:
             ubicacion_e = "Platea   "
         elif ubicacion_u == 2:

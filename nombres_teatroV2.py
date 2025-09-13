@@ -71,7 +71,15 @@ ubicacion = ["platea    "
 
 datos_globales_usuarios = []
 
-dni_en_uso=[]
+precio_platea = []
+
+precio_campo = []
+
+precio_vip = []
+
+precio_show = []
+
+dni_en_uso = []
 
 id_usuarios = []
 

@@ -35,14 +35,17 @@ for i in datos_globales:
 
 # Función para mostrar matriz de shows
 def ver_m(matriz):
-    columnas_t = ["ids", "tipo evento", "duracion", "cant_e", "esp_d", "fecha"]
+    columnas_t = ["ID's", "Tipo de evento", "Duración", "Cant. Espectadores", "Esp. Disponibles", "Fecha", "Precio"]
+    anchos = [12, 20, 10, 8, 14, 14, 14]
 
-    anchos = [12, 20, 10, 8, 14, 14]
-
-    print("-" * 74)
+    print("-" * 94)
     print("".join(columnas_t[i].ljust(anchos[i]) for i in range(len(columnas_t))))
-    print("-" * 74)
+    print("-" * 94)
 
     for fila in matriz:
+        id_show = fila[0]
+        # Sumar precios de reservas de este show
+        total_precio = sum(reserva[4] for reserva in datos_globales_reserva if reserva[3] == id_show)
         fila_str = [str(valor).ljust(anchos[i]) for i, valor in enumerate(fila)]
+        fila_str.append(str(total_precio).ljust(anchos[-1]))
         print("".join(fila_str))
