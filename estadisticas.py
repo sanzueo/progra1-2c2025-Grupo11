@@ -7,13 +7,16 @@ def menu_estadisticas():
           "\033[92m=== MENÚ DE ESTADÍSTICAS ===                 \033[0m\n"
           "\033[35m  → [1] SHOWS MÁS VENDIDOS                   \033[0m\n"
           "\033[35m  → [2] RESERVAS MÁS REALIZADAS              \033[0m\n"
-          "\033[35m  → [3] VOLVER                               \033[0m\n"
+          "\033[35m  → [3] SHOW MAS RECAUDADOS                  \033[0m\n"
+          "\033[35m  → [4] VOLVER                               \033[0m\n"
           "\033[1;35m Seleccione una opción:                    \033[0m" ))
     if usuario_i == 1:
         estadistica_shows_mas_vendidos()
     elif usuario_i == 2:
         estadistica_reservas_mas_realizadas()
     elif usuario_i == 3:
+        shows_mas_recaudados()
+    elif usuario_i == 4:
         return
     elif usuario_i==4:
         estadisticas_activos()
@@ -75,6 +78,38 @@ def estadistica_reservas_mas_realizadas():
         print(f" {reserva_id}           {count}")
     print("-------------------------------------\n")
     menu_estadisticas()
+
+
+def shows_mas_recaudados():
+    
+
+    #datos_globales_reserva.append([id_reserva, id_usuario, ubicacion_u, show,precio])
+
+
+    agrupados = []
+
+    for fila in datos_globales_reserva:
+        id_show = fila[3]  
+        precio = fila[4]    
+        encontrado = False  
+
+
+        for k in range(len(agrupados)):
+            if agrupados[k][0] == id_show:
+                agrupados[k][1] += precio
+                encontrado = True  
+
+
+        if not encontrado:
+            agrupados.append([id_show, precio])
+
+
+    print("Suma de precios por show:")
+    for g in agrupados:
+        print("Show", g[0], "→", g[1])
+
+
+
 
 # PROGRAMA PRINCIPAL
 

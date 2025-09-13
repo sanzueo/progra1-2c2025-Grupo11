@@ -27,7 +27,7 @@ def shows_seleccion():
             i[4] -= 1
     return show_elegido
 # Crear reservas aleatorias
-while len(datos_globales_reserva) != 4000:
+while len(datos_globales_reserva) != 30:
     id_reserva = id_alt_r()
     id_usuario = random.choice(ids_usuario)
 
