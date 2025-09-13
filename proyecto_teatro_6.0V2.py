@@ -4,6 +4,7 @@ from Opciones.opciones_usuarios import menu_usuarios
 from Opciones.opciones_shows import menu_shows
 from estadisticas import menu_estadisticas
 
+
 capture_data = True
 start = True
 
@@ -28,6 +29,7 @@ while start:
 
     # PROGRAMA PRINCIPAL
     while menu == True:
+        
         if admin==True:
             usuario =int(input(
                 "\n\033[92m=== MENÚ DE OPCIONES ===\033[0m\n"

@@ -1,4 +1,4 @@
-from nombres_teatroV2 import datos_globales, datos_globales_reserva, solo_ids_show
+from nombres_teatroV2 import datos_globales, datos_globales_reserva, solo_ids_show,precios_show
 from entidades.shows import ver_m, id_alt
 from datetime import datetime
 import random
@@ -206,8 +206,19 @@ def menu_shows(admin):
         if (suma + duracion) < 720:
 
             datos_globales.append([id_show,tipo_Evento,duracion,espectadores,espacios_disponibles,fecha])
+
+            id_Act = id_show
+            precio_b = random.randint(7200,12000)
+            precio_b2 = precio_b * 2
+            precio_b3 = precio_b * 3
+            precios_show.append([id_Act,precio_b,precio_b2,precio_b3])
+            
+
+            
         else:
             print("No hay espacio en el dia para el show ingresado.")
+        
+        print(precios_show)
 
     elif usuario_i==6 and admin==True or usuario_i==3 and admin==False:
         return -1

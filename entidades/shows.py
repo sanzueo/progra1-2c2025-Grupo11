@@ -29,23 +29,39 @@ while len(datos_globales) != 10:
     fecha = fecha_alt()
     datos_globales.append([id_show, tipo_Evento, duracion, espectadores, espacios_disponibles, fecha])
 
+
+#CREAR PRECIOS 
+
+for i in datos_globales:
+        id_show = i[0]
+        precio_b = random.randint(7200,12000)
+        precio_b2 = precio_b * 2
+        precio_b3 = precio_b * 3
+
+        precios_show.append([id_show,precio_b,precio_b2,precio_b3])
+
+print(precios_show)
+
+
+
+
+
 # Guardar solo los IDs de los shows
 for i in datos_globales:
     solo_ids_show.append(i[0])
 
 # Función para mostrar matriz de shows
 def ver_m(matriz):
-    columnas_t = ["ID's", "Tipo de evento", "Duración", "Cant. Espectadores", "Esp. Disponibles", "Fecha", "Precio"]
-    anchos = [12, 20, 10, 8, 14, 14, 14]
+    columnas_t = ["ID's", "Tipo de evento", "Duración", "Cant. Espectadores", "Esp. Disponibles", "Fecha"]
+    anchos = [12, 20, 12, 18, 18, 14]  # ajusté un poco los anchos para que entre bien
 
-    print("-" * 94)
-    print("".join(columnas_t[i].ljust(anchos[i]) for i in range(len(columnas_t))))
-    print("-" * 94)
+    print("-" * sum(anchos))
+    print(" ".join(columnas_t[i].ljust(anchos[i]) for i in range(len(columnas_t))))
+    print("-" * sum(anchos))
 
     for fila in matriz:
-        id_show = fila[0]
-        # Sumar precios de reservas de este show
-        total_precio = sum(reserva[4] for reserva in datos_globales_reserva if reserva[3] == id_show)
         fila_str = [str(valor).ljust(anchos[i]) for i, valor in enumerate(fila)]
-        fila_str.append(str(total_precio).ljust(anchos[-1]))
-        print("".join(fila_str))
+        print(" ".join(fila_str))
+
+
+

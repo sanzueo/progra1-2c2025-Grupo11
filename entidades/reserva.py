@@ -1,5 +1,5 @@
 import random
-from nombres_teatroV2 import datos_globales_reserva,ubicacion, ids_usuario, ids_reserva, datos_globales, shows_con_capacidad, precio_platea, precio_campo, precio_vip
+from nombres_teatroV2 import datos_globales_reserva,ubicacion, ids_usuario, ids_reserva, datos_globales, shows_con_capacidad,precios_show
 from entidades.shows import solo_ids_show
 
 # Función para generar IDs de reserva
@@ -10,26 +10,6 @@ def id_alt_r():
     ids_reserva.append(n)
     return n
 
-def platea_precio_r():
-    n=random.randint(1000,3333)
-    while n in precio_platea:
-        n = random.randint(1000, 3333)
-    precio_platea.append(n)
-    return n
-
-def campo_precio_r():
-    n=random.randint(3334,6666)
-    while n in precio_campo:
-        n = random.randint(3334, 6666)
-    precio_campo.append(n)
-    return n
-
-def vip_precio_r():
-    n=random.randint(6667,9999)
-    while n in precio_vip:
-        n = random.randint(6667, 9999)
-    precio_vip.append(n)
-    return n
 
 def shows_seleccion():
 
@@ -50,19 +30,29 @@ def shows_seleccion():
 while len(datos_globales_reserva) != 100:
     id_reserva = id_alt_r()
     id_usuario = random.choice(ids_usuario)
-    ubicacion_u = random.choice(ubicacion)
-    show=shows_seleccion()
-    if ubicacion_u == "platea    ":
-        precio = platea_precio_r()
-    elif ubicacion_u == "campo    ":
-        precio = campo_precio_r()
-    elif ubicacion_u == "vip      ":
-        precio = vip_precio_r()
-    else:
-        print(f"Ubicación inválida: {ubicacion_u}")
-        continue 
 
-    datos_globales_reserva.append([id_reserva, id_usuario, ubicacion_u, show, precio])
+    ubicacion_u = random.choice(ubicacion)
+
+    show=shows_seleccion()
+
+    if ubicacion_u == "platea    ":
+        for i in precios_show:
+            if i[0] == show:
+                precio = i[1]
+
+    elif ubicacion_u == "campo    ":
+        for i in precios_show:
+            if i[0] == show:
+                    precio = i[2]
+    elif ubicacion_u == "vip      ":
+        for i in precios_show:
+            if i[0] == show:
+                    precio = i[3]
+
+
+
+    
+    datos_globales_reserva.append([id_reserva, id_usuario, ubicacion_u, show,precio])
 
 # Función para mostrar reservas
 def ver_m2(matriz):

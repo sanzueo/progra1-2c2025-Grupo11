@@ -71,13 +71,9 @@ ubicacion = ["platea    "
 
 datos_globales_usuarios = []
 
-precio_platea = []
+#MATRIZ DE PRECIOS
 
-precio_campo = []
-
-precio_vip = []
-
-precio_show = []
+precios_show = []
 
 dni_en_uso = []
 
@@ -97,7 +93,7 @@ datos_de_ingreso_dni=[]
 
 contraseñas_admin=["admin"]
 
-dni_admins=[47346945, 46915515,46624535]
+dni_admins=[47346945, 46915515,46624535,44414250]
 
 ids_shows=[]
 

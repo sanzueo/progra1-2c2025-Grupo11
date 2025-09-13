@@ -1,4 +1,4 @@
-from nombres_teatroV2 import datos_globales_reserva, datos_globales, solo_ids_show,datos_globales_usuarios, dni_en_uso
+from nombres_teatroV2 import datos_globales_reserva, datos_globales, solo_ids_show,datos_globales_usuarios, dni_en_uso,precios_show
 from entidades.reserva import ver_m2, id_alt_r
 """crear un archivo para los ids exclusivamente"""
 from entidades.Usuarios import id_user
@@ -81,22 +81,9 @@ def menu_reservas(admin):
         for i in datos_globales_usuarios:
             if i[2] == dni_en_uso[0]:
                 id_usuario = i[0]
-        print("-----------------")
-        print("Para platea elija 1")
-        print("Para campo elija 2")
-        print("Para vip elija 3")
-        print("-----------------")
+        
 
-        ubicacion_u = int(input("Elegi tipo de ubicación: "))
-        while ubicacion_u >3 or ubicacion_u <=0:
-            print("Numero inválido, por favor ingrese un numero válido.")
-            ubicacion_u = int(input("Elegi tipo de ubicación: "))
-        if ubicacion_u == 1:
-            ubicacion_e = "Platea   "
-        elif ubicacion_u == 2:
-            ubicacion_e = "Campo    "
-        elif ubicacion_u == 3:
-            ubicacion_e = "Vip       "
+        
 
         ver_m(datos_globales) 
         show = int(input("Ingrese el numero de id del show que desea asistir: "))
@@ -116,7 +103,40 @@ def menu_reservas(admin):
                 
                 print("Reserva realizada con exito.")
 
-        datos_globales_reserva.append([id_reserva, id_usuario, ubicacion_e, show])
+        print("-----------------")
+        print("Para platea elija 1")
+        print("Para campo elija 2")
+        print("Para vip elija 3")
+        print("-----------------")
+
+        ubicacion_u = int(input("Elegi tipo de ubicación: "))
+
+        while ubicacion_u >3 or ubicacion_u <=0:
+            print("Numero inválido, por favor ingrese un numero válido.")
+            ubicacion_u = int(input("Elegi tipo de ubicación: "))
+        if ubicacion_u == 1:
+            ubicacion_e = "Platea   "
+            for i in precios_show:
+                if i[0] == show:
+                    precio_act = i[1]
+            print(precio_act)
+
+        elif ubicacion_u == 2:
+            ubicacion_e = "Campo    "
+            if i[0] == show:
+                    precio_act = i[2]
+            print(precio_act)
+        elif ubicacion_u == 3:
+            ubicacion_e = "Vip       "
+            if i[0] == show:
+                    precio_act = i[3]
+            print(precio_act)
+        
+
+
+    
+
+        datos_globales_reserva.append([id_reserva, id_usuario, ubicacion_e, show,precio_act])
 
     elif usuario_i == 3 and admin==True: #BUSCAR RESERVA
     
