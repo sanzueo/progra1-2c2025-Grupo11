@@ -73,6 +73,8 @@ datos_globales_usuarios = []
 
 #MATRIZ DE PRECIOS
 
+
+
 precios_show = []
 
 dni_en_uso = []
