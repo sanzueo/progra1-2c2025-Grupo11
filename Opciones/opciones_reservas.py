@@ -189,14 +189,104 @@ def menu_reservas(admin):
 
     
 
+
     elif usuario_i == 5 and admin==True: #EDITAR RESERVA
 
-        eleccion = int(input("Seleccione el id de reserva a editar: "))
+        ver_m2(datos_globales_reserva)
+        
+        id_a_editar = int(input("\nSeleccione el ID de reserva a editar: "))
 
-        for i in datos_globales_reserva:
-            if i[0] == eleccion:
-                i[2] = int(input("Ingrese ubicacion: "))
-                i[3] = input("Ingresar show: ")
+        for reserva in datos_globales_reserva:
+            if reserva[0] == id_a_editar:  
+                reserva_encontrada = reserva
+
+        if not reserva_encontrada:
+            print("\033[91mNo se encontró la reserva con ese ID\033[0m")
+        
+        print(f"\nEditando reserva ID: {reserva_encontrada[0]}")
+        
+        eleccion = int(input(
+            "\n\033[92m=== MENÚ DE EDICIÓN DE RESERVA ===\033[0m\n"
+            "\033[35m  → [1] EDITAR UBICACIÓN\033[0m\n"
+            "\033[35m  → [2] EDITAR SHOW\033[0m\n"
+            "\033[1;35mSeleccione una opción: \033[0m"
+        ))
+        
+        if eleccion == 1:  # EDITAR UBICACIÓN
+            ubicacion = int(input(
+                "\n\033[92m=== SELECCIONE NUEVA UBICACIÓN ===\033[0m\n"
+                "\033[35m  → [1] PLATEA\033[0m\n"
+                "\033[35m  → [2] CAMPO\033[0m\n"
+                "\033[35m  → [3] VIP\033[0m\n"
+                "\033[1;35mSeleccione opción: \033[0m"
+            ))
+            
+            if ubicacion == 1:
+                reserva_encontrada[2] = "Platea   "
+                for precio_info in precios_show:
+                    if precio_info[0] == reserva_encontrada[3]:  
+                        reserva_encontrada[4] = precio_info[1]  
+                
+            elif ubicacion == 2:
+                reserva_encontrada[2] = "Campo    "
+                for precio_info in precios_show:
+                    if precio_info[0] == reserva_encontrada[3]:
+                        reserva_encontrada[4] = precio_info[2]  
+
+            elif ubicacion == 3:
+                reserva_encontrada[2] = "Vip       "
+                for precio_info in precios_show:
+                    if precio_info[0] == reserva_encontrada[3]:
+                        reserva_encontrada[4] = precio_info[3]  
+
+                print("\033[91mOpción de ubicación no válida\033[0m")
+
+            print("\033[92mUbicación y precio actualizados correctamente\033[0m")
+        
+        elif eleccion == 2:  # EDITAR SHOW
+            ver_m(datos_globales)
+            
+            nuevo_show = int(input("\nIngrese el ID del nuevo show: "))
+
+            show_valido = False
+            for show in datos_globales:
+                if show[0] == nuevo_show:
+                    show_valido = True
+
+            if not show_valido:
+                print("\033[91mEl ID de show no existe\033[0m")
+
+            
+            for show in datos_globales:
+                if show[0] == nuevo_show and show[4] > 0:
+                    for show_viejo in datos_globales:
+                        if show_viejo[0] == reserva_encontrada[3]:
+                            show_viejo[4] += 1  
+                            show_viejo[3] -= 1  
+                    
+                    show[4] -= 1  
+                    show[3] += 1  
+                    
+                    reserva_encontrada[3] = nuevo_show  
+                    
+                    
+                    ubicacion_actual = reserva_encontrada[2].strip()
+                    for precio_info in precios_show:
+                        if precio_info[0] == nuevo_show:
+                            if ubicacion_actual == "Platea":
+                                reserva_encontrada[4] = precio_info[1]
+                            elif ubicacion_actual == "Campo":
+                                reserva_encontrada[4] = precio_info[2]
+                            elif ubicacion_actual == "Vip":
+                                reserva_encontrada[4] = precio_info[3]
+
+                    print("\033[92mShow actualizado correctamente\033[0m")
+            else:
+                print("\033[91mNo hay capacidad disponible en ese show\033[0m")
+        
+        else:
+            print("\033[91mOpción no válida\033[0m")
+
 
     elif usuario_i==6:
         return -1

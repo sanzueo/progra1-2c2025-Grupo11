@@ -40,12 +40,6 @@ for i in datos_globales:
 
         precios_show.append([id_show,precio_b,precio_b2,precio_b3])
 
-print(precios_show)
-
-
-
-
-
 # Guardar solo los IDs de los shows
 for i in datos_globales:
     solo_ids_show.append(i[0])

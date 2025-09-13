@@ -17,7 +17,7 @@ def dni_user():
     dni_usuarios.append(dni)
     return dni
 # Crear usuarios aleatorios a partir de nombres
-while len(datos_globales_usuarios) != 6000:
+while len(datos_globales_usuarios) != 10:
     id_usuario = id_user()
     nombre = random.choice(nombres).ljust(10, " ")
     dni=dni_user()
