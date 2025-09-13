@@ -121,20 +121,10 @@ def registrar():
     print(f"\033[35m  - Teléfono   : {telefono_organizado}\033[0m")
     print(f"\033[35m  - Email      : {email}\033[0m")
     print("\033[92m",( "═" * 50),"\033[0m")
-    
-    #ajustes para su correctaa impresion 
-    id_usuario = str(num_usuario).rjust(6)
-    nombre = nombre.ljust(12)
-    dni = str(dni_cread).rjust(8)
-    telefono = str(telefono_cread).rjust(10)
-    correo = email.ljust(25)
-    estado = "ACTIVO"
-    estado = estado.center(10)
-    Activo_conf_u = True
 
     datos_de_ingreso_dni.append(dni_cread)
     datos_globales_contraseñas.append(contraseña)
-    datos_globales_usuarios.append([num_usuario, nombre, dni, telefono, correo, Activo_conf_u])
+    datos_globales_usuarios.append([num_usuario, nombre,dni_cread, telefono_cread, email, True])
 
     print("\033[1;36m Usuario registrado con éxito \033[0m")
     print("")

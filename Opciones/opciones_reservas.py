@@ -10,7 +10,7 @@ matriz_act = []
 
 def obt_id_Actual():
 
-    dni_act = str(dni_en_uso[0])
+    dni_act = (dni_en_uso[0])
     user_act = []
 
 
@@ -68,11 +68,6 @@ def menu_reservas(admin):
     elif usuario_i == 2: #GENERAR RESERVA
 
         id_reserva = id_alt_r()  # Llamar a la función
-
-        """ dni_usuario = int(input("Ingresar el numero de id: "))
-        while dni_usuario not in datos_de_ingreso_dni or dni_usuario not in id_usuarios:
-            print("Id inexistente")
-            dni_usuario = int(input("Ingresar el numero de id: ")) """
         if admin==False:
             id_usuario= obt_id_Actual()
         if admin==True:
@@ -90,18 +85,33 @@ def menu_reservas(admin):
         while show not in solo_ids_show:
             print("El id ingresado no existe, por favor ingrese un id valido.")
             show = int(input("Ingrese el numero de id del show que desea asistir: "))
-        for i in datos_globales:
-            if i[0] == show:
-                i[3] += 1
-                if i[3] <= 0:
-                    show = int(input("Se agotaron las entadas, ingrese otro id:"))
-                i[4] = i[4] - 1
-                if i[4] < 0:
-                    print("No hay mas entradas disponibles para este show.")
-                    i[4] = 0
-                    show = int(input("Se agotaron las entadas, ingrese otro id:"))
+            reserva_exitosa = False
+            show_actual = show
+
+            while not reserva_exitosa:
+                show_encontrado = False
+                tiene_capacidad = False
+                lugar_del_show = -1
                 
-                print("Reserva realizada con exito.")
+                for i in range(len(datos_globales)):
+                    if datos_globales[i][0] == show_actual:
+                        show_encontrado = True
+                        lugar_del_show = i
+                        if datos_globales[i][4] > 0:
+                            tiene_capacidad = True
+                
+                if show_encontrado and tiene_capacidad:
+                    datos_globales[lugar_del_show][4] -= 1
+                    datos_globales[lugar_del_show][3] += 1
+                    reserva_exitosa = True
+                    print("Reserva realizada con éxito.")
+                elif show_encontrado and not tiene_capacidad:
+                    print("No hay entradas disponibles para este show.")
+                    show_actual = int(input("Ingrese otro ID de show: "))
+                else:
+                    print("ID de show no encontrado.")
+                    show_actual = int(input("Ingrese un ID de show válido: "))
+
 
         print("-----------------")
         print("Para platea elija 1")

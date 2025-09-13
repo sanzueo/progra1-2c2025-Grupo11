@@ -59,10 +59,6 @@ def menu_reservas(admin):
 
         id_reserva = id_alt_r()  # Llamar a la función
 
-        """ dni_usuario = int(input("Ingresar el numero de id: "))
-        while dni_usuario not in datos_de_ingreso_dni or dni_usuario not in id_usuarios:
-            print("Id inexistente")
-            dni_usuario = int(input("Ingresar el numero de id: ")) """
         id_usuario= obt_id_Actual()
         
         print("-----------------")

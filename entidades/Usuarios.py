@@ -27,14 +27,6 @@ while len(datos_globales_usuarios) != 6000:
         correo += " "
     estado = random.choice([True, False])
 
-    #forma de que sea ordenada mas facilmente y usando .just o usando las demas cosas del profe
-    # puede necesitar retoques depende de algunas ocasiones
-    id_usuario = str(id_usuario).rjust(6)
-    nombre = nombre.ljust(12)
-    dni = str(dni).rjust(10)
-    telefono = str(telefono).rjust(12)
-    correo = correo.ljust(25)
-
     datos_globales_usuarios.append([id_usuario, nombre, dni, telefono, correo, estado])
 
 matriz3 = datos_globales_usuarios
@@ -63,11 +55,20 @@ def ver_m3(matriz):
 
     for f in range(filas):
         for c in range(columnas):
-            if matriz[f][c] == True:
-                matriz[f][c] = "\tACTIVO"
-            elif matriz[f][c] == False:
-                matriz[f][c] = "\tINACTIVO"
-            print(matriz[f][c], end="\t")
+            #cada indice esta aclarado a la derecha
+            if c == 0:  # ID
+                print(str(matriz[f][c]).rjust(6), end="\t")
+            elif c == 1:  # Nombre
+                print(str(matriz[f][c]).ljust(12), end="\t")
+            elif c == 2:  # DNI
+                print(str(matriz[f][c]).rjust(10), end="\t")
+            elif c == 3:  # Teléfono
+                print(str(matriz[f][c]).rjust(12), end="\t")
+            elif c == 4:  # Email
+                print(str(matriz[f][c]).ljust(25), end="\t")
+            elif c == 5:  # Estado
+                estado_str = "ACTIVO" if matriz[f][c] == True else "INACTIVO"
+                print(estado_str, end="\t")
         print()
 
 

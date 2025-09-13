@@ -97,34 +97,28 @@ def menu_shows(admin):
 
             if i[0] == eleccion:
                 opcion = int(input(
-                    "\n\033[92m=== MENÚ DE EDICIÓN ===\033[0m\n"
-                    "\033[35m  → [0] Editar ID\033[0m\n"
-                    "\033[35m  → [1] Editar tipo de evento\033[0m\n"
-                    "\033[35m  → [2] Editar duración\033[0m\n"
-                    "\033[35m  → [3] Editar cant. espectadores\033[0m\n"
-                    "\033[35m  → [4] Editar todos los datos\033[0m\n"
-                    "\033[1;35mSeleccione una opción: \033[0m"
-                ))
+                        "\n\033[92m=== MENÚ DE EDICIÓN ===      \033[0m\n"
+                        "\033[35m  → [0] Editar tipo de evento  \033[0m\n"
+                        "\033[35m  → [1] Editar duración        \033[0m\n"
+                        "\033[35m  → [2] Editar todos los datos \033[0m\n"
+                        "\033[1;35mSeleccione una opción:       \033[0m"
+                        ))
                 while opcion not in (0, 1, 2, 3, 4):
                     print("\033[91m Número fuera de rango.\033[0m")
                     opcion = int(input(
-                        "\n\033[92m=== MENÚ DE EDICIÓN ===\033[0m\n"
-                        "\033[35m  → [0] Editar ID\033[0m\n"
-                        "\033[35m  → [1] Editar tipo de evento\033[0m\n"
-                        "\033[35m  → [2] Editar duración\033[0m\n"
-                        "\033[35m  → [3] Editar cant. espectadores\033[0m\n"
-                        "\033[35m  → [4] Editar todos los datos\033[0m\n"
-                        "\033[1;35mSeleccione una opción: \033[0m"
+                        "\n\033[92m=== MENÚ DE EDICIÓN ===      \033[0m\n"
+                        "\033[35m  → [0] Editar tipo de evento  \033[0m\n"
+                        "\033[35m  → [1] Editar duración        \033[0m\n"
+                        "\033[35m  → [2] Editar todos los datos \033[0m\n"
+                        "\033[1;35mSeleccione una opción:       \033[0m"
                     ))
 
-                if opcion == 0:
-                    i[0] = input("Ingrese el nuevo ID: ")
 
-                elif opcion == 1:
+                if opcion == 0:
                     i[1] = input("Ingrese el nuevo tipo de evento: ")
                     i[1]=i[1].ljust(20, " ")
 
-                elif opcion == 2:
+                elif opcion == 1:
                     fecha = i[5]
 
                     suma = 0
@@ -142,11 +136,8 @@ def menu_shows(admin):
                     else:
                         print("No es posible editar la duracion del show.")
 
-                elif opcion == 3:
-                    i[3] = input("Ingrese la cant. de espectadores: ")
+                elif opcion == 2:
 
-                elif opcion == 4:
-                    i[0] = input("Ingrese el nuevo ID: ")
                     i[1] = input("Ingrese el nuevo tipo de evento: ")
                     i[1]=i[1].ljust(20, " ")
                     fecha = i[5]
@@ -166,9 +157,6 @@ def menu_shows(admin):
                         
                     else:
                         print("No es posible editar la duracion del show.")
-                    
-                    i[3] = input("Ingrese la cant. de espectadores: ")
-                    i[4] = 999 - int(i[3])
 
         print("Show editado con exito.")
         ver_m(datos_globales)

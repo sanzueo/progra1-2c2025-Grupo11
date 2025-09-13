@@ -6,14 +6,14 @@ def menu_usuarios(admin):
             usuario_i=int(input(
             "\n\033[92m=== MENÚ DE USUARIO ===          \033[0m\n"
             "\033[35m  → [1] VER USUARIO                \033[0m\n"
-            "\033[35m  → [2] EDITAR SHOW                \033[0m\n"
+            "\033[35m  → [2] EDITAR Usuario             \033[0m\n"
             "\033[35m  → [3] VOLVER AL MENU DE OPCIONES \033[0m\n"
             ))
     if admin==True:
             usuario_i=int(input(
             "\n\033[92m=== MENÚ DE USUARIO ===          \033[0m\n"
             "\033[35m  → [1] VER USUARIO                \033[0m\n"
-            "\033[35m  → [2] EDITAR SHOW                \033[0m\n"
+            "\033[35m  → [2] EDITAR USUARIO             \033[0m\n"
             "\033[35m  → [3] BORRAR USUARIO             \033[0m\n"
             "\033[35m  → [4] VOLVER AL MENU DE OPCIONES \033[0m\n"
             ))
@@ -86,9 +86,9 @@ def menu_usuarios(admin):
                 elif opcion == 3:
                     i[4] = input("\033[36m Ingrese el correo a cambiar: \033[0m")
                 elif opcion == 4:
-                    i[5]=False
+                    i[5]= False
                 elif opcion == 5:
-                    i[5] == True
+                    i[5] = True
 
     elif usuario_i == 3 and admin==True: #BORRAR USUARIO
         eleccion = int(input("Seleccione id a eliminar: "))

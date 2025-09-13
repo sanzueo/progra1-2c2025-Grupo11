@@ -25,8 +25,8 @@ def estadistica_shows_mas_vendidos():
     
     sorted_shows = sorted(datos_globales, key=lambda x: x[3], reverse=True)
     
-    cantidad=int(input("seleccione cuantos quiere ver con un maximo de 5"))
-    while cantidad >=5:
+    cantidad=int(input("seleccione cuantos quiere ver con un maximo de 5: "))
+    while cantidad >5:
         print("cantidad invalida el maximo es 5")
         cantidad=int(input("seleccione cuantos quiere ver con un maximo de 5"))
     sorted_shows = sorted_shows[:cantidad]
