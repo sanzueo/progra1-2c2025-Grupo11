@@ -1,9 +1,26 @@
-from nombres_teatroV2 import datos_globales_reserva, datos_globales, solo_ids_show
+from nombres_teatroV2 import datos_globales_reserva, datos_globales, solo_ids_show,datos_globales_usuarios, dni_en_uso
 from entidades.reserva import ver_m2, id_alt_r
 """crear un archivo para los ids exclusivamente"""
 from entidades.Usuarios import id_user
 from entidades.shows import ver_m
 from datetime import datetime
+
+
+matriz_act = []
+
+def obt_id_Actual():
+
+    dni_act = str(dni_en_uso[0])
+    user_act = []
+
+
+    for i in datos_globales_usuarios:
+        if i[2] == dni_act:
+            user_act.append(i[0])
+
+    return user_act[0]
+
+
 
 def menu_reservas(admin):
     if admin==False:
@@ -26,8 +43,27 @@ def menu_reservas(admin):
             "\033[1;35m Seleccione una opción: \033[0m"
         ))
 
-    if usuario_i == 1:  #ver reserva     
-        ver_m2(datos_globales_reserva)
+    if usuario_i == 1:  #ver reserva
+        if admin:     
+            ver_m2(datos_globales_reserva)
+        elif admin == False:
+
+            matriz_act.clear()
+
+            usuario_Act = obt_id_Actual()
+
+            for i in datos_globales_reserva:
+                if int(i[1]) == usuario_Act:  
+                    matriz_act.append(i)
+
+            if len(matriz_act) > 0:
+                ver_m2(matriz_act)
+                #ver_m2(matriz2)
+                #ver_m3(matriz3)
+            else:
+                print("no hay nada papu lince")
+
+
 
     elif usuario_i == 2: #GENERAR RESERVA
 
@@ -37,9 +73,14 @@ def menu_reservas(admin):
         while dni_usuario not in datos_de_ingreso_dni or dni_usuario not in id_usuarios:
             print("Id inexistente")
             dni_usuario = int(input("Ingresar el numero de id: ")) """
+        if admin==False:
+            id_usuario= obt_id_Actual()
+        if admin==True:
+            id_usuario=id_alt_r()
         
-        id_usuario=id_user()
-        
+        for i in datos_globales_usuarios:
+            if i[2] == dni_en_uso[0]:
+                id_usuario = i[0]
         print("-----------------")
         print("Para platea elija 1")
         print("Para campo elija 2")
@@ -64,7 +105,17 @@ def menu_reservas(admin):
             show = int(input("Ingrese el numero de id del show que desea asistir: "))
         for i in datos_globales:
             if i[0] == show:
+                i[3] += 1
+                if i[3] <= 0:
+                    show = int(input("Se agotaron las entadas, ingrese otro id:"))
                 i[4] = i[4] - 1
+                if i[4] < 0:
+                    print("No hay mas entradas disponibles para este show.")
+                    i[4] = 0
+                    show = int(input("Se agotaron las entadas, ingrese otro id:"))
+                
+                print("Reserva realizada con exito.")
+
         datos_globales_reserva.append([id_reserva, id_usuario, ubicacion_e, show])
 
     elif usuario_i == 3 and admin==True: #BUSCAR RESERVA

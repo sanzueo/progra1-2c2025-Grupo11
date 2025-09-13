@@ -1,5 +1,5 @@
 import random
-from nombres_teatroV2 import datos_globales_reserva,ubicacion, ids_usuario, nombres, ids_reserva
+from nombres_teatroV2 import datos_globales_reserva,ubicacion, ids_usuario, ids_reserva, datos_globales, shows_con_capacidad
 from entidades.shows import solo_ids_show
 
 # Función para generar IDs de reserva
@@ -9,13 +9,28 @@ def id_alt_r():
         n = random.randint(1000, 9999)
     ids_reserva.append(n)
     return n
+def shows_seleccion():
 
+    show=random.choice(solo_ids_show)
+    for i in datos_globales:
+        if i[4] >0:
+            shows_con_capacidad.append(i[0])    
+    if show in shows_con_capacidad:
+        show_elegido=show
+    elif show not in shows_con_capacidad:
+        show_elegido=random.choice(shows_con_capacidad)
+    for i in datos_globales:
+        if i[0] == show_elegido:
+            i[3] += 1
+            i[4] -= 1
+    return show_elegido
 # Crear reservas aleatorias
-while len(datos_globales_reserva) != len(nombres):
+while len(datos_globales_reserva) != 5990:
     id_reserva = id_alt_r()
     id_usuario = random.choice(ids_usuario)
     ubicacion_u = random.choice(ubicacion)
-    show = random.choice(solo_ids_show)
+    show=shows_seleccion()
+
     datos_globales_reserva.append([id_reserva, id_usuario, ubicacion_u, show])
 
 # Función para mostrar reservas

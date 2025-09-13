@@ -3,14 +3,14 @@ from entidades.Usuarios import ver_m3
 
 def menu_usuarios(admin):
     if admin==False:
-            usuario_i=(input(
+            usuario_i=int(input(
             "\n\033[92m=== MENÚ DE USUARIO ===          \033[0m\n"
             "\033[35m  → [1] VER USUARIO                \033[0m\n"
             "\033[35m  → [2] EDITAR SHOW                \033[0m\n"
             "\033[35m  → [3] VOLVER AL MENU DE OPCIONES \033[0m\n"
             ))
     if admin==True:
-            usuario_i=(input(
+            usuario_i=int(input(
             "\n\033[92m=== MENÚ DE USUARIO ===          \033[0m\n"
             "\033[35m  → [1] VER USUARIO                \033[0m\n"
             "\033[35m  → [2] EDITAR SHOW                \033[0m\n"

@@ -24,8 +24,8 @@ while len(datos_globales) != 10:
     id_show = id_alt()
     tipo_Evento = random.choice(tipos_show)
     duracion = random.choice([60,120,180])
-    espectadores = random.randint(300, 999)
-    espacios_disponibles = 999-espectadores
+    espectadores=0
+    espacios_disponibles = 999
     fecha = fecha_alt()
     datos_globales.append([id_show, tipo_Evento, duracion, espectadores, espacios_disponibles, fecha])
 
@@ -35,11 +35,14 @@ for i in datos_globales:
 
 # Función para mostrar matriz de shows
 def ver_m(matriz):
-    filas = len(matriz)
-    columnas = len(matriz[0])
-    columnas_t = ["ID'S", "Tipo de Evento", "Duración", "Cant. esp.", "Esp. dispo.", "Fecha"]
-    print("-"*66)
-    print("\t".join(columnas_t))
-    print("-"*66)
-    for f in range(filas):
-        print("\t".join(str(matriz[f][c]) for c in range(columnas)))
+    columnas_t = ["ids", "tipo evento", "duracion", "cant_e", "esp_d", "fecha"]
+
+    anchos = [12, 20, 10, 8, 14, 14]
+
+    print("-" * 74)
+    print("".join(columnas_t[i].ljust(anchos[i]) for i in range(len(columnas_t))))
+    print("-" * 74)
+
+    for fila in matriz:
+        fila_str = [str(valor).ljust(anchos[i]) for i, valor in enumerate(fila)]
+        print("".join(fila_str))

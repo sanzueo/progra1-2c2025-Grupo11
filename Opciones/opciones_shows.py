@@ -5,7 +5,7 @@ import random
 
 def menu_shows(admin):
     if admin==False:
-            usuario_i=(input(
+            usuario_i=int(input(
             "\n\033[92m=== MENÚ DE SHOWS ===         \033[0m\n"
             "\033[35m  → [1] VER SHOWS               \033[0m\n"
             "\033[35m  → [2] BUSCAR SHOWS            \033[0m\n"
@@ -13,7 +13,7 @@ def menu_shows(admin):
             "\033[1;35m Seleccione una opción:       \033[0m" ))
 
     if admin==True:
-            usuario_i=(input(
+            usuario_i=int(input(
             "\n\033[92m=== MENÚ DE SHOWS ===         \033[0m\n"
             "\033[35m  → [1] VER SHOWS               \033[0m\n"
             "\033[35m  → [2] BUSCAR SHOWS            \033[0m\n"
