@@ -17,7 +17,7 @@ def dni_user():
     dni_usuarios.append(dni)
     return dni
 # Crear usuarios aleatorios a partir de nombres
-while len(datos_globales_usuarios) != 50:
+while len(datos_globales_usuarios) != 400:
     id_usuario = id_user()
     nombre = random.choice(nombres).ljust(10, " ")
     dni=dni_user()
@@ -40,6 +40,22 @@ for i in datos_globales_usuarios:
     dni_usuarios.append(i[2])
 
 # Función para mostrar matriz de usuarios
+def ver_busqueda_usuarios(matriz):
+
+    filas = len(matriz)
+    columnas = len(matriz[0])
+    columnas_t = ["ID","Nombre     ","DNI    ","        Telefono","Mail","                                Estado"]
+
+    print("-"*91)
+    print(f"{'ID':<8}  {'nombre':<13}  {'DNI':>8}  {'Telefono':>14}  {'Mail':>14} {'Estado':>23}")  
+    print("-"*91)
+    for f in range(filas):
+        if matriz[f][5] == True:
+            estado = "ACTIVO"
+        else:
+            estado= "INACTIVO"
+        print(f"{matriz[f][0]:<8}  {matriz[f][1]:<13}  {matriz[f][2]:>10}  {matriz[f][3]:>15}  {matriz[f][4]:>18} {estado:>10}")
+
 def ver_m3(matriz):
 
     filas = len(matriz)

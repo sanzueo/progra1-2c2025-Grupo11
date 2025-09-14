@@ -1,5 +1,5 @@
 from nombres_teatroV2 import datos_globales_usuarios, dni_en_uso, datos_globales_reserva,id_usuarios
-from entidades.Usuarios import ver_m3
+from entidades.Usuarios import ver_m3,id_usuarios,ver_busqueda_usuarios
 
 def menu_usuarios(admin):
     if admin==False:
@@ -18,12 +18,35 @@ def menu_usuarios(admin):
             "\033[35m  → [4] VOLVER AL MENU DE OPCIONES \033[0m\n"
             ))
     if usuario_i == 1: #VER USUARIOS
-        ver_m3(datos_globales_usuarios) 
+        eleccion = int(input("\033[96m1-VER TODOS LOS USUARIOS\n2-BUSCAR USUARIO POR ID\033[0m"))
+        if eleccion == 1:
+            ver_m3(datos_globales_usuarios) 
+        elif eleccion == 2:
+
+            eleccion = int(input("ingresa id a buscar"))
+
+            matriz_enct = []
+
+            encontrado = False
+
+            for i in datos_globales_usuarios:
+                if i[0] == eleccion:
+                    encontrado = True
+                    matriz_enct.append(i)
+
+            if not encontrado:
+                print("no encontrado")
+            else:
+                ver_busqueda_usuarios(matriz_enct)
+
+
+            
+
 
     elif usuario_i == 2 and admin==True: #EDITAR USUARIO ADMIN
         eleccion = int(input("Seleccione el id de usuario a editar: "))
 
-        if eleccion not in datos_globales_usuarios:
+        if eleccion not in id_usuarios:
             print("ID no encontrada")
         else:
             for i in datos_globales_usuarios:
@@ -34,9 +57,11 @@ def menu_usuarios(admin):
                     "\033[35m  → [1] Editar DNI \033 [0m \n"
                     "\033[35m  → [2] Editar telefono\033[0m\n"
                     "\033[35m  → [3] Editar correo\033[0m\n"
+                    "\033[35m  → [4] Editar estado a Inactivo\033[0m\n"
+                    "\033[35m  → [5] Editar estado a activo\033[0m\n"
                     "\033[1;35m Seleccione una opción: \033[0m"
                     ))
-                    while opcion not in (0, 1, 2, 3):
+                    while opcion not in (0, 1, 2, 3, 4, 5):
                         print("\033 [91m Numero fuera de rango.\033[0m")
                         opcion = int(input(
                         "\n\033[92m=== MENÚ DE EDICIÓN ===\033[0m\n"
