@@ -57,10 +57,22 @@ while len(datos_globales_reserva) != 10:
 def ver_m2(matriz):
 
     filas=len(matriz)
+    inicio_Cont=int(input(f"\033[35mdesde que reserva deseas empezar: \033[0m"))
+    while inicio_Cont < 0 or inicio_Cont >= filas:
+        print(f"\033[35mNúmero fuera de rango, solo hay {filas-1} reservas seleccione dentro de ese rango\033[0m")
+        inicio_Cont=int(input(f"desde que reserva deseas empezar: "))
+    
+    vision=int(input("\033[35mcuantos registros desde el inicio desea ver: \033[0m"))
+    while vision < 1 or vision > (filas - inicio_Cont):
+        print(f"\033[91m Debe ser entre 1 y {filas - inicio_Cont}\033[0m")
+        vision = int(input("\033[35mcuántos registros desde el inicio deseas ver: \033[0m"))
+
+    fin= inicio_Cont+vision
+
     columnas = len(matriz[0])
     columnas_t = ["ID'S","ID Usuario","Ubicación","ID Show","Precio"]
     print("-"*73)
     print(f"{'IDs':<8}  {'ID Usuario':<13}  {'ubicacion':>8}  {'ID Show':>12}  {'precio':>14}")  
     print("-"*73)
-    for f in range(filas):
+    for f in range(inicio_Cont, fin):
         print(f"{matriz[f][0]:<8}  {matriz[f][1]:<13}  {matriz[f][2]:>10}  {matriz[f][3]:>10}  {matriz[f][4]:>14}")

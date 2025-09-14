@@ -17,7 +17,7 @@ def dni_user():
     dni_usuarios.append(dni)
     return dni
 # Crear usuarios aleatorios a partir de nombres
-while len(datos_globales_usuarios) != 10:
+while len(datos_globales_usuarios) != 50:
     id_usuario = id_user()
     nombre = random.choice(nombres).ljust(10, " ")
     dni=dni_user()
@@ -45,12 +45,23 @@ def ver_m3(matriz):
     filas = len(matriz)
     columnas = len(matriz[0])
 
+    inicio_Cont=int(input(f"desde que reserva deseas empezar: "))
+    while inicio_Cont < 0 or inicio_Cont >= filas:
+        print(f"Número fuera de rango, solo hay {filas-1} reservas seleccione dentro de ese rango")
+        inicio_Cont=int(input(f"desde que reserva deseas empezar: "))
+    
+    vision=int(input("cuantos registros desde el inicio desea ver"))
+    while vision < 1 or vision > (filas - inicio_Cont):
+        print(f"Debe ser entre 1 y {filas - inicio_Cont}")
+        vision = int(input("cuántos registros desde el inicio deseas ver: "))
+
     columnas_t = ["ID","Nombre     ","DNI    ","        Telefono","Mail","                                Estado"]
 
+    fin=inicio_Cont+vision
     print("-"*91)
     print(f"{'ID':<8}  {'nombre':<13}  {'DNI':>8}  {'Telefono':>14}  {'Mail':>14} {'Estado':>23}")  
     print("-"*91)
-    for f in range(filas):
+    for f in range(inicio_Cont, fin):
         if matriz[f][5] == True:
             estado = "ACTIVO"
         else:
