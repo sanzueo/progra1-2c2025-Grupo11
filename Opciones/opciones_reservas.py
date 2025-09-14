@@ -129,18 +129,20 @@ def menu_reservas(admin):
             for i in precios_show:
                 if i[0] == show:
                     precio_act = i[1]
-            print(precio_act)
+                    print(precio_act)
 
         elif ubicacion_u == 2:
             ubicacion_e = "Campo    "
-            if i[0] == show:
-                    precio_act = i[2]
-            print(precio_act)
+            for i in precios_show:
+                if i[0] == show:
+                        precio_act = i[2]
+                        print(precio_act)
         elif ubicacion_u == 3:
-            ubicacion_e = "Vip       "
-            if i[0] == show:
-                    precio_act = i[3]
-            print(precio_act)
+            for i in precios_show:
+                ubicacion_e = "Vip       "
+                if i[0] == show:
+                        precio_act = i[3]
+                        print(precio_act)
         
 
 
@@ -258,7 +260,10 @@ def menu_reservas(admin):
 
             
             for show in datos_globales:
-                if show[0] == nuevo_show and show[4] > 0:
+
+                if show[0] == nuevo_show and show[4] < 0:
+                    print("\033[91mNo hay capacidad disponible en ese show\033[0m")
+                elif show[0] == nuevo_show and show[4] > 0:
                     for show_viejo in datos_globales:
                         if show_viejo[0] == reserva_encontrada[3]:
                             show_viejo[4] += 1  
@@ -281,9 +286,7 @@ def menu_reservas(admin):
                                 reserva_encontrada[4] = precio_info[3]
 
                     print("\033[92mShow actualizado correctamente\033[0m")
-            else:
-                print("\033[91mNo hay capacidad disponible en ese show\033[0m")
-        
+                
         else:
             print("\033[91mOpción no válida\033[0m")
 

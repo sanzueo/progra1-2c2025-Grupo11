@@ -72,6 +72,10 @@ def menu_shows(admin):
 
     elif usuario_i == 3 and admin==True: #BORRAR SHOW
         eleccion = int(input("Ingrese id del show: "))
+        while eleccion not in solo_ids_show:
+            print("El id ingresado no se encuentra en la base de datos")
+            eleccion = int(input("Ingrese nuevamente el id del show: "))
+
 
         # Borrar el show
         for s in datos_globales[:]:
@@ -82,6 +86,11 @@ def menu_shows(admin):
         for r in datos_globales_reserva[:]:
             if r[3] == eleccion:
                 datos_globales_reserva.remove(r)
+
+        # Borrar todas las reservas asociadas
+        for p in precios_show[:]:
+            if p[0] == eleccion:
+                precios_show.remove(r)
 
         # Actualizar lista de ids de shows
         solo_ids_show.clear()
