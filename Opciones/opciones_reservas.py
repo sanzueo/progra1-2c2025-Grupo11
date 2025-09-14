@@ -25,22 +25,22 @@ def obt_id_Actual():
 def menu_reservas(admin):
     if admin==False:
         usuario_i = int(input(
-            "\n\033[92m=== MENÚ DE RESERVA ===\033[0m\n"
-            "\033[35m  → [1] VER RESERVA\033[0m\n"
-            "\033[35m  → [2] GENERAR RESERVA\033[0m\n"
-            "\033[35m  → [3] VOLVER AL MENU DE OPCIONES\033[0m\n"
-            "\033[1;35m Seleccione una opción: \033[0m"
+            "\n\033[92m=== MENÚ DE RESERVA ===          \033[0m\n"
+            "\033[35m  → [1] VER RESERVA                \033[0m\n"
+            "\033[35m  → [2] GENERAR RESERVA            \033[0m\n"
+            "\033[35m  → [3] VOLVER AL MENU DE OPCIONES \033[0m\n"
+            "\033[1;35m Seleccione una opción:          \033[0m"
             ))
     if admin==True:
         usuario_i = int(input(
-            "\n\033[92m=== MENÚ DE RESERVA ===\033[0m\n"
-            "\033[35m  → [1] VER RESERVA\033[0m\n"
-            "\033[35m  → [2] GENERAR RESERVA\033[0m\n"
-            "\033[35m  → [3] BUSCAR RESERVA\033[0m\n"
-            "\033[35m  → [4] BORRAR RESERVA\033[0m\n"
-            "\033[35m  → [5] EDITAR RESERVA\033[0m\n"
+            "\n\033[92m=== MENÚ DE RESERVA ===         \033[0m\n"
+            "\033[35m  → [1] VER RESERVA               \033[0m\n"
+            "\033[35m  → [2] GENERAR RESERVA           \033[0m\n"
+            "\033[35m  → [3] BUSCAR RESERVA            \033[0m\n"
+            "\033[35m  → [4] BORRAR RESERVA            \033[0m\n"
+            "\033[35m  → [5] EDITAR RESERVA            \033[0m\n"
             "\033[35m  → [6] VOLVER AL MENU DE OPCIONES\033[0m\n"
-            "\033[1;35m Seleccione una opción: \033[0m"
+            "\033[1;35m Seleccione una opción:         \033[0m"
         ))
 
     if usuario_i == 1:  #ver reserva
@@ -129,21 +129,18 @@ def menu_reservas(admin):
             for i in precios_show:
                 if i[0] == show:
                     precio_act = i[1]
-                    print(precio_act)
 
         elif ubicacion_u == 2:
             ubicacion_e = "Campo    "
             for i in precios_show:
                 if i[0] == show:
                         precio_act = i[2]
-                        print(precio_act)
         elif ubicacion_u == 3:
             for i in precios_show:
                 ubicacion_e = "Vip       "
                 if i[0] == show:
                         precio_act = i[3]
-                        print(precio_act)
-        
+        print(f"reserva generada con exito el precio de su entrada termino en ${precio_act}")
 
 
     
@@ -188,8 +185,6 @@ def menu_reservas(admin):
             if i[0] == eleccion:
                 datos_globales_reserva.remove(i)
         print("Reserva eliminada")
-
-    
 
 
     elif usuario_i == 5 and admin==True: #EDITAR RESERVA

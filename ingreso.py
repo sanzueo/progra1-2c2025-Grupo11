@@ -108,10 +108,10 @@ def registrar():
 
     if len(arroba) ==0 and len(punto) == 0:
         print("\033[91m Email inválido, debe contener '@' y '.' \033[0m")
-
+        email = input("\033[36m Escriba su email: \033[0m")
+        
     contraseña = input("\033[36m Escriba la contraseña que desea: \033[0m")
 
-    estado=True
 
     print("\033[1;92m Usuario creado con éxito con la siguiente información:\033[0m")
     print(f"\033[92m \n",( "═" * 50),"\033[0m")

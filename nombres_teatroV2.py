@@ -93,9 +93,9 @@ dni_global=[]
 
 datos_de_ingreso_dni=[]
 
-contraseñas_admin=["admin"]
+contraseñas_admin=["admin", 0]
 
-dni_admins=[47346945, 46915515,46624535,44414250]
+dni_admins=[47346945, 46915515,46624535,44414250, 0]
 
 ids_shows=[]
 

@@ -58,11 +58,11 @@ while start:
             menu_shows(admin)
             if menu_shows==-1:
                 usuario =int(input(
-                "\n\033[92m=== MENÚ DE REINTENTO ===\033[0m\n"
-                "\033[35m  → [0] Volver al menú de ingreso\033[0m\n"
-                "\033[35m  → [1] Reingresar el Dni\033[0m\n"
-                "\033[35m  → [2] Reingresar la Contraseña\033[0m\n"
-                "\033[1;35m Seleccione una opción: \033[0m"
+                "\n\033[92m=== MENÚ DE REINTENTO ===        \033[0m\n"
+                "\033[35m  → [0] Volver al menú de ingreso  \033[0m\n"
+                "\033[35m  → [1] Reingresar el Dni          \033[0m\n"
+                "\033[35m  → [2] Reingresar la Contraseña   \033[0m\n"
+                "\033[1;35m Seleccione una opción:          \033[0m"
             ))
             
         elif usuario == 2:
