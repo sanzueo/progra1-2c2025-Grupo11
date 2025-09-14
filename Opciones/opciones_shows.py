@@ -10,7 +10,7 @@ def menu_shows(admin):
             "\033[35m  → [1] VER SHOWS               \033[0m\n"
             "\033[35m  → [2] BUSCAR SHOWS            \033[0m\n"
             "\033[35m  → [3] VOLVER AL MENU PRINCIPAL\033[0m\n"
-            "\033[1;35m Seleccione una opción:       \033[0m" ))
+            "\033[1;35m Seleccione una opción: \033[0m" ))
 
     if admin==True:
             usuario_i=int(input(
@@ -21,7 +21,7 @@ def menu_shows(admin):
             "\033[35m  → [4] EDITAR SHOW             \033[0m\n"
             "\033[35m  → [5] GENERAR SHOW            \033[0m\n"
             "\033[35m  → [6] VOLVER AL MENU PRINCIPAL\033[0m\n"
-            "\033[1;35m Seleccione una opción:       \033[0m" ))
+            "\033[1;35m Seleccione una opción: \033[0m" ))
 
     
 
@@ -114,7 +114,7 @@ def menu_shows(admin):
                     "\033[35m  → [0] Editar tipo de evento  \033[0m\n"
                     "\033[35m  → [1] Editar duración        \033[0m\n"
                     "\033[35m  → [2] Editar todos los datos \033[0m\n"
-                    "\033[1;35mSeleccione una opción:       \033[0m"
+                    "\033[1;35mSeleccione una opción: \033[0m"
                     ))
             while opcion not in (0, 1, 2, 3, 4):
                 print("\033[91m Número fuera de rango.\033[0m")
@@ -123,7 +123,7 @@ def menu_shows(admin):
                     "\033[35m  → [0] Editar tipo de evento  \033[0m\n"
                     "\033[35m  → [1] Editar duración        \033[0m\n"
                     "\033[35m  → [2] Editar todos los datos \033[0m\n"
-                    "\033[1;35mSeleccione una opción:       \033[0m"
+                    "\033[1;35mSeleccione una opción: \033[0m"
                 ))
 
 

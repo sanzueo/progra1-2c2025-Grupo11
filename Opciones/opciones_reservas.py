@@ -29,7 +29,7 @@ def menu_reservas(admin):
             "\033[35m  → [1] VER RESERVA                \033[0m\n"
             "\033[35m  → [2] GENERAR RESERVA            \033[0m\n"
             "\033[35m  → [3] VOLVER AL MENU DE OPCIONES \033[0m\n"
-            "\033[1;35m Seleccione una opción:          \033[0m"
+            "\033[1;35m Seleccione una opción: \033[0m"
             ))
     if admin==True:
         usuario_i = int(input(
@@ -40,7 +40,7 @@ def menu_reservas(admin):
             "\033[35m  → [4] BORRAR RESERVA            \033[0m\n"
             "\033[35m  → [5] EDITAR RESERVA            \033[0m\n"
             "\033[35m  → [6] VOLVER AL MENU DE OPCIONES\033[0m\n"
-            "\033[1;35m Seleccione una opción:         \033[0m"
+            "\033[1;35m Seleccione una opción: \033[0m"
         ))
 
     if usuario_i == 1:  #ver reserva

@@ -118,7 +118,7 @@ def menu_usuarios(admin):
                     if i[1] == eleccion:
                         datos_globales_reserva.remove(i)
             elif opcion == 2:
-                print("buena eleccion papu")
+                    print("volviendo al menu")
 
 
 

@@ -47,28 +47,12 @@ def ver_m3(matriz):
 
     columnas_t = ["ID","Nombre     ","DNI    ","        Telefono","Mail","                                Estado"]
 
-    print("-"*111)
-    for col in columnas_t:
-        print(col, end="\t")
-    print()
-    print("-"*111)
-
+    print("-"*91)
+    print(f"{'ID':<8}  {'nombre':<13}  {'DNI':>8}  {'Telefono':>14}  {'Mail':>14} {'Estado':>23}")  
+    print("-"*91)
     for f in range(filas):
-        for c in range(columnas):
-            #cada indice esta aclarado a la derecha
-            if c == 0:  # ID
-                print(str(matriz[f][c]).rjust(6), end="\t")
-            elif c == 1:  # Nombre
-                print(str(matriz[f][c]).ljust(12), end="\t")
-            elif c == 2:  # DNI
-                print(str(matriz[f][c]).rjust(10), end="\t")
-            elif c == 3:  # Teléfono
-                print(str(matriz[f][c]).rjust(12), end="\t")
-            elif c == 4:  # Email
-                print(str(matriz[f][c]).ljust(25), end="\t")
-            elif c == 5:  # Estado
-                estado_str = "ACTIVO" if matriz[f][c] == True else "INACTIVO"
-                print(estado_str, end="\t")
-        print()
-
-
+        if matriz[f][5] == True:
+            estado = "ACTIVO"
+        else:
+            estado= "INACTIVO"
+        print(f"{matriz[f][0]:<8}  {matriz[f][1]:<13}  {matriz[f][2]:>10}  {matriz[f][3]:>15}  {matriz[f][4]:>18} {estado:>10}")

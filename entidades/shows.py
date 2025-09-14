@@ -46,16 +46,14 @@ for i in datos_globales:
 
 # Función para mostrar matriz de shows
 def ver_m(matriz):
+    filas = len(matriz)
+    columnas = len(matriz[0])
+
     columnas_t = ["ID's", "Tipo de evento", "Duración", "Cant. Espectadores", "Esp. Disponibles", "Fecha"]
-    anchos = [12, 20, 12, 18, 18, 14]  # ajusté un poco los anchos para que entre bien
 
-    print("-" * sum(anchos))
-    print(" ".join(columnas_t[i].ljust(anchos[i]) for i in range(len(columnas_t))))
-    print("-" * sum(anchos))
+    print("-" * 95)
+    print(f"{'IDs':<8}  {'Tipo de evento':<18}  {'Duración':>10}  {'Cant. Espect.':>16}  {'Esp. Disp.':>14}  {'Fecha':>12}")
+    print("-" * 95)
 
-    for fila in matriz:
-        fila_str = [str(valor).ljust(anchos[i]) for i, valor in enumerate(fila)]
-        print(" ".join(fila_str))
-
-
-
+    for f in range(filas):
+        print(f"{matriz[f][0]:<8}  {matriz[f][1]:<18}  {matriz[f][2]:>10}  {matriz[f][3]:>12}  {matriz[f][4]:>14} {str(matriz[f][5]):>18}")

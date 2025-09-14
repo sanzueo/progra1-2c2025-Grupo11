@@ -55,9 +55,12 @@ while len(datos_globales_reserva) != 10:
 
 # Función para mostrar reservas
 def ver_m2(matriz):
+
+    filas=len(matriz)
+    columnas = len(matriz[0])
     columnas_t = ["ID'S","ID Usuario","Ubicación","ID Show","Precio"]
-    print("-"*50)
-    print("\t".join(columnas_t))
-    print("-"*50)
-    for fila in matriz:
-        print("\t".join(str(c) for c in fila))
+    print("-"*73)
+    print(f"{'IDs':<8}  {'ID Usuario':<13}  {'ubicacion':>8}  {'ID Show':>12}  {'precio':>14}")  
+    print("-"*73)
+    for f in range(filas):
+        print(f"{matriz[f][0]:<8}  {matriz[f][1]:<13}  {matriz[f][2]:>10}  {matriz[f][3]:>10}  {matriz[f][4]:>14}")
