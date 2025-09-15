@@ -41,20 +41,22 @@ for i in datos_globales_usuarios:
 
 # Función para mostrar matriz de usuarios
 def ver_busqueda_usuarios(matriz):
-
     filas = len(matriz)
     columnas = len(matriz[0])
-    columnas_t = ["ID","Nombre     ","DNI    ","        Telefono","Mail","                                Estado"]
-
-    print("-"*91)
-    print(f"{'ID':<8}  {'nombre':<13}  {'DNI':>8}  {'Telefono':>14}  {'Mail':>14} {'Estado':>23}")  
-    print("-"*91)
+    
+    print("\033[32m" + "-"*91 + "\033[0m")
+    print(f"\033[36m{'ID':<8}\033[0m  \033[35m{'Nombre':<13}\033[0m  \033[32m{'DNI':>10}  {'Telefono':>14}\033[0m  \033[34m{'Mail':>14}\033[0m  \033[32m{'Estado':>22}\033[0m")
+    print("\033[32m" + "-"*91 + "\033[0m")
+    
     for f in range(filas):
         if matriz[f][5] == True:
             estado = "ACTIVO"
+            color_estado = "\033[32m"   
         else:
-            estado= "INACTIVO"
-        print(f"{matriz[f][0]:<8}  {matriz[f][1]:<13}  {matriz[f][2]:>10}  {matriz[f][3]:>15}  {matriz[f][4]:>18} {estado:>10}")
+            estado = "INACTIVO"
+            color_estado = "\033[91m" 
+
+        print(f"\033[36m{matriz[f][0]:<8}\033[0m  \033[35m{matriz[f][1]:<13}\033[0m  \033[32m{matriz[f][2]:>10}  {matriz[f][3]:>14}\033[0m  \033[34m{matriz[f][4]:>14}\033[0m  {color_estado}{estado:>12}\033[0m")
 
 def ver_m3(matriz):
 
