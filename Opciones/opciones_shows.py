@@ -71,39 +71,49 @@ def menu_shows(admin):
 
 
     elif usuario_i == 3 and admin==True: #BORRAR SHOW
-        eleccion = int(input("\033[4;35mIngrese id del show: \033[0m"))
-        while eleccion not in solo_ids_show:
-            print("\033[31mEl id ingresado no se encuentra en la base de datos\033[0m")
-            eleccion = int(input("\033[35mIngrese nuevamente el id del show: \033[0m"))
+      menu = True
 
+      while menu == True:
 
-        # Borrar el show
-        for s in datos_globales[:]:
-            if s[0] == eleccion:
-                datos_globales.remove(s)
+            
+        eleccion = int(input("Ingrese id del show: "))
+        #while eleccion not in solo_ids_show:
+        if eleccion not in solo_ids_show:
+            print("El id ingresado no se encuentra en la base de datos")
+            #eleccion = int(input("Ingrese nuevamente el id del show: "))
+            menu = False
+        else:
+            # Borrar el show
+            for s in datos_globales[:]:
+                if s[0] == eleccion:
+                    datos_globales.remove(s)
 
-        # Borrar todas las reservas asociadas
-        for r in datos_globales_reserva[:]:
-            if r[3] == eleccion:
-                datos_globales_reserva.remove(r)
+            # Borrar todas las reservas asociadas
+            for r in datos_globales_reserva[:]:
+                if r[3] == eleccion:
+                    datos_globales_reserva.remove(r)
 
-        # Borrar todas las reservas asociadas
-        for p in precios_show[:]:
-            if p[0] == eleccion:
-                precios_show.remove(p)
+            # Borrar todas las reservas asociadas
+            for p in precios_show[:]:
+                if p[0] == eleccion:
+                    precios_show.remove(p)
 
-        # Actualizar lista de ids de shows
-        solo_ids_show.clear()
-        for s in datos_globales:
-            solo_ids_show.append(s[0])
-        print("\033[1;34mShow eliminado\033[0m")
-
+            # Actualizar lista de ids de shows
+            solo_ids_show.clear()
+            for s in datos_globales:
+                solo_ids_show.append(s[0])
+            print("Show eliminado")
     elif usuario_i == 4 and admin==True: #EDITAR SHOW
+
+        id_encontrado = False
 
         eleccion = int(input("\033[1;35mSeleccione el id del show: \033[0m"))
         for i in datos_globales:
             if eleccion==i[0]:
                 id_encontrado=True
+            else:
+                id_encontrado = False
+
 
 
         if id_encontrado==True:
@@ -172,11 +182,10 @@ def menu_shows(admin):
                     print("\033[31mNo es posible editar la duracion del show.\033[0m")
             print("\033[1;34mShow editado con exito.\033[0m")
 
-        elif eleccion != i[0]:
+        elif id_encontrado == False:
             print("\033[31mid no encontrado\033[0m")
-            eleccion = int(input("\033[1;35mSeleccione el id del show: \033[0m"))
             
-        ver_m(datos_globales)
+        #ver_m(datos_globales)
     elif usuario_i == 5 and admin==True: #GENERAR SHOW
         id_show = id_alt()
 
