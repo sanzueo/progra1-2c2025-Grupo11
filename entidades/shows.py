@@ -51,9 +51,9 @@ def ver_m(matriz):
 
     columnas_t = ["ID's", "Tipo de evento", "Duración", "Cant. Espectadores", "Esp. Disponibles", "Fecha"]
 
-    print("-" * 95)
-    print(f"{'IDs':<8}  {'Tipo de evento':<18}  {'Duración':>10}  {'Cant. Espect.':>16}  {'Esp. Disp.':>14}  {'Fecha':>12}")
-    print("-" * 95)
+    print("\033[32m" + "-" * 95 + "\033[0m")
+    print(f"\033[36m{'IDs':<8}\033[0m  \033[35m{'Tipo de evento':<18}\033[0m  \033[32m{'Duración':>10}\033[0m  \033[34m{'Cant. Espect.':>16}\033[0m  \033[33m{'Esp. Disp.':>14}\033[0m  \033[35m{'Fecha':>12}\033[0m")
+    print("\033[32m" + "-" * 95 + "\033[0m")
 
     for f in range(filas):
-        print(f"{matriz[f][0]:<8}  {matriz[f][1]:<18}  {matriz[f][2]:>10}  {matriz[f][3]:>12}  {matriz[f][4]:>14} {str(matriz[f][5]):>18}")
+        print(f"\033[36m{matriz[f][0]:<8}\033[0m  \033[35m{matriz[f][1]:<18}\033[0m  \033[32m{matriz[f][2]:>10}\033[0m  \033[34m{matriz[f][3]:>16}\033[0m  \033[33m{matriz[f][4]:>14}\033[0m  \033[35m{str(matriz[f][5]):>12}\033[0m")

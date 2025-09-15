@@ -18,12 +18,12 @@ def menu_usuarios(admin):
             "\033[35m  → [4] VOLVER AL MENU DE OPCIONES \033[0m\n"
             ))
     if usuario_i == 1: #VER USUARIOS
-        eleccion = int(input("\033[96m1-VER TODOS LOS USUARIOS\n2-BUSCAR USUARIO POR ID\033[0m"))
+        eleccion = int(input("\033[96m1-VER TODOS LOS USUARIOS\n2-BUSCAR USUARIO POR ID: \033[0m"))
         if eleccion == 1:
             ver_m3(datos_globales_usuarios) 
         elif eleccion == 2:
 
-            eleccion = int(input("ingresa id a buscar"))
+            eleccion = int(input("\033[35mingresa id a buscar\033[0m"))
 
             matriz_enct = []
 

@@ -123,7 +123,3 @@ def crear_Grafico(num, num2, act, inac):
     for i in range(alto):
         print(hola[i].ljust(12) + hola2[i])
 
-
-# Programa principal
-def main():
-    menu_estadisticas()

@@ -61,25 +61,28 @@ def ver_m3(matriz):
     filas = len(matriz)
     columnas = len(matriz[0])
 
-    inicio_Cont=int(input(f"desde que reserva deseas empezar: "))
+    inicio_Cont=int(input(f"\033[35mdesde que reserva deseas empezar: \033[0m"))
     while inicio_Cont < 0 or inicio_Cont >= filas:
-        print(f"Número fuera de rango, solo hay {filas-1} reservas seleccione dentro de ese rango")
-        inicio_Cont=int(input(f"desde que reserva deseas empezar: "))
+        print(f"\033[91mNúmero fuera de rango, solo hay {filas-1} reservas seleccione dentro de ese rango\033[0m")
+        inicio_Cont=int(input(f"\033[35mdesde que reserva deseas empezar: \033[0m"))
     
-    vision=int(input("cuantos registros desde el inicio desea ver"))
+    vision=int(input("\033[96mcuantos registros desde el inicio desea ver: \033[0m"))
     while vision < 1 or vision > (filas - inicio_Cont):
         print(f"Debe ser entre 1 y {filas - inicio_Cont}")
-        vision = int(input("cuántos registros desde el inicio deseas ver: "))
+        vision = int(input("\033[96mcuántos registros desde el inicio deseas ver: \033[0m"))
 
     columnas_t = ["ID","Nombre     ","DNI    ","        Telefono","Mail","                                Estado"]
 
     fin=inicio_Cont+vision
-    print("-"*91)
-    print(f"{'ID':<8}  {'nombre':<13}  {'DNI':>8}  {'Telefono':>14}  {'Mail':>14} {'Estado':>23}")  
-    print("-"*91)
+    print("\033[32m" + "-"*91 + "\033[0m")
+    print(f"\033[36m{'ID':<8}\033[0m  \033[35m{'Nombre':<13}\033[0m  \033[32m{'DNI':>10}  {'Telefono':>14}\033[0m  \033[34m{'Mail':>14}\033[0m  \033[32m{'Estado':>22}\033[0m")
+    print("\033[32m" + "-"*91 + "\033[0m")
     for f in range(inicio_Cont, fin):
         if matriz[f][5] == True:
             estado = "ACTIVO"
+            color_estado = "\033[32m"   
         else:
-            estado= "INACTIVO"
-        print(f"{matriz[f][0]:<8}  {matriz[f][1]:<13}  {matriz[f][2]:>10}  {matriz[f][3]:>15}  {matriz[f][4]:>18} {estado:>10}")
+            estado = "INACTIVO"
+            color_estado = "\033[91m" 
+
+        print(f"\033[36m{matriz[f][0]:<8}\033[0m  \033[35m{matriz[f][1]:<13}\033[0m  \033[32m{matriz[f][2]:>10}  {matriz[f][3]:>14}\033[0m  \033[34m{matriz[f][4]:>14}\033[0m  {color_estado}{estado:>12}\033[0m")

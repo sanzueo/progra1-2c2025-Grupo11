@@ -67,7 +67,7 @@ def ver_busqueda_reserva(matriz):
     print(f"{'IDs':<8}  {'ID Usuario':<13}  {'ubicacion':>8}  {'ID Show':>12}  {'precio':>14}")  
     print("-"*73)
     for f in range(filas):
-        print(f"{matriz[f][0]:<8}  {matriz[f][1]:<13}  {matriz[f][2]:>10}  {matriz[f][3]:>10}  {matriz[f][4]:>14}")
+        print(f"\033[91m{matriz[f][0]:<8}  {matriz[f][1]:<13}  {matriz[f][2]:>10}  {matriz[f][3]:>10}  {matriz[f][4]:>14}\033[")
 
 # Función para mostrar reservas
 def ver_m2(matriz):
@@ -87,8 +87,8 @@ def ver_m2(matriz):
 
     columnas = len(matriz[0])
     columnas_t = ["ID'S","ID Usuario","Ubicación","ID Show","Precio"]
-    print("-"*73)
-    print(f"{'IDs':<8}  {'ID Usuario':<13}  {'ubicacion':>8}  {'ID Show':>12}  {'precio':>14}")  
-    print("-"*73)
+    print(f"\033[32m{'-'*73}\033[0m")
+    print(f"\033[32m{'IDs':<8}  {'ID Usuario':<13}\033  \033[35m{'Ubicación':>10}  {'ID Show':>12}\033[0m  \033[34m{'Precio':>14}\033[0m")
+    print(f"\033[32m{'-'*73}\033[0m")
     for f in range(inicio_Cont, fin):
-        print(f"{matriz[f][0]:<8}  {matriz[f][1]:<13}  {matriz[f][2]:>10}  {matriz[f][3]:>10}  {matriz[f][4]:>14}")
+        print(f"\033[32m{matriz[f][0]:<8}  {matriz[f][1]:<13}\033[35m  {matriz[f][2]:>10}  {matriz[f][3]:>10}\033[0m  \033[34m{matriz[f][4]:>14}\033[0m")
