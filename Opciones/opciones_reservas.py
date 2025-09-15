@@ -83,8 +83,8 @@ def menu_reservas(admin):
         indice_show = -1
         
         while busqueda:
-            show = int(input("Ingrese el numero de id del show que desea asistir: "))
-            
+            show = int(input("\033[35mIngrese el numero de id del show que desea asistir: \033[0m"))
+
             show_encontrado = False
             tiene_capacidad = False
             indice_show = -1
@@ -98,9 +98,9 @@ def menu_reservas(admin):
                         tiene_capacidad = True
             
             if not show_encontrado:
-                print("El id ingresado no existe, por favor ingrese un id valido.")
+                print("\033[31mEl id ingresado no existe, por favor ingrese un id valido.\033[0m")
             elif not tiene_capacidad:
-                print("Este show no tiene capacidad disponible.")
+                print("\033[31mEste show no tiene capacidad disponible.\033[0m")
             else:
                 
                 busqueda = False
@@ -112,12 +112,12 @@ def menu_reservas(admin):
         print("\033[35mPara Campo Seleccione 2:\033[0m")
         print(f"{colordorado}vip Seleccione 3:\033[0m")
         print("\033[92m=================================\033[0m")
-
-        ubicacion_u = int(input("Elegi tipo de ubicación: "))
+    
+        ubicacion_u = int(input("\033[35mElegi tipo de ubicación: \033[0m"))
 
         while ubicacion_u >3 or ubicacion_u <=0:
-            print("Numero inválido, por favor ingrese un numero válido.")
-            ubicacion_u = int(input("Elegi tipo de ubicación: "))
+            print("\033[31mNumero inválido, por favor ingrese un numero válido.\033[0m")
+            ubicacion_u = int(input("\033[35mElegi tipo de ubicación: \033[0m"))
         if ubicacion_u == 1:
             ubicacion_e = "Platea   "
             for i in precios_show:
@@ -134,7 +134,7 @@ def menu_reservas(admin):
                 ubicacion_e = "Vip       "
                 if i[0] == show:
                         precio_act = i[3]
-        print(f"reserva generada con exito el precio de su entrada termino en ${precio_act}")
+        print(f"\033[1;34mreserva generada con exito el precio de su entrada termino en ${precio_act}\033[0m")
 
 
     
