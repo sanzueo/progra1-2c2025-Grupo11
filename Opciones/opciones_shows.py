@@ -31,13 +31,13 @@ def menu_shows(admin):
     
     elif usuario_i == 2: #BUSCAR SHOW
 
-        print("\n1-BUSCAR POR ID\n2-BUSCAR POR FECHA")
+        print("\033[35m\n1-BUSCAR POR ID\n2-BUSCAR POR FECHA\033[0m")
 
         elec = int(input(" "))
 
         if elec == 1:
 
-            elec = int(input("Ingrese id: "))
+            elec = int(input("\033[35mIngrese id: \033[0m"))
 
             lista_temp = []
 
@@ -48,13 +48,13 @@ def menu_shows(admin):
             if len(lista_temp) > 0:
                 ver_m(lista_temp) 
             else:
-                print("No coincide con ningún id.")
+                print("\033[31mNo coincide con ningún id.\033[0m")
 
         elif elec == 2:
-        
-            año = int(input("Ingrese año"))
-            mes = int(input("Ingrese mes"))
-            dia = int(input("Ingrese dia: "))
+
+            año = int(input("\033[35mIngrese año: \033[0m"))
+            mes = int(input("\033[35mIngrese mes: \033[0m"))
+            dia = int(input("\033[35mIngrese dia: \033[0m"))
             fecha_buscada = datetime(año, mes, dia).date()
 
             lista_temp = []
@@ -67,43 +67,53 @@ def menu_shows(admin):
             if len(lista_temp) > 0:
                 ver_m(lista_temp) 
             else:
-                print("No hay fechas disponibles")
+                print("\033[31mNo hay fechas disponibles\033[0m")
 
 
     elif usuario_i == 3 and admin==True: #BORRAR SHOW
+      menu = True
+
+      while menu == True:
+
+            
         eleccion = int(input("Ingrese id del show: "))
-        while eleccion not in solo_ids_show:
+        #while eleccion not in solo_ids_show:
+        if eleccion not in solo_ids_show:
             print("El id ingresado no se encuentra en la base de datos")
-            eleccion = int(input("Ingrese nuevamente el id del show: "))
+            #eleccion = int(input("Ingrese nuevamente el id del show: "))
+            menu = False
+        else:
+            # Borrar el show
+            for s in datos_globales[:]:
+                if s[0] == eleccion:
+                    datos_globales.remove(s)
 
+            # Borrar todas las reservas asociadas
+            for r in datos_globales_reserva[:]:
+                if r[3] == eleccion:
+                    datos_globales_reserva.remove(r)
 
-        # Borrar el show
-        for s in datos_globales[:]:
-            if s[0] == eleccion:
-                datos_globales.remove(s)
+            # Borrar todas las reservas asociadas
+            for p in precios_show[:]:
+                if p[0] == eleccion:
+                    precios_show.remove(p)
 
-        # Borrar todas las reservas asociadas
-        for r in datos_globales_reserva[:]:
-            if r[3] == eleccion:
-                datos_globales_reserva.remove(r)
-
-        # Borrar todas las reservas asociadas
-        for p in precios_show[:]:
-            if p[0] == eleccion:
-                precios_show.remove(p)
-
-        # Actualizar lista de ids de shows
-        solo_ids_show.clear()
-        for s in datos_globales:
-            solo_ids_show.append(s[0])
-        print("Show eliminado")
-
+            # Actualizar lista de ids de shows
+            solo_ids_show.clear()
+            for s in datos_globales:
+                solo_ids_show.append(s[0])
+            print("Show eliminado")
     elif usuario_i == 4 and admin==True: #EDITAR SHOW
+
+        id_encontrado = False
 
         eleccion = int(input("\033[1;35mSeleccione el id del show: \033[0m"))
         for i in datos_globales:
             if eleccion==i[0]:
                 id_encontrado=True
+            else:
+                id_encontrado = False
+
 
 
         if id_encontrado==True:
@@ -128,7 +138,7 @@ def menu_shows(admin):
 
 
             if opcion == 0:
-                i[1] = input("Ingrese el nuevo tipo de evento: ")
+                i[1] = input("\033[4;35mIngrese el nuevo tipo de evento: \033[0m")
                 i[1]=i[1].ljust(20, " ")
 
             elif opcion == 1:
@@ -141,17 +151,17 @@ def menu_shows(admin):
                         suma +=u[2]
 
                 if suma <= 750:
-                    suma_aux = int(input("Ingresa la cantidad de minutos: "))
+                    suma_aux = int(input("\033[35mIngresa la cantidad de minutos: \033[0m"))
                     while (suma + suma_aux) >= 750:
-                        suma_aux = int(input("Ingresa la cantidad de minutos: "))
+                        suma_aux = int(input("\033[35mIngresa la cantidad de minutos: \033[0m"))
                     i[2] = suma_aux
                     
                 else:
-                    print("No es posible editar la duracion del show.")
+                    print("\033[31mNo es posible editar la duracion del show.\033[0m")
 
             elif opcion == 2:
 
-                i[1] = input("Ingrese el nuevo tipo de evento: ")
+                i[1] = input("\033[4;35mIngrese el nuevo tipo de evento: \033[0m")
                 i[1]=i[1].ljust(20, " ")
                 fecha = i[5]
 
@@ -162,37 +172,36 @@ def menu_shows(admin):
                         suma +=u[2]
 
                 if suma <= 750:
-                    suma_aux = int(input("Ingrese la cantidad de minutos: "))
+                    suma_aux = int(input("\033[35mIngrese la cantidad de minutos: \033[0m"))
                     while (suma + suma_aux) >= 750:
-                        print("Exceso de minutos en el dia, ingrese un valor menor.")
-                        suma_aux = int(input("Ingrese la cantidad de minutos: "))
+                        print("\033[31mExceso de minutos en el dia, ingrese un valor menor.\033[0m")
+                        suma_aux = int(input("\033[35mIngrese la cantidad de minutos: \033[0m"))
                     i[2] = suma_aux
                     
                 else:
-                    print("No es posible editar la duracion del show.")
-            print("Show editado con exito.")
+                    print("\033[31mNo es posible editar la duracion del show.\033[0m")
+            print("\033[1;34mShow editado con exito.\033[0m")
 
-        elif eleccion != i[0]:
-            print("\033[91mid no encontrado\033[0m")
-            eleccion = int(input("\033[1;35mSeleccione el id del show: \033[0m"))
+        elif id_encontrado == False:
+            print("\033[31mid no encontrado\033[0m")
             
-        ver_m(datos_globales)
+        #ver_m(datos_globales)
     elif usuario_i == 5 and admin==True: #GENERAR SHOW
         id_show = id_alt()
 
-        tipo_Evento = input("Ingrese el tipo de evento: ")
+        tipo_Evento = input("\033[35mIngrese el tipo de evento: \033[0m")
         tipo_Evento=tipo_Evento.ljust(20, " ")
 
-        duracion = int(input("Ingrese la duracion del evento: "))
+        duracion = int(input("\033[35mIngrese la duracion del evento: \033[0m"))
 
         espectadores = 0
 
         espacios_disponibles = 999
 
 
-        año = int(input("Ingrese año: "))
-        mes = int(input("Ingrese mes: "))
-        dia = int(input("Ingrese dia: "))
+        año = int(input("\033[35mIngrese año: \033[0m"))
+        mes = int(input("\033[35mIngrese mes: \033[0m"))
+        dia = int(input("\033[35mIngrese dia: \033[0m"))
         fecha = datetime(año, mes, dia).date()
 
         #comprobar si se pasan los minuts
@@ -219,11 +228,12 @@ def menu_shows(admin):
             precios_show.append([id_Act,precio_b,precio_b2,precio_b3])
             
 
-            
+            print("\033[1;34mshow creado con exito\033[0m")   
+             
         else:
-            print("No hay espacio en el dia para el show ingresado.")
+            print("\033[31mNo hay espacio en el dia para el show ingresado.\033[0m")
         
-        print("\033[96mshow creado con exito\033[0m")
+
 
     elif usuario_i==6 and admin==True or usuario_i==3 and admin==False:
         return -1

@@ -83,8 +83,8 @@ def menu_reservas(admin):
         indice_show = -1
         
         while busqueda:
-            show = int(input("Ingrese el numero de id del show que desea asistir: "))
-            
+            show = int(input("\033[35mIngrese el numero de id del show que desea asistir: \033[0m"))
+
             show_encontrado = False
             tiene_capacidad = False
             indice_show = -1
@@ -98,9 +98,9 @@ def menu_reservas(admin):
                         tiene_capacidad = True
             
             if not show_encontrado:
-                print("El id ingresado no existe, por favor ingrese un id valido.")
+                print("\033[31mEl id ingresado no existe, por favor ingrese un id valido.\033[0m")
             elif not tiene_capacidad:
-                print("Este show no tiene capacidad disponible.")
+                print("\033[31mEste show no tiene capacidad disponible.\033[0m")
             else:
                 
                 busqueda = False
@@ -112,12 +112,12 @@ def menu_reservas(admin):
         print("\033[35mPara Campo Seleccione 2:\033[0m")
         print(f"{colordorado}Para Vip Seleccione 3:\033[0m")
         print("\033[92m=================================\033[0m")
-
-        ubicacion_u = int(input("Elegi tipo de ubicación: "))
+    
+        ubicacion_u = int(input("\033[35mElegi tipo de ubicación: \033[0m"))
 
         while ubicacion_u >3 or ubicacion_u <=0:
-            print("Numero inválido, por favor ingrese un numero válido.")
-            ubicacion_u = int(input("Elegi tipo de ubicación: "))
+            print("\033[31mNumero inválido, por favor ingrese un numero válido.\033[0m")
+            ubicacion_u = int(input("\033[35mElegi tipo de ubicación: \033[0m"))
         if ubicacion_u == 1:
             ubicacion_e = "Platea   "
             for i in precios_show:
@@ -134,21 +134,21 @@ def menu_reservas(admin):
                 ubicacion_e = "Vip       "
                 if i[0] == show:
                         precio_act = i[3]
-        print(f"Reserva generada con exito. El precio de su entrada termino en ${precio_act}")
+        print(f"\033[1;34mreserva generada con exito el precio de su entrada termino en ${precio_act}\033[0m")
 
 
     
 
-        datos_globales_reserva.append([id_reserva, id_usuario, ubicacion_e, show,precio_act])
+        datos_globales_reserva.append([id_reserva, id_usuario, ubicacion_e, show, precio_act])
 
     elif usuario_i == 3 and admin==True: #BUSCAR RESERVA
-        
-        print("1- BUSCAR RESERVA POR ID DE RESERVA\n 2- BUSCAR RESERVA POR ID USUARIO")
+
+        print("\033[35m → [1] BUSCAR RESERVA POR ID DE RESERVA\n → [2] BUSCAR RESERVA POR ID USUARIO\033[0m")
 
         eleccion = int(input(""))
 
         if eleccion == 1:
-            eleccion = int(input("Ingrese id de reserva: "))
+            eleccion = int(input("\033[35mIngrese id de reserva: \033[0m"))
 
             reserva_enct = []
 
@@ -160,12 +160,12 @@ def menu_reservas(admin):
                     reserva_enct.append(i)
             
             if not encontrado:
-                print("Id Reserva no encontrada")
+                print("\033[31mId Reserva no encontrada\033[0m")
             else:
                 ver_busqueda_reserva(reserva_enct)
 
         elif eleccion == 2:
-            eleccion = int(input("Ingrese id de usuario: "))
+            eleccion = int(input("\033[35mIngrese id de usuario: \033[0m"))
 
             reserva_enct = []
 
@@ -177,19 +177,12 @@ def menu_reservas(admin):
                     reserva_enct.append(i)
             
             if not encontrado:
-                print("Id Usuario no encontrada")
+                print("\033[31mId Usuario no encontrada\033[0m")
             else:
                 ver_busqueda_reserva(reserva_enct)
 
             
 
-
-
-    
-
-        
-       
-                
 
     elif usuario_i == 4 and admin==False: #BORRAR RESERVA
         id_usuario=obt_id_Actual
@@ -202,7 +195,7 @@ def menu_reservas(admin):
             if i[0] == id_show[0]:
                 i[3] -= 1
                 i[4] += 1
-        print("Reserva eliminada")                
+        print("\033[31mReserva eliminada\033[0m")
 
     
     elif usuario_i == 4 and admin==True: #BORRAR RESERVA
@@ -229,7 +222,7 @@ def menu_reservas(admin):
                 i[3] -= 1
                 i[4] += 1
 
-        print("Reserva eliminada con exito!")
+        print("\033[1;34mReserva eliminada con exito!\033[0m")
 
 
     elif usuario_i == 5 and admin==True: #EDITAR RESERVA

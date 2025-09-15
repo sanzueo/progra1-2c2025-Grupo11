@@ -95,8 +95,8 @@ def registrar():
         print("\033[91m Número no válido (1100000000 a 1199999999) \033[0m")
         telefono_cread = int(input("\033[36m Escriba su número de teléfono sin código de área: \033[0m")) 
     telefono_cread=str(telefono_cread)
-    patron= "(11)(\\d{6})(\\d{2})"
-    numero_oculto="\\1-XXXX-XX\\3"
+    patron= r"(11)(\d{6})(\d{2})"
+    numero_oculto=r"\1-XXXX-XX\3"
     telefono_organizado=re.sub(patron,numero_oculto,telefono_cread)
 
 

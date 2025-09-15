@@ -9,8 +9,7 @@ def menu_estadisticas():
         "\033[35m  → [2] USUARIOS ACTIVOS                     \033[0m\n"
         "\033[35m  → [3] SHOWS MÁS RECAUDADOS                 \033[0m\n"
         "\033[35m  → [4] USUARIOS CON MÁS RESERVAS            \033[0m\n"
-        "\033[35m  → [5] MES CON MÁS RECAUDACIÓN              \033[0m\n"
-        "\033[35m  → [6] VOLVER                               \033[0m\n"
+        "\033[35m  → [5] VOLVER                               \033[0m\n"
         "\033[1;35m Seleccione una opción: \033[0m"
     ))
 
@@ -22,7 +21,7 @@ def menu_estadisticas():
         shows_mas_recaudados()
     elif usuario_i == 4:
         usuarios_con_mas_re()
-    elif usuario_i == 6:
+    elif usuario_i == 5:
         return
     else:
         print("\033[91mOpción no válida\033[0m")
