@@ -214,22 +214,23 @@ def menu_reservas(admin):
                 print("\033[96mid de reserva confirmado\033[0m")
         if not show_encontrado:
             print("\033[91mesa reserva no es valida\033[0m")
-            eleccion = int(input("Seleccione id de reserva a eliminar: "))
+            show_encontrado = False
 
-        id_show = []
+        if show_encontrado == True:
+            id_show = []
 
-        for i in datos_globales_reserva[:]:
-            if i[0] == eleccion:
-                datos_globales_reserva.remove(i)
-                id_show.append(i[3])
-        
+            for i in datos_globales_reserva[:]:
+                if i[0] == eleccion:
+                    datos_globales_reserva.remove(i)
+                    id_show.append(i[3])
+            
 
-        for i in datos_globales:
-            if i[0] == id_show[0]:
-                i[3] -= 1
-                i[4] += 1
+            for i in datos_globales:
+                if i[0] == id_show[0]:
+                    i[3] -= 1
+                    i[4] += 1
 
-        print("Reserva eliminada con exito!")
+            print("Reserva eliminada con exito!")
 
 
     elif usuario_i == 5 and admin==True: #EDITAR RESERVA
