@@ -1,5 +1,6 @@
 from nombres_teatroV2 import datos_globales_usuarios, dni_en_uso, datos_globales_reserva,id_usuarios
 from entidades.Usuarios import ver_m3,id_usuarios,ver_busqueda_usuarios
+from Opciones.opciones_reservas import obt_id_Actual
 
 def menu_usuarios(admin):
     if admin==False:
@@ -18,26 +19,38 @@ def menu_usuarios(admin):
             "\033[35m  → [4] VOLVER AL MENU DE OPCIONES \033[0m\n"
             ))
     if usuario_i == 1: #VER USUARIOS
-        eleccion = int(input("\033[96m1-VER TODOS LOS USUARIOS\n2-BUSCAR USUARIO POR ID: \033[0m"))
-        if eleccion == 1:
-            ver_m3(datos_globales_usuarios) 
-        elif eleccion == 2:
+        if admin: 
+            eleccion = int(input("\033[96m1-VER TODOS LOS USUARIOS\n2-BUSCAR USUARIO POR ID\033[0m"))
+            if eleccion == 1:
+                ver_m3(datos_globales_usuarios) 
+            elif eleccion == 2:
 
-            eleccion = int(input("\033[35mingresa id a buscar\033[0m"))
+                eleccion = int(input("ingresa id a buscar"))
 
-            matriz_enct = []
+                matriz_enct = []
 
-            encontrado = False
+                encontrado = False
+
+                for i in datos_globales_usuarios:
+                    if i[0] == eleccion:
+                        encontrado = True
+                        matriz_enct.append(i)
+
+                if not encontrado:
+                    print("no encontrado")
+                else:
+                    ver_busqueda_usuarios(matriz_enct)
+        elif admin == False:
+            id = obt_id_Actual()
+
+            mat_act = []
 
             for i in datos_globales_usuarios:
-                if i[0] == eleccion:
-                    encontrado = True
-                    matriz_enct.append(i)
+                if id == i[0]:
+                    mat_act.append(i)
 
-            if not encontrado:
-                print("no encontrado")
-            else:
-                ver_busqueda_usuarios(matriz_enct)
+            ver_busqueda_usuarios(mat_act)
+
 
 
             
@@ -153,4 +166,4 @@ def menu_usuarios(admin):
 
 
     elif usuario_i==4 and admin==True or usuario_i==3 and admin==False:
-        return -1
+        return-1
