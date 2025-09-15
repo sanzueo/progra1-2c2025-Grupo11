@@ -110,7 +110,7 @@ def menu_reservas(admin):
         print("\033[92m=====  MENU DE UBICACIONES  =====\033[0m")
         print("\033[35mPara Platea Seleccione 1:\033[0m")
         print("\033[35mPara Campo Seleccione 2:\033[0m")
-        print(f"{colordorado}vip Seleccione 3:\033[0m")
+        print(f"{colordorado}Para Vip Seleccione 3:\033[0m")
         print("\033[92m=================================\033[0m")
 
         ubicacion_u = int(input("Elegi tipo de ubicación: "))
@@ -134,7 +134,7 @@ def menu_reservas(admin):
                 ubicacion_e = "Vip       "
                 if i[0] == show:
                         precio_act = i[3]
-        print(f"reserva generada con exito el precio de su entrada termino en ${precio_act}")
+        print(f"Reserva generada con exito. El precio de su entrada termino en ${precio_act}")
 
 
     

@@ -42,7 +42,7 @@ def estadistica_shows_mas_vendidos():
 
     print("\n\033[92m=== SHOWS MÁS VENDIDOS ===         \033[0m\n")
 
-    columnas_t = ["ids", "tipo evento", "duracion", "cant_e", "esp_d", "fecha"]
+    columnas_t = ["ID's", "Tipo de evento", "Duración", "Cant. Espectadores", "Esp. Disponibles", "Fecha"]
     anchos = [12, 20, 10, 8, 14, 14]
 
     print("-" * 74)
@@ -88,7 +88,7 @@ def shows_mas_recaudados():
 
     print("\n\033[92m=== RECAUDACIÓN POR SHOW ===\033[0m")
     for show, total in recaudacion.items():
-        print("Show", show, "→", total)
+        print("Show", show, "→", "$", total)
 
 
 # 4. Usuarios con más reservas
@@ -119,7 +119,7 @@ def crear_Grafico(num, num2, act, inac):
     while len(hola2) < alto:
         hola2.insert(0, "")
     
-    print(f"    {"ACTIVO"}     {"INACTIVO"}  ")
+    print(f'    {"ACTIVO"}     {"INACTIVO"}   ')
     print(f"      {act}          {inac}")
     for i in range(alto):
         print(hola[i].ljust(12) + hola2[i])
