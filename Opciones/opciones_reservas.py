@@ -139,16 +139,16 @@ def menu_reservas(admin):
 
     
 
-        datos_globales_reserva.append([id_reserva, id_usuario, ubicacion_e, show,precio_act])
+        datos_globales_reserva.append([id_reserva, id_usuario, ubicacion_e, show, precio_act])
 
     elif usuario_i == 3 and admin==True: #BUSCAR RESERVA
-        
-        print("1- BUSCAR RESERVA POR ID DE RESERVA\n 2- BUSCAR RESERVA POR ID USUARIO")
+
+        print("\033[35m → [1] BUSCAR RESERVA POR ID DE RESERVA\n → [2] BUSCAR RESERVA POR ID USUARIO\033[0m")
 
         eleccion = int(input(""))
 
         if eleccion == 1:
-            eleccion = int(input("Ingrese id de reserva: "))
+            eleccion = int(input("\033[35mIngrese id de reserva: \033[0m"))
 
             reserva_enct = []
 
@@ -160,12 +160,12 @@ def menu_reservas(admin):
                     reserva_enct.append(i)
             
             if not encontrado:
-                print("Id Reserva no encontrada")
+                print("\033[31mId Reserva no encontrada\033[0m")
             else:
                 ver_busqueda_reserva(reserva_enct)
 
         elif eleccion == 2:
-            eleccion = int(input("Ingrese id de usuario: "))
+            eleccion = int(input("\033[35mIngrese id de usuario: \033[0m"))
 
             reserva_enct = []
 
@@ -177,19 +177,12 @@ def menu_reservas(admin):
                     reserva_enct.append(i)
             
             if not encontrado:
-                print("Id Usuario no encontrada")
+                print("\033[31mId Usuario no encontrada\033[0m")
             else:
                 ver_busqueda_reserva(reserva_enct)
 
             
 
-
-
-    
-
-        
-       
-                
 
     elif usuario_i == 4 and admin==False: #BORRAR RESERVA
         id_usuario=obt_id_Actual
@@ -202,7 +195,7 @@ def menu_reservas(admin):
             if i[0] == id_show[0]:
                 i[3] -= 1
                 i[4] += 1
-        print("Reserva eliminada")                
+        print("\033[31mReserva eliminada\033[0m")
 
     
     elif usuario_i == 4 and admin==True: #BORRAR RESERVA
@@ -229,7 +222,7 @@ def menu_reservas(admin):
                 i[3] -= 1
                 i[4] += 1
 
-        print("Reserva eliminada con exito!")
+        print("\033[1;34mReserva eliminada con exito!\033[0m")
 
 
     elif usuario_i == 5 and admin==True: #EDITAR RESERVA
