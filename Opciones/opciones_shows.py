@@ -67,7 +67,7 @@ def menu_shows(admin):
             if len(lista_temp) > 0:
                 ver_m(lista_temp) 
             else:
-                print("\033[31mNo hay fechas disponibles\033[0m")
+                print("\033[31mNo hay fechas disponibles.\033[0m")
 
 
     elif usuario_i == 3 and admin==True: #BORRAR SHOW
@@ -76,10 +76,10 @@ def menu_shows(admin):
       while menu == True:
 
             
-        eleccion = int(input("Ingrese id del show: "))
+        eleccion = int(input("Ingrese ID del show: "))
         #while eleccion not in solo_ids_show:
         if eleccion not in solo_ids_show:
-            print("El id ingresado no se encuentra en la base de datos")
+            print("El ID ingresado no se encuentra en la base de datos.")
             #eleccion = int(input("Ingrese nuevamente el id del show: "))
             menu = False
         else:
@@ -111,8 +111,8 @@ def menu_shows(admin):
         for i in datos_globales:
             if eleccion==i[0]:
                 id_encontrado=True
-            else:
-                id_encontrado = False
+        else:
+            id_encontrado = False
 
 
 
@@ -126,7 +126,7 @@ def menu_shows(admin):
                     "\033[35m  → [2] Editar todos los datos \033[0m\n"
                     "\033[1;35mSeleccione una opción: \033[0m"
                     ))
-            while opcion not in (0, 1, 2, 3, 4):
+            while opcion not in (0, 1, 2):
                 print("\033[91m Número fuera de rango.\033[0m")
                 opcion = int(input(
                     "\n\033[92m=== MENÚ DE EDICIÓN ===      \033[0m\n"
@@ -183,7 +183,7 @@ def menu_shows(admin):
             print("\033[1;34mShow editado con exito.\033[0m")
 
         elif id_encontrado == False:
-            print("\033[31mid no encontrado\033[0m")
+            print("\033[31mID no encontrado.\033[0m")
             
         #ver_m(datos_globales)
     elif usuario_i == 5 and admin==True: #GENERAR SHOW
@@ -228,7 +228,7 @@ def menu_shows(admin):
             precios_show.append([id_Act,precio_b,precio_b2,precio_b3])
             
 
-            print("\033[1;34mshow creado con exito\033[0m")   
+            print("\033[1;34mShow creado con exito.\033[0m")   
              
         else:
             print("\033[31mNo hay espacio en el dia para el show ingresado.\033[0m")

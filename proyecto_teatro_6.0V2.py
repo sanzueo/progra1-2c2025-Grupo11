@@ -13,7 +13,6 @@ start = True
 while start:
     while capture_data == True:
         ingreso_nivel = menu_login()
-
         if ingreso_nivel == 0:
             log = login()
             if log == "ADMIN":

@@ -87,7 +87,7 @@ def registrar():
     nombre = str(input("\033[36m Escriba el nombre que desee usar: \033[0m"))
     dni_cread = int(input("\033[36m Escriba el número de su DNI: \033[0m"))
     while dni_cread < 0:
-        print("\033[91m El DNI no puede ser negativo, intente de nuevo\033[0m")
+        print("\033[91m El DNI no puede ser negativo, intente de nuevo.\033[0m")
         dni_cread = int(input("\033[36m Escriba el número de su DNI: \033[0m"))
 
     telefono_cread = int(input("\033[36m Escriba su número de teléfono sin código de área: \033[0m"))
@@ -126,7 +126,7 @@ def registrar():
     datos_globales_contraseñas.append(contraseña)
     datos_globales_usuarios.append([num_usuario, nombre,dni_cread, telefono_cread, email, True])
 
-    print("\033[1;36m Usuario registrado con éxito \033[0m")
+    print("\033[1;36m Usuario registrado con éxito. \033[0m")
     print("")
 """testeo de las variables"""
 #region testeo

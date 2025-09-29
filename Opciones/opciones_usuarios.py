@@ -25,7 +25,7 @@ def menu_usuarios(admin):
                 ver_m3(datos_globales_usuarios) 
             elif eleccion == 2:
 
-                eleccion = int(input("ingresa id a buscar"))
+                eleccion = int(input("Ingrese ID a buscar: "))
 
                 matriz_enct = []
 
@@ -37,7 +37,7 @@ def menu_usuarios(admin):
                         matriz_enct.append(i)
 
                 if not encontrado:
-                    print("no encontrado")
+                    print("ID no encontrado.")
                 else:
                     ver_busqueda_usuarios(matriz_enct)
         elif admin == False:
@@ -60,7 +60,7 @@ def menu_usuarios(admin):
         eleccion = int(input("Seleccione el id de usuario a editar: "))
 
         if eleccion not in id_usuarios:
-            print("ID no encontrada")
+            print("ID no encontrad0.")
         else:
             for i in datos_globales_usuarios:
                 if i[0] == eleccion:

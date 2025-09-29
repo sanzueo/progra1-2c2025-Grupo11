@@ -63,15 +63,15 @@ def ver_m3(matriz):
     filas = len(matriz)
     columnas = len(matriz[0])
 
-    inicio_Cont=int(input(f"\033[35mdesde que reserva deseas empezar: \033[0m"))
+    inicio_Cont=int(input(f"\033[35mDesde que reserva deseas empezar: \033[0m"))
     while inicio_Cont < 0 or inicio_Cont >= filas:
-        print(f"\033[91mNúmero fuera de rango, solo hay {filas-1} reservas seleccione dentro de ese rango\033[0m")
-        inicio_Cont=int(input(f"\033[35mdesde que reserva deseas empezar: \033[0m"))
+        print(f"\033[91mNúmero fuera de rango, solo hay {filas-1} reservas. Seleccione dentro de ese rango\033[0m")
+        inicio_Cont=int(input(f"\033[35mDesde que reserva deseas empezar: \033[0m"))
     
-    vision=int(input("\033[96mcuantos registros desde el inicio desea ver: \033[0m"))
+    vision=int(input("\033[96mCuántos registros desde el inicio desea ver: \033[0m"))
     while vision < 1 or vision > (filas - inicio_Cont):
         print(f"Debe ser entre 1 y {filas - inicio_Cont}")
-        vision = int(input("\033[96mcuántos registros desde el inicio deseas ver: \033[0m"))
+        vision = int(input("\033[96mCuántos registros desde el inicio deseas ver: \033[0m"))
 
     columnas_t = ["ID","Nombre     ","DNI    ","        Telefono","Mail","                                Estado"]
 

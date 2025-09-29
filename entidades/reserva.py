@@ -37,7 +37,7 @@ while len(datos_globales_reserva) < 4000:
     show=shows_seleccion()
     
     if show ==None:
-        print("no hay mas shows con capacidad disponibles")
+        print("No hay mas shows con capacidad disponibles.")
 
     if ubicacion_u == "platea    ":
         for i in precios_show:
@@ -62,7 +62,7 @@ def ver_busqueda_reserva(matriz):
 
     filas=len(matriz)
     columnas = len(matriz[0])
-    columnas_t = ["ID'S","ID Usuario","Ubicación","ID Show","Precio"]
+    columnas_t = ["ID's","ID Usuario","Ubicación","ID Show","Precio"]
     print(f"\033[32m{'-'*73}\033[0m")
     print(f"\033[32m{'IDs':<8}  {'ID Usuario':<13}\033  \033[35m{'Ubicación':>10}  {'ID Show':>12}\033[0m  \033[34m{'Precio':>14}\033[0m")
     print(f"\033[32m{'-'*73}\033[0m")
@@ -72,20 +72,20 @@ def ver_busqueda_reserva(matriz):
 def ver_m2(matriz):
 
     filas=len(matriz)
-    inicio_Cont=int(input(f"\033[35mdesde que reserva deseas empezar: \033[0m"))
+    inicio_Cont=int(input(f"\033[35mDesde que reserva deseas empezar: \033[0m"))
     while inicio_Cont < 0 or inicio_Cont >= filas:
-        print(f"\033[91mNúmero fuera de rango, solo hay {filas-1} reservas seleccione dentro de ese rango\033[0m")
-        inicio_Cont=int(input(f"desde que reserva deseas empezar: "))
+        print(f"\033[91mNúmero fuera de rango, solo hay {filas-1} reservas. Seleccione dentro de ese rango\033[0m")
+        inicio_Cont=int(input(f"Desde que reserva deseas empezar: "))
     
-    vision=int(input("\033[35mcuantos registros desde el inicio desea ver: \033[0m"))
+    vision=int(input("\033[35mCuántos registros desde el inicio desea ver: \033[0m"))
     while vision < 1 or vision > (filas - inicio_Cont):
         print(f"\033[91m Debe ser entre 1 y {filas - inicio_Cont}\033[0m")
-        vision = int(input("\033[35mcuántos registros desde el inicio deseas ver: \033[0m"))
+        vision = int(input("\033[35mCuántos registros desde el inicio deseas ver: \033[0m"))
 
     fin= inicio_Cont+vision
 
     columnas = len(matriz[0])
-    columnas_t = ["ID'S","ID Usuario","Ubicación","ID Show","Precio"]
+    columnas_t = ["ID's","ID Usuario","Ubicación","ID Show","Precio"]
     print(f"\033[32m{'-'*73}\033[0m")
     print(f"\033[32m{'IDs':<8}  {'ID Usuario':<13}\033  \033[35m{'Ubicación':>10}  {'ID Show':>12}\033[0m  \033[34m{'Precio':>14}\033[0m")
     print(f"\033[32m{'-'*73}\033[0m")

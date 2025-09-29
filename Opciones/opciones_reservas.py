@@ -134,7 +134,7 @@ def menu_reservas(admin):
                 ubicacion_e = "Vip       "
                 if i[0] == show:
                         precio_act = i[3]
-        print(f"\033[1;34mreserva generada con exito el precio de su entrada termino en ${precio_act}\033[0m")
+        print(f"\033[1;34mReserva generada con exito. El precio de su entrada termino en ${precio_act}\033[0m")
 
 
     
@@ -160,12 +160,12 @@ def menu_reservas(admin):
                     reserva_enct.append(i)
             
             if not encontrado:
-                print("\033[31mId Reserva no encontrada\033[0m")
+                print("\033[31mID de reserva no encontrada.\033[0m")
             else:
                 ver_busqueda_reserva(reserva_enct)
 
         elif eleccion == 2:
-            eleccion = int(input("\033[35mIngrese id de usuario: \033[0m"))
+            eleccion = int(input("\033[35mIngrese ID de usuario: \033[0m"))
 
             reserva_enct = []
 
@@ -177,7 +177,7 @@ def menu_reservas(admin):
                     reserva_enct.append(i)
             
             if not encontrado:
-                print("\033[31mId Usuario no encontrada\033[0m")
+                print("\033[31mID de usuario no encontrado.\033[0m")
             else:
                 ver_busqueda_reserva(reserva_enct)
 
@@ -195,7 +195,7 @@ def menu_reservas(admin):
             if i[0] == id_show[0]:
                 i[3] -= 1
                 i[4] += 1
-        print("\033[31mReserva eliminada\033[0m")
+        print("\033[31mReserva eliminada.\033[0m")
 
     
     elif usuario_i == 4 and admin==True: #BORRAR RESERVA
@@ -204,10 +204,10 @@ def menu_reservas(admin):
         for i in datos_globales_reserva:
             if i[0]==eleccion:
                 show_encontrado=True
-                print("\033[96mid de reserva confirmado\033[0m")
+                print("\033[96mID de reserva confirmado.\033[0m")
         if not show_encontrado:
-            print("\033[91mesa reserva no es valida\033[0m")
-            eleccion = int(input("Seleccione id de reserva a eliminar: "))
+            print("\033[91mEsa reserva no es valida.\033[0m")
+            eleccion = int(input("Seleccione ID de reserva a eliminar: "))
 
         id_show = []
 
@@ -236,7 +236,7 @@ def menu_reservas(admin):
                 reserva_encontrada = reserva
 
         if not reserva_encontrada:
-            print("\033[91mNo se encontró la reserva con ese ID\033[0m")
+            print("\033[91mNo se encontró la reserva con ese ID.\033[0m")
         
         print(f"\nEditando reserva ID: {reserva_encontrada[0]}")
         
@@ -274,9 +274,9 @@ def menu_reservas(admin):
                     if precio_info[0] == reserva_encontrada[3]:
                         reserva_encontrada[4] = precio_info[3]  
 
-                print("\033[91mOpción de ubicación no válida\033[0m")
+                print("\033[91mOpción de ubicación no válida.\033[0m")
 
-            print("\033[92mUbicación y precio actualizados correctamente\033[0m")
+            print("\033[92mUbicación y precio actualizados correctamente.\033[0m")
         
         elif eleccion == 2:  # EDITAR SHOW
             ver_m(datos_globales)
@@ -295,7 +295,7 @@ def menu_reservas(admin):
             for show in datos_globales:
 
                 if show[0] == nuevo_show and show[4] < 0:
-                    print("\033[91mNo hay capacidad disponible en ese show\033[0m")
+                    print("\033[91mNo hay capacidad disponible en ese show.\033[0m")
                 elif show[0] == nuevo_show and show[4] > 0:
                     for show_viejo in datos_globales:
                         if show_viejo[0] == reserva_encontrada[3]:
@@ -318,10 +318,10 @@ def menu_reservas(admin):
                             elif ubicacion_actual == "Vip":
                                 reserva_encontrada[4] = precio_info[3]
 
-                    print("\033[92mShow actualizado correctamente\033[0m")
+                    print("\033[92mShow actualizado correctamente.\033[0m")
                 
         else:
-            print("\033[91mOpción no válida\033[0m")
+            print("\033[91mOpción no válida.\033[0m")
 
 
     elif usuario_i==6:
