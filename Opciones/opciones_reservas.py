@@ -1,31 +1,28 @@
-from nombres_teatroV2 import datos_globales_reserva, datos_globales, solo_ids_show,datos_globales_usuarios, dni_en_uso,precios_show, ids_reserva
+from nombres_teatroV2 import datos_globales_reserva, datos_globales,datos_globales_usuarios, dni_en_uso,precios_show, matriz_act
 from entidades.reserva import ver_m2, id_alt_r, ver_busqueda_reserva
 """crear un archivo para los ids exclusivamente"""
 from entidades.Usuarios import id_user
 from entidades.shows import ver_m
 from datetime import datetime
 
-
-matriz_act = []
-
+#se agarra el id del usuario comparandolo con el dni que esta en uso
 def obt_id_Actual():
-
+    #se agarra el dni en uso y se pone en otra variable
     dni_act = (dni_en_uso[0])
+    #se crea una lista que es donde va a ir el usuario de ese dni
     user_act = []
-
-
+    #se añade el id de ese usuario
     for i in datos_globales_usuarios:
         if i[2] == dni_act:
             user_act.append(i[0])
 
     return user_act[0]
 
-
-
+#se inicia el menu de reservas
 def menu_reservas(admin):
-
+    
     colordorado="\033[38;2;207;181;59m"
-
+    #se ponen las opciones que puede usar el usuario para que elija
     if admin==False:
         usuario_i = int(input(
             "\n\033[92m=== MENÚ DE RESERVA ===          \033[0m\n"
@@ -34,6 +31,7 @@ def menu_reservas(admin):
             "\033[35m  → [3] VOLVER AL MENU DE OPCIONES \033[0m\n"
             "\033[1;35m Seleccione una opción: \033[0m"
             ))
+    #se ponen las opciones que puede usar el admin para que elija (mas opciones debido a mayor autoridad) 
     if admin==True:
         usuario_i = int(input(
             "\n\033[92m=== MENÚ DE RESERVA ===         \033[0m\n"
@@ -46,37 +44,45 @@ def menu_reservas(admin):
             "\033[1;35m Seleccione una opción: \033[0m"
         ))
 
-    if usuario_i == 1:  #ver reserva
-        if admin:     
+    #se muestra la reserva
+    if usuario_i == 1:
+        #se separa la vista de el admin y el no admin para diferenciar que es lo que pueden o no ver  
+        if admin:
+            #se muestra la matriz de las resrvas que hay
             ver_m2(datos_globales_reserva)
+        
+        #muestra las reservas que hizo ese usuario exclusivamente 
         elif admin == False:
-
+            #se limpoia la lista para que si se agrega alguna se pueda actualizar
             matriz_act.clear()
-
+            #se obtiene el id de usuario
             usuario_Act = obt_id_Actual()
-
+            #se revisa que exista ese usuario en los datos de reservas y se añade a la lista
             for i in datos_globales_reserva:
                 if int(i[1]) == usuario_Act:  
                     matriz_act.append(i)
-
+            #si hay mas de una reserva te muestra la cantidad de reservas que hizo el usuario
             if len(matriz_act) > 0:
                 ver_m2(matriz_act)
-                #ver_m2(matriz2)
-                #ver_m3(datos_globales_usuarios)
+            #si no hay reservas te printea no hay reservas (no hay nada papu lince) anterioremente
             else:
-                print("no hay nada papu lince")
+                print("no hay ninguna reserva")
 
 
-
-    elif usuario_i == 2: #GENERAR RESERVA
+    #GENERAR RESERVA
+    elif usuario_i == 2: 
+        #se genera un id aleatorio
         id_reserva = id_alt_r() 
-        
+        #si no es un admin se busca el id del usuario
         if admin == False:
             id_usuario = obt_id_Actual()
+        #si es admin se genera un id aleatorio
         else:
             id_usuario = id_user()
+        #se muestran todos los shows
         ver_m(datos_globales) 
         
+        #se definen parametros booleanos para poder buscar si puede o no reservar ahi
         busqueda = True
         show_encontrado = False
         tiene_capacidad = False

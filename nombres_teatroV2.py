@@ -72,6 +72,8 @@ ubicacion = ["platea    "
 ]
 
 #listas varias
+#crear lista para ver las reservas desde la parte de el usuario
+matriz_act = []
 #lista con todos los precios de los shows que hay (se genera todo automaaticamente)
 precios_show = []
 #lista con el dni que esta usando la persona actualmente en el programa
