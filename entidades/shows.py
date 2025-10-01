@@ -2,7 +2,7 @@ import random
 from nombres_teatroV2 import *
 from datetime import datetime, timedelta
 
-# Función para generar IDs de shows
+# Función para generar IDs de shows aleatoriamente
 def id_alt():
     n=random.randint(1000, 9999)
     while n in ids_shows:
@@ -10,7 +10,7 @@ def id_alt():
     ids_shows.append(n)
     return n
 
-# Función para generar fechas aleatorias de shows
+# Función para generar fechas aleatorias de shows con restricciones desde el 1 del 1 de 2025 hasta el 31 del 12 del 2025 (1 año)
 def fecha_alt():
     fecha_inicio = datetime(2025, 1, 1)
     fecha_fin = datetime(2025, 12, 31)
@@ -19,7 +19,7 @@ def fecha_alt():
     fecha_aleatoria = fecha_inicio + timedelta(days=dias_random)
     return fecha_aleatoria.date()
 
-# Crear 10 shows aleatorios
+# Crear 10 shows aleatorios con (id, tipo, duracion, espectadores, espacios disponibles y fecha del evento)
 while len(datos_globales) != 10:
     id_show = id_alt()
     tipo_Evento = random.choice(tipos_show)
@@ -30,10 +30,10 @@ while len(datos_globales) != 10:
     datos_globales.append([id_show, tipo_Evento, duracion, espectadores, espacios_disponibles, fecha])
 
 
-#CREAR PRECIOS 
-
+#creacion de precios 
 for i in datos_globales:
         id_show = i[0]
+
         precio_b = random.randint(7200,12000)
         precio_b2 = precio_b * 2
         precio_b3 = precio_b * 3
@@ -44,11 +44,9 @@ for i in datos_globales:
 for i in datos_globales:
     solo_ids_show.append(i[0])
 
-# Función para mostrar matriz de shows
+# Función para mostrar matriz de shows con colores, espacios y encabezados
 def ver_m(matriz):
     filas = len(matriz)
-    columnas = len(matriz[0])
-
     columnas_t = ["ID's", "Tipo de evento", "Duración", "Cant. Espectadores", "Esp. Disponibles", "Fecha"]
 
     print("\033[32m" + "-" * 95 + "\033[0m")

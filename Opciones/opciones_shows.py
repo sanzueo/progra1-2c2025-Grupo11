@@ -236,4 +236,4 @@ def menu_shows(admin):
 
 
     elif usuario_i==6 and admin==True or usuario_i==3 and admin==False:
-        return -1
+        return 

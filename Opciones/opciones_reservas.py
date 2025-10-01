@@ -62,7 +62,7 @@ def menu_reservas(admin):
             if len(matriz_act) > 0:
                 ver_m2(matriz_act)
                 #ver_m2(matriz2)
-                #ver_m3(matriz3)
+                #ver_m3(datos_globales_usuarios)
             else:
                 print("no hay nada papu lince")
 

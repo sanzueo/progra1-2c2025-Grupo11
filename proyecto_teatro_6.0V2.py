@@ -4,31 +4,44 @@ from Opciones.opciones_usuarios import menu_usuarios
 from Opciones.opciones_shows import menu_shows
 from estadisticas import menu_estadisticas
 
-
-capture_data = True
+#el admin empieza siempre en false
+admin=False
+#esto se va a usar para empezar el proceso de logeo
+ingreso = True
+#esto es lo que empieza el programa
 start = True
 
-
-
+#empieza el programa
 while start:
-    while capture_data == True:
-        ingreso_nivel = menu_login()
-        if ingreso_nivel == 0:
+    #empieza el logeo
+    while ingreso == True:
+
+        #esto determina si se esta registrando o logueando
+        destino_ingreso = menu_login()
+
+        #esto determina si es un admin o un usuario
+        if destino_ingreso == 0:
             log = login()
+
+            #caso admin
             if log == "ADMIN":
                 admin = True
                 menu = True
-                capture_data = False
+                ingreso = False
+
+            #caso usuario
             elif log == "Usuario":
                 admin = False
                 menu = True
-                capture_data = False
-        elif ingreso_nivel == 1:
-            ingr = registrar()
+                ingreso = False
+
+        #caso de registro
+        elif destino_ingreso == 1:
+            reg=registrar()
 
     # PROGRAMA PRINCIPAL
-    while menu == True:
-        
+    while menu:
+        #caso admin
         if admin==True:
             usuario =int(input(
                 "\n\033[92m=== MENÚ DE OPCIONES ===\033[0m\n"
@@ -40,6 +53,7 @@ while start:
                 "\033[35m  → [6] SALIR DEL PROGRAMA\033[0m\n"
                 "\033[1;35m Seleccione una opción: \033[0m"
             ))
+        #caso usuario
         if admin==False:
             usuario =int(input(
                 "\n\033[92m=== MENÚ DE OPCIONES ===\033[0m\n"
@@ -51,52 +65,25 @@ while start:
                 "\033[1;35m Seleccione una opción: \033[0m"
             ))
 
-
         # SUBMENÚS
+        #shows
         if usuario == 1:
             menu_shows(admin)
-            if menu_shows==-1:
-                usuario =int(input(
-                "\n\033[92m=== MENÚ DE REINTENTO ===        \033[0m\n"
-                "\033[35m  → [0] VOLVER AL MENÚ DE INGRESO  \033[0m\n"
-                "\033[35m  → [1] REINGRESAR EL DNI          \033[0m\n"
-                "\033[35m  → [2] REINGRESAR LA CONTRASEÑA   \033[0m\n"
-                "\033[1;35m SELECCIONE UNA OPCION: \033[0m"
-            ))
-            
+        #reservas
         elif usuario == 2:
             menu_reservas(admin)
-            if menu_reservas==-1:
-                usuario =int(input(
-                        "\n\033[92m=== MENÚ DE OPCIONES ===\033[0m\n"
-                        "\033[35m  → [1] SHOWS             \033[0m\n"
-                        "\033[35m  → [2] RESERVAS          \033[0m\n"
-                        "\033[35m  → [3] USUARIOS          \033[0m\n"
-                        "\033[35m  → [4] SALIR DE LA SESIÓN\033[0m\n"
-                        "\033[35m  → [5] SALIR DEL PROGRAMA\033[0m\n"
-                        "\033[1;35m SELECCIONE UNA OPCION: \033[0m"
-                    ))  
+        #usuarios
         elif usuario == 3: 
             menu_usuarios(admin)
-            if menu_usuarios==-1:
-                usuario =int(input(
-                        "\n\033[92m=== MENÚ DE OPCIONES ===\033[0m\n"
-                        "\033[35m  → [1] SHOWS             \033[0m\n"
-                        "\033[35m  → [2] RESERVAS          \033[0m\n"
-                        "\033[35m  → [3] USUARIOS          \033[0m\n"
-                        "\033[35m  → [4] SALIR DE LA SESIÓN\033[0m\n"
-                        "\033[35m  → [5] SALIR DEL PROGRAMA\033[0m\n"
-                        "\033[1;35m SELECCIONE UNA OPCION: \033[0m"
-                    ))
-        elif usuario == 4 and admin==True:
+        #estadisticas 
+        elif usuario == 4 and admin:
             menu_estadisticas()
-
-        elif usuario == 5 and admin ==True or usuario==4 and admin==False:  # CERRAR SESION
+        #salida de sesion donde se vuelve el admin a false y empezas el logue de nuevo
+        elif usuario == 5 and admin or usuario == 4 and admin == False:
             admin = False
-            capture_data = True
+            ingreso = True
             menu = False
             dni_en_uso=[]
-
-        elif usuario == 6 and admin==True or usuario==5 and admin==False:  # SALIR
-            menu = False
+        # salida
+        elif usuario == 6 and admin or usuario == 5 and admin == False:
             start = False

@@ -2,7 +2,7 @@ import random
 from nombres_teatroV2 import id_usuarios,dni_usuarios,datos_globales_usuarios,nombres,ids_usuario
 
 
-# Función para generar IDs de usuarios
+# Función para generar IDs de usuarios aleatoriamente 
 def id_user():
     n=random.randint(1000,9999)
     while n in id_usuarios:
@@ -10,13 +10,15 @@ def id_user():
     id_usuarios.append(n)
     return n
 
+# creacion de dnis aleatoriamente
 def dni_user():
     dni = random.randint(16000000, 90000000)
     while dni in dni_usuarios:
         dni = random.randint(16000000, 90000000)
     dni_usuarios.append(dni)
     return dni
-# Crear usuarios aleatorios a partir de nombres
+
+# Crear una lista la cual incluye informacion como el id del usuario nombre dni telefono correo y estado(activo o inactivo)
 while len(datos_globales_usuarios) != 400:
     id_usuario = id_user()
     nombre = random.choice(nombres).ljust(10, " ")
@@ -28,8 +30,6 @@ while len(datos_globales_usuarios) != 400:
     estado = random.choice([True, False])
 
     datos_globales_usuarios.append([id_usuario, nombre, dni, telefono, correo, estado])
-
-matriz3 = datos_globales_usuarios
 
 # Guardar solo IDs y DNIs de usuarios activos
 for i in datos_globales_usuarios:
