@@ -95,10 +95,13 @@ def login():
 def registrar():
     #se asigna un id al usuario que se este registrando
     num_usuario = id_user()
+
     #el usuario escribe el nombre
     nombre = str(input("\033[36m Escriba el nombre que desee usar: \033[0m"))
+
     #el usuario escribe su dni 
     dni_cread = int(input("\033[36m Escriba el número de su DNI: \033[0m"))
+
     #validaciones basicas de dni debido a no poder acceder a una fuente confiable de dnis para comparar 
     while dni_cread < 0:
         print("\033[91m El DNI no puede ser negativo, intente de nuevo.\033[0m")
@@ -106,21 +109,27 @@ def registrar():
 
     #el usuario con numero de area
     telefono_cread = int(input("\033[36m Escriba su número de teléfono: \033[0m"))
+    
     #revision de que sea dentro de los parametros asignados con el numero de area
     while telefono_cread < 1100000000 or telefono_cread > 1199999999:
         print("\033[91m Número no válido (1100000000 a 1199999999) \033[0m")
         telefono_cread = int(input("\033[36m Escriba su número de teléfono sin código de área: \033[0m")) 
+    
     #convierte el telefono en un string
     telefono_cread=str(telefono_cread)
+    
     #se define un patron
     patron= r"(11)(\d{6})(\d{2})"
+    
     #se asigna una forma de como queremos mostrarlo
     numero_oculto=r"\1-XXXX-XX\3"
+    
     #se substituye por los parametros asignados
     telefono_organizado=re.sub(patron,numero_oculto,telefono_cread)
     
     #el usuario escribe su email 
     email = input("\033[36m Escriba su email: \033[0m")
+    
     #validaciones basicas de email
     arroba = re.findall('@', email)
     punto  = re.findall(r'\.', email)   
