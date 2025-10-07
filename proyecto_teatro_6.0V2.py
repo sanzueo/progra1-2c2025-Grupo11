@@ -3,6 +3,7 @@ from Opciones.opciones_reservas import menu_reservas
 from Opciones.opciones_usuarios import menu_usuarios
 from Opciones.opciones_shows import menu_shows
 from estadisticas import menu_estadisticas
+print(precios_show)
 
 #el admin empieza siempre en false
 admin=False

@@ -97,24 +97,42 @@ def registrar():
     num_usuario = id_user()
 
     #el usuario escribe el nombre
-    nombre = str(input("\033[36m Escriba el nombre que desee usar: \033[0m"))
 
-    #el usuario escribe su dni 
-    dni_cread = int(input("\033[36m Escriba el número de su DNI: \033[0m"))
+    while True:
+        try:
+            nombre = str(input("\033[36m Escriba el nombre que desee usar: \033[0m"))
+            if len(nombre) > 15:
+                print("Nombre demasiado largo. No puede tener mas de 15 caracteres. puto")
+            else:
+                break
+        except ValueError:
+            print("El nombre no puede contener numeros. pelotudo")
+    
 
     #validaciones basicas de dni debido a no poder acceder a una fuente confiable de dnis para comparar 
-    while dni_cread < 0:
-        print("\033[91m El DNI no puede ser negativo, intente de nuevo.\033[0m")
-        dni_cread = int(input("\033[36m Escriba el número de su DNI: \033[0m"))
+    while True:
+        try:
+            dni_cread = int(input("\033[36m Escriba el número de su DNI: \033[0m"))
+            if dni_cread > 0:
+                break
+            else:
+                print("\033[91m El DNI no puede ser negativo, intente de nuevo.\033[0m")
+        except ValueError:
+            print("escribi bien peloutdo")
 
-    #el usuario con numero de area
-    telefono_cread = int(input("\033[36m Escriba su número de teléfono: \033[0m"))
     
     #revision de que sea dentro de los parametros asignados con el numero de area
-    while telefono_cread < 1100000000 or telefono_cread > 1199999999:
-        print("\033[91m Número no válido (1100000000 a 1199999999) \033[0m")
-        telefono_cread = int(input("\033[36m Escriba su número de teléfono sin código de área: \033[0m")) 
-    
+    while True:
+        try: 
+            telefono_cread = int(input("\033[36m Escriba su número de teléfono sin código de área: \033[0m")) 
+            if telefono_cread < 1100000000 or telefono_cread > 1199999999:
+                print("\033[91m Número válido\033[0m")
+                break
+            else:
+                print("\033[91m Número no válido (1100000000 a 1199999999) \033[0m")
+        except ValueError:
+            print("Formato Incorrecto")
+
     #convierte el telefono en un string
     telefono_cread=str(telefono_cread)
     

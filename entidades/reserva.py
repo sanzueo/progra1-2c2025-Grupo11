@@ -30,19 +30,19 @@ def shows_seleccion():
     return show_elegido
 #dependiendo de la ubicacion dada marca un precio
 def precio_ubi(ubicacion):
-    if ubicacion == "platea    ":
+    if ubicacion == "platea":
         for i in precios_show:
             if i[0] == show:
                 precio = i[1]
                 return precio 
             
-    elif ubicacion == "campo    ":
+    elif ubicacion == "campo":
         for i in precios_show:
             if i[0] == show:
                     precio = i[2]
                     return precio 
 
-    elif ubicacion == "vip      ":
+    elif ubicacion == "vip":
         for i in precios_show:
             if i[0] == show:
                     precio = i[3]

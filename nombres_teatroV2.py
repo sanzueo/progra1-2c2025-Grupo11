@@ -66,9 +66,9 @@ tipos_show = [
 
 
 
-ubicacion = ["platea    "
-             ,"campo    "
-             ,"vip      "
+ubicacion = ["platea"
+             ,"campo"
+             ,"vip"
 ]
 
 #listas varias
