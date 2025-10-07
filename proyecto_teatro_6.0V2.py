@@ -3,7 +3,13 @@ from Opciones.opciones_reservas import menu_reservas
 from Opciones.opciones_usuarios import menu_usuarios
 from Opciones.opciones_shows import menu_shows
 from estadisticas import menu_estadisticas
-print(precios_show)
+
+func_start = [
+    lambda: menu_shows(admin),
+    lambda: menu_reservas(admin),
+    lambda: menu_usuarios(admin),
+    lambda: menu_estadisticas()
+]
 
 #el admin empieza siempre en false
 admin=False
@@ -13,7 +19,7 @@ ingreso = True
 start = True
 
 #empieza el programa
-while start:
+while start==True:
     #empieza el logeo
     while ingreso == True:
 
@@ -67,24 +73,22 @@ while start:
             ))
 
         # SUBMENÚS
-        #shows
-        if usuario == 1:
-            menu_shows(admin)
-        #reservas
-        elif usuario == 2:
-            menu_reservas(admin)
-        #usuarios
-        elif usuario == 3: 
-            menu_usuarios(admin)
-        #estadisticas 
-        elif usuario == 4 and admin:
-            menu_estadisticas()
-        #salida de sesion donde se vuelve el admin a false y empezas el logue de nuevo
-        elif usuario == 5 and admin or usuario == 4 and admin == False:
+        maximo = len(func_start)
+        if 1 <= usuario <= maximo:
+            indice = usuario - 1
+            func_start[indice]()
+
+        #salida de sesion donde se vuelve el admin a false y empezas el logueo de nuevo
+        elif (usuario == 5 and admin) or (usuario == 4 and admin == False):
             admin = False
             ingreso = True
             menu = False
             dni_en_uso=[]
+
         # salida
-        elif usuario == 6 and admin or usuario == 5 and admin == False:
+        elif (usuario == 6 and admin) or (usuario == 5 and admin == False):
             start = False
+            break
+        
+        else:
+            print("Su número está fuera de los parametros dados.")

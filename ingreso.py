@@ -97,17 +97,7 @@ def registrar():
     num_usuario = id_user()
 
     #el usuario escribe el nombre
-
-    while True:
-        try:
-            nombre = str(input("\033[36m Escriba el nombre que desee usar: \033[0m"))
-            if len(nombre) > 15:
-                print("Nombre demasiado largo. No puede tener mas de 15 caracteres. puto")
-            else:
-                break
-        except ValueError:
-            print("El nombre no puede contener numeros. pelotudo")
-    
+    nombre = str(input("\033[36m Escriba el nombre que desee usar: \033[0m"))
 
     #validaciones basicas de dni debido a no poder acceder a una fuente confiable de dnis para comparar 
     while True:
@@ -118,7 +108,7 @@ def registrar():
             else:
                 print("\033[91m El DNI no puede ser negativo, intente de nuevo.\033[0m")
         except ValueError:
-            print("escribi bien peloutdo")
+            print("no se admite otro value que no sea enteros")
 
     
     #revision de que sea dentro de los parametros asignados con el numero de area

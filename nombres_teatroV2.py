@@ -125,5 +125,4 @@ datos_globales = []
 
 datos_globales_reserva = []
 
-
 matriz = datos_globales
