@@ -23,25 +23,52 @@ def menu_login():
     # Cierre verde
     print("\033[92m╚════════════════════════════╝\033[0m")
 
-    ingreso = input(f"\033[1;35m Seleccione una opción: \033[0m")
-    #validacion de opciones
-    while ingreso not in ("0", "1"):
-        print(f"\033[91m Opción inválida, intente de nuevo.\033[0m")
-        ingreso = input(f"\033[1;35m Seleccione una opción: \033[0m")
-
-    return int(ingreso)
-
+    while True:
+        try:
+            ingreso = int(input(f"\033[1;35m Seleccione una opción: \033[0m"))
+            #validacion de opciones
+            if ingreso in (0, 1):
+                return ingreso
+            else:
+                print(f"\033[91m Opción inválida, intente de nuevo.\033[0m")
+        except(ValueError,KeyboardInterrupt):
+            print("\033[91mporfavor ingrese caracteres numericos validos\033[0m")
 #parte de ingreso con contraseña y dni
 def login():
     #ingreso de dni
-    dni_ingres=int(input("\033[36m Escriba su dni para verificacion: \033[0m"))
+    while True:
+        try:
+            dni_ingres=int(input("\033[36m Escriba su dni para verificacion: \033[0m"))
+            break
+        except (ValueError,KeyboardInterrupt):
+            print("\033[91mporfavr caracteres numericos validos\033[0m")
+            continue
     #revision del ingreso
     while dni_ingres not in datos_de_ingreso_dni and dni_ingres not in dni_admins:
         print("\033[91m Id no encontrado revise que este bien su dni.\033[0m")
-        dni_ingres=int(input("\033[36m Escriba su dni para verificacion: \033[0m"))
+        try:
+            dni_ingres=int(input("\033[36m Escriba su dni para verificacion: \033[0m"))
+        except (ValueError,KeyboardInterrupt):
+            print("\033[91mporfavor caracteres numericos validos\033[0m")
+            continue
     print()
     #ingreso de contraseña
-    contraseña=input("\033[36m Escriba su contraseña de usuario: \033[0m")
+    while True:
+        try:
+            contraseña=input("\033[36m Escriba su contraseña de usuario: \033[0m")
+            break
+        except(ValueError, KeyboardInterrupt):
+            print("\033[91mingrese caracteres que sean validos\033[0m")
+            continue
+    while contraseña not in datos_globales_contraseñas and contraseña not in contraseñas_admin:
+        print("\033[91m contraseña no encontrado revise que este bien su contraseña.\033[0m")
+        try:
+            contraseña=input("\033[36m Escriba su contraseña de usuario: \033[0m")
+            if contraseña in datos_globales_contraseñas or contraseña in contraseñas_admin:
+                break
+        except(ValueError, KeyboardInterrupt):
+            print("\033[91mingrese caracteres que sean validos\033[0m")
+            continue
     print()
 
     #revision de ambosal mismo tiempo
@@ -51,35 +78,46 @@ def login():
     ):
         #menu de reintento en caso de que no sean correctos alguno de ellos o no coincidan
         print("\033[91m DNI o contraseña incorrectos \033[0m")
-        vuelta = int(input(
-            "\n\033[92m=== MENÚ DE REINTENTO ===\033[0m\n"
-            f"\033[35m  → [0] Volver al menú de ingreso\033[0m\n"
-            "\033[35m  → [1] Reingresar el Dni\033[0m\n"
-            "\033[35m  → [2] Reingresar la Contraseña\033[0m\n"
-            "\033[1;35m Seleccione una opción: \033[0m"
-        ))
-        #validacion para que no elija otra opcion que no sea las indicadas
-        while vuelta !=0 and vuelta!=1 and vuelta!=2:
-            print("\033[91m DNI o contraseña incorrectos \033[0m")
-            vuelta = int(input(
-                "\n\033[92m=== MENÚ DE REINTENTO ===\033[0m\n"
-                f"\033[35m  → [0] Volver al menú de ingreso\033[0m\n"
-                "\033[35m  → [1] Reingresar el Dni\033[0m\n"
-                "\033[35m  → [2] Reingresar la Contraseña\033[0m\n"
-                "\033[1;35m Seleccione una opción: \033[0m"
-            ))
+        while True:
+            try:
+                vuelta = int(input(
+                    "\n\033[92m=== MENÚ DE REINTENTO ===\033[0m\n"
+                    f"\033[35m  → [0] Volver al menú de ingreso\033[0m\n"
+                    "\033[35m  → [1] Reingresar el Dni\033[0m\n"
+                    "\033[35m  → [2] Reingresar la Contraseña\033[0m\n"
+                    "\033[1;35m Seleccione una opción: \033[0m"
+                ))
+                if vuelta in (0,1,2):
+                    break
+                else:
+                    print("\033[91msolo se premiten numeros del 0 al 2\033[0m")
+            except (ValueError, KeyboardInterrupt):
+                print("\033[91malgo a salido mal\033[0m")
+                continue
         #sale de la funcion y te manda de nuevo al menu de ingreso
         if vuelta==0:
             return 
+        
         #modificia el dni al que escriba el usuario
         elif vuelta==1:
-            dni_ingres=int(input("\033[36m Escriba su dni para verificacion: \033[0m"))
+            while True:
+                try:
+                    dni_ingres = int(input("\033[36mEscriba su DNI para verificación: \033[0m"))
+                    break
+                except (ValueError,KeyboardInterrupt):
+                    print("\033[91mDebe ingresar solo números.\033[0m")
+
         #modificia la contraseña a la que escriba el usuario
         elif vuelta==2:
-            contraseña=(input("\033[36m Escriba su contraseña para verificacion: \033[0m"))
+            while True:
+                try:
+                    contraseña=(input("\033[36m Escriba su contraseña para verificacion: \033[0m"))
+                    break
+                except KeyboardInterrupt:
+                    print("\033[91mpor favor ingrese su contraseña\033[0m")
 
-    #agarra el dni que escribio el usuario al iniciar sesion
-    dni_en_uso.append(dni_ingres)
+        #agarra el dni que escribio el usuario al iniciar sesion
+        dni_en_uso.append(dni_ingres)
 
     
     #busca que las contraseñas de admin y el dni del admin esten en sus listas respectivas
@@ -103,25 +141,29 @@ def registrar():
     while True:
         try:
             dni_cread = int(input("\033[36m Escriba el número de su DNI: \033[0m"))
-            if dni_cread > 0:
-                break
-            else:
-                print("\033[91m El DNI no puede ser negativo, intente de nuevo.\033[0m")
+            if dni_cread <= 0:
+                print("no se permiten dnis menores o iguales a 0")
+                continue
+            elif dni_cread in datos_de_ingreso_dni or dni_cread in dni_admins:
+                print("\033[91m Este DNI ya está registrado. Intente con otro.\033[0m")
+                continue
+            break
         except ValueError:
-            print("no se admite otro value que no sea enteros")
+            print("no se admite otra cosa que no sean enteros")
+            continue
 
     
     #revision de que sea dentro de los parametros asignados con el numero de area
     while True:
-        try: 
-            telefono_cread = int(input("\033[36m Escriba su número de teléfono sin código de área: \033[0m")) 
-            if telefono_cread < 1100000000 or telefono_cread > 1199999999:
-                print("\033[91m Número válido\033[0m")
+        try:
+            telefono_cread = int(input("\033[36mIngrese su número de teléfono sin código de área: \033[0m"))
+            if telefono_cread > 1100000000 and telefono_cread < 1199999999:
+                print("\033[92mNúmero válido.\033[0m")
                 break
             else:
-                print("\033[91m Número no válido (1100000000 a 1199999999) \033[0m")
+                print("\033[91mEl número debe estar entre 1100000000 y 1199999999.\033[0m")
         except ValueError:
-            print("Formato Incorrecto")
+            print("\033[91mError: solo se admiten números.\033[0m")
 
     #convierte el telefono en un string
     telefono_cread=str(telefono_cread)

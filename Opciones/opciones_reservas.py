@@ -5,25 +5,36 @@ def menu_reservas(admin):
     while True:
         #se ponen las opciones que puede usar el usuario para que elija
         if admin==False:
-            usuario_i = int(input(
-                "\n\033[92m=== MENÚ DE RESERVA ===          \033[0m\n"
-                "\033[35m  → [1] VER RESERVA                \033[0m\n"
-                "\033[35m  → [2] GENERAR RESERVA            \033[0m\n"
-                "\033[35m  → [3] VOLVER AL MENU DE OPCIONES \033[0m\n"
-                "\033[1;35m Seleccione una opción: \033[0m"
-                ))
+            try:
+                usuario_i = int(input(
+                    "\n\033[92m=== MENÚ DE RESERVA ===          \033[0m\n"
+                    "\033[35m  → [1] VER RESERVA                \033[0m\n"
+                    "\033[35m  → [2] GENERAR RESERVA            \033[0m\n"
+                    "\033[35m  → [3] VOLVER AL MENU DE OPCIONES \033[0m\n"
+                    "\033[1;35m Seleccione una opción: \033[0m"
+                    ))
+            except (ValueError,KeyboardInterrupt):
+                print()
+                print("\033[91mcoloque caracteres validos\033[0m")
+                continue
+
         #se ponen las opciones que puede usar el admin para que elija (mas opciones debido a mayor autoridad) 
         if admin==True:
-            usuario_i = int(input(
-                "\n\033[92m=== MENÚ DE RESERVA ===         \033[0m\n"
-                "\033[35m  → [1] VER RESERVA               \033[0m\n"
-                "\033[35m  → [2] GENERAR RESERVA           \033[0m\n"
-                "\033[35m  → [3] BUSCAR RESERVA            \033[0m\n"
-                "\033[35m  → [4] BORRAR RESERVA            \033[0m\n"
-                "\033[35m  → [5] EDITAR RESERVA            \033[0m\n"
-                "\033[35m  → [6] VOLVER AL MENU DE OPCIONES\033[0m\n"
-                "\033[1;35m Seleccione una opción: \033[0m"
-            ))
+            try:
+                usuario_i = int(input(
+                    "\n\033[92m=== MENÚ DE RESERVA ===         \033[0m\n"
+                    "\033[35m  → [1] VER RESERVA               \033[0m\n"
+                    "\033[35m  → [2] GENERAR RESERVA           \033[0m\n"
+                    "\033[35m  → [3] BUSCAR RESERVA            \033[0m\n"
+                    "\033[35m  → [4] BORRAR RESERVA            \033[0m\n"
+                    "\033[35m  → [5] EDITAR RESERVA            \033[0m\n"
+                    "\033[35m  → [6] VOLVER AL MENU DE OPCIONES\033[0m\n"
+                    "\033[1;35m Seleccione una opción: \033[0m"
+                ))
+            except (ValueError,KeyboardInterrupt):
+                print()
+                print("\033[91mcoloque caracteres validos\033[0m")
+                continue
 
         if admin:
             func_reservas = [
@@ -31,7 +42,7 @@ def menu_reservas(admin):
                 lambda: generacion_reservas(admin),
                 lambda: busqueda_Reserva(),
                 lambda: borrado_reserva(admin),
-                lambda: edicion_reserva(admin),
+                lambda: edicion_reserva(),
                 
             ]
         else:

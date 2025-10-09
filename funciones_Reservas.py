@@ -141,7 +141,7 @@ def busqueda_Reserva():
     encontrado = False
 
     #se le dice que es lo que puede hacer
-    eleccion = int(input("\033[35m → [1] BUSCAR RESERVA POR ID DE RESERVA\n → [2] BUSCAR RESERVA POR ID USUARIO\n\033[0m"))
+    eleccion = int(input("\033[35m → [1] BUSCAR RESERVA POR ID DE RESERVA\n → [2] BUSCAR RESERVA POR ID USUARIO:\033[0m"))
     #agarra el caso numero 1
     if eleccion == 1:
         eleccion = int(input("\033[35mIngrese id de reserva: \033[0m"))

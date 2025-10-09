@@ -3,14 +3,20 @@ from funciones_Shows import vista_show,busqueda_Show,borrado_Show,edicion_show,g
 def menu_shows(admin):
     while True:
         if admin==False:
+            try:    
                 usuario_i=int(input(
                 "\n\033[92m=== MENÚ DE SHOWS ===         \033[0m\n"
                 "\033[35m  → [1] VER SHOWS               \033[0m\n"
                 "\033[35m  → [2] BUSCAR SHOWS            \033[0m\n"
                 "\033[35m  → [3] VOLVER AL MENU PRINCIPAL\033[0m\n"
                 "\033[1;35m Seleccione una opción: \033[0m" ))
+            except (ValueError,KeyboardInterrupt):
+                print()
+                print("\033[91mcoloque caracteres validos\033[0m")
+                continue
 
         if admin==True:
+            try:
                 usuario_i=int(input(
                 "\n\033[92m=== MENÚ DE SHOWS ===         \033[0m\n"
                 "\033[35m  → [1] VER SHOWS               \033[0m\n"
@@ -20,14 +26,18 @@ def menu_shows(admin):
                 "\033[35m  → [5] GENERAR SHOW            \033[0m\n"
                 "\033[35m  → [6] VOLVER AL MENU PRINCIPAL\033[0m\n"
                 "\033[1;35m Seleccione una opción: \033[0m" ))
+            except (ValueError,KeyboardInterrupt):
+                print()
+                print("\033[91mcoloque caracteres validos\033[0m")
+                continue
 
         if admin:
             func_shows = [
                 lambda: vista_show(),
                 lambda: busqueda_Show(),
-                lambda: borrado_Show(admin),
-                lambda: edicion_show(admin),
-                lambda: generacion_Shows(admin)
+                lambda: borrado_Show(),
+                lambda: edicion_show(),
+                lambda: generacion_Shows()
             ]
         else:
             func_shows = [

@@ -3,35 +3,52 @@ from entidades.shows import ver_m, id_alt
 from datetime import datetime
 import random
 
+#region tareas
+#colorear y testear todo un par de veces
+
 def vista_show():
         matriz_ordenada = sorted(datos_globales, key=lambda x: x[5])
         ver_m(matriz_ordenada)
 
 def busqueda_Show():
-        print("\033[35m\n1-BUSCAR POR ID\n2-BUSCAR POR FECHA\033[0m")
-
-        elec = int(input(" "))
-
+    while True:
+        try:
+            elec = int(input("\033[35m\n1-BUSCAR POR ID\n2-BUSCAR POR FECHA:\033[0m"))
+        except ValueError:
+            print("\033[31mOpción inválida.\033[0m")
+            continue
         if elec == 1:
-
-            elec = int(input("\033[35mIngrese id: \033[0m"))
-
             lista_temp = []
+            while True:
+                try:
+                    elec = int(input("\033[35mIngrese id: \033[0m"))
+                except ValueError:
+                    print("\033[31mOpción inválida.\033[0m")
+                    continue
 
-            for i in datos_globales:
-                if i[0] == elec:
-                    lista_temp.append(i)
+                for i in datos_globales:
+                    if i[0] == elec:
+                        lista_temp.append(i)
 
-            if len(lista_temp) > 0:
-                ver_m(lista_temp) 
-            else:
-                print("\033[31mNo coincide con ningún id.\033[0m")
+                if len(lista_temp) > 0:
+                    ver_m(lista_temp) 
+                    break
+
+                else:
+                    print("\033[31mNo coincide con ningún id.\033[0m")
+
+                
+
         elif elec == 2:
-
-            año = int(input("\033[35mIngrese año: \033[0m"))
-            mes = int(input("\033[35mIngrese mes: \033[0m"))
-            dia = int(input("\033[35mIngrese dia: \033[0m"))
-            fecha_buscada = datetime(año, mes, dia).date()
+            while True:
+                try:
+                    año = int(input("\033[35mIngrese año: \033[0m"))
+                    mes = int(input("\033[35mIngrese mes: \033[0m"))
+                    dia = int(input("\033[35mIngrese dia: \033[0m"))
+                    fecha_buscada = datetime(año, mes, dia).date()
+                    break
+                except ValueError:
+                    print("\033[31mFecha incorrecta intente de nuevo.\033[0m")
 
             lista_temp = []
 
@@ -44,122 +61,133 @@ def busqueda_Show():
                 ver_m(lista_temp) 
             else:
                 print("\033[31mNo hay fechas disponibles.\033[0m")
+        else:
+            print("opcion invalida")
 
 def borrado_Show():
       menu = True
 
       while menu == True:
-
-        eleccion = int(input("Ingrese ID del show: "))
-        
-        #while eleccion not in solo_ids_show:
-        if eleccion not in solo_ids_show:
-            print("El ID ingresado no se encuentra en la base de datos.")
+        matriz_ordenada = sorted(datos_globales, key=lambda x: x[5])
+        ver_m(matriz_ordenada)
+        while True:
+            try:
+                eleccion = int(input("Ingrese ID del show: "))
+                if eleccion not in solo_ids_show:
+                    print("El ID ingresado no se encuentra en la base de datos.")
+                    continue
+                break
+            except ValueError:
+                print("\033[31mID inválido.\033[0m")
+                continue
             
-            #eleccion = int(input("Ingrese nuevamente el id del show: "))
-            menu = False
-        else:
-            # Borrar el show
-            for s in datos_globales[:]:
-                if s[0] == eleccion:
-                    datos_globales.remove(s)
+        
+        # Borrar el show
+        for s in datos_globales[:]:
+            if s[0] == eleccion:
+                datos_globales.remove(s)
 
-            # Borrar todas las reservas asociadas
-            for r in datos_globales_reserva[:]:
-                if r[3] == eleccion:
-                    datos_globales_reserva.remove(r)
+        # Borrar todas las reservas asociadas
+        for r in datos_globales_reserva[:]:
+            if r[3] == eleccion:
+                datos_globales_reserva.remove(r)
 
-            # Borrar todas las reservas asociadas
-            for p in precios_show[:]:
-                if p[0] == eleccion:
-                    precios_show.remove(p)
+        # Borrar todas las reservas asociadas
+        for p in precios_show[:]:
+            if p[0] == eleccion:
+                precios_show.remove(p)
 
-            # Actualizar lista de ids de shows
-            solo_ids_show.clear()
-            for s in datos_globales:
-                solo_ids_show.append(s[0])
-            print("Show eliminado")
+        # Actualizar lista de ids de shows
+        solo_ids_show.clear()
+        for s in datos_globales:
+            solo_ids_show.append(s[0])
+
+        print("Show eliminado")
+        menu=False
 
 def edicion_show():
-        id_encontrado = False
-
-        eleccion = int(input("\033[1;35mSeleccione el id del show: \033[0m"))
-        for i in datos_globales:
-            if eleccion==i[0]:
-                id_encontrado=True
-        else:
-            id_encontrado = False
-
-
-
-        if id_encontrado==True:
+    id_encontrado = False
+    while True:
+        try:
+            eleccion = int(input("\033[1;35mSeleccione el id del show: \033[0m"))
             for i in datos_globales:
-                eleccion==i[0]
-            opcion = int(input(
-                    "\n\033[92m=== MENÚ DE EDICIÓN ===      \033[0m\n"
-                    "\033[35m  → [0] Editar tipo de evento  \033[0m\n"
-                    "\033[35m  → [1] Editar duración        \033[0m\n"
-                    "\033[35m  → [2] Editar todos los datos \033[0m\n"
-                    "\033[1;35mSeleccione una opción: \033[0m"
-                    ))
-            while opcion not in (0, 1, 2):
-                print("\033[91m Número fuera de rango.\033[0m")
+                if eleccion==i[0]:
+                    id_encontrado=True
+                    show_encontrado=i
+            if id_encontrado:
+                break
+            else:
+                print("\033[31mID no encontrado.\033[0m")
+        except(ValueError,KeyboardInterrupt):
+            print("hubo un error porfavor ingrese un numero correcto")
+    if id_encontrado and show_encontrado:
+        while True:
+            try:
                 opcion = int(input(
-                    "\n\033[92m=== MENÚ DE EDICIÓN ===      \033[0m\n"
-                    "\033[35m  → [0] Editar tipo de evento  \033[0m\n"
-                    "\033[35m  → [1] Editar duración        \033[0m\n"
-                    "\033[35m  → [2] Editar todos los datos \033[0m\n"
-                    "\033[1;35mSeleccione una opción: \033[0m"
-                ))
-
-
-            if opcion == 0:
-                i[1] = input("\033[4;35mIngrese el nuevo tipo de evento: \033[0m")
-                i[1]=i[1].ljust(20, " ")
-
-            elif opcion == 1:
-                fecha = i[5]
-
-                suma = 0
-
-                for u in datos_globales:
-                    if u[5] == fecha:
-                        suma +=u[2]
-
-                if suma <= 750:
-                    suma_aux = int(input("\033[35mIngresa la cantidad de minutos: \033[0m"))
-                    while (suma + suma_aux) >= 750:
-                        suma_aux = int(input("\033[35mIngresa la cantidad de minutos: \033[0m"))
-                    i[2] = suma_aux
-                    
+                        "\n\033[92m=== MENÚ DE EDICIÓN ===      \033[0m\n"
+                        "\033[35m  → [0] Editar tipo de evento  \033[0m\n"
+                        "\033[35m  → [1] Editar duración        \033[0m\n"
+                        "\033[35m  → [2] Editar todos los datos \033[0m\n"
+                        "\033[1;35mSeleccione una opción: \033[0m"
+                        ))
+                if opcion in (0, 1, 2):
+                    break
                 else:
-                    print("\033[31mNo es posible editar la duracion del show.\033[0m")
+                    print("numero no dentro de los parametros que dimos del 0 al 2")
+            except (ValueError, KeyboardInterrupt):
+                print("\033[91mIngrese un caracter válido.\033[0m")
 
-            elif opcion == 2:
+        if opcion == 0:
+            show_encontrado[1] = input("\033[4;35mIngrese el nuevo tipo de evento: \033[0m")
+            show_encontrado[1]=show_encontrado[1].ljust(20, " ")
 
-                i[1] = input("\033[4;35mIngrese el nuevo tipo de evento: \033[0m")
-                i[1]=i[1].ljust(20, " ")
-                fecha = i[5]
+        elif opcion == 1:
+            fecha = show_encontrado[5]
+            suma = 0
 
-                suma = 0
+            for u in datos_globales:
+                if u[5] == fecha and u[0] !=show_encontrado[0]:
+                    suma +=u[2]
 
-                for u in datos_globales:
-                    if u[5] == fecha:
-                        suma +=u[2]
+            try:
+                    duracion = int(input("\033[35mIngresa la duracion de minutos: \033[0m"))
+                    while duracion <0:
+                        print("tiene que ser un numero positivo")
+                        duracion = int(input("\033[35mIngrese la cantidad de minutos: \033[0m"))
+                        continue
+                    while (suma + duracion) > 720:
+                        print("\033[91mIngrese un número válido.\033[0m")
+                        duracion = int(input("\033[35mIngresa la cantidad de minutos: \033[0m"))
+                    show_encontrado[2] = duracion
+            except ValueError:
+                print("ingrese caracteres validos")
 
-                if suma <= 750:
-                    suma_aux = int(input("\033[35mIngrese la cantidad de minutos: \033[0m"))
-                    while (suma + suma_aux) >= 750:
+        elif opcion == 2:
+
+            show_encontrado[1] = input("\033[4;35mIngrese el nuevo tipo de evento: \033[0m")
+            show_encontrado[1]=show_encontrado[1].ljust(20, " ")
+            fecha = show_encontrado[5]
+
+            suma = 0
+
+            for u in datos_globales:
+                if u[5] == fecha and u[0]!= show_encontrado[0]:
+                    suma +=u[2]
+            try:
+                if suma <= 720:
+                    duracion = int(input("\033[35mIngrese la cantidad de minutos: \033[0m"))
+                    while duracion <0:
+                        print("tiene que ser un numero positivo")
+                        duracion = int(input("\033[35mIngrese la cantidad de minutos: \033[0m"))
+                        continue
+                    while (suma + duracion) >= 720:
                         print("\033[31mExceso de minutos en el dia, ingrese un valor menor.\033[0m")
-                        suma_aux = int(input("\033[35mIngrese la cantidad de minutos: \033[0m"))
-                    i[2] = suma_aux
-                    
-                else:
-                    print("\033[31mNo es posible editar la duracion del show.\033[0m")
-            print("\033[1;34mShow editado con exito.\033[0m")
-
-        elif id_encontrado == False:
-            print("\033[31mID no encontrado.\033[0m")
+                        duracion = int(input("\033[35mIngrese la cantidad de minutos: \033[0m"))
+                    show_encontrado[2] = duracion
+            except ValueError:
+                    print("\033[31mDebe ingresar un número válido.\033[0m")
+                
+        print("\033[1;34mShow editado con exito.\033[0m")
 
 def generacion_Shows():
 
@@ -173,16 +201,20 @@ def generacion_Shows():
         espectadores = 0
 
         espacios_disponibles = 999
-
-        año = int(input("\033[35mIngrese año: \033[0m"))
-        mes = int(input("\033[35mIngrese mes: \033[0m"))
-        dia = int(input("\033[35mIngrese dia: \033[0m"))
-        fecha = datetime(año, mes, dia).date()
+        while True:
+            try:
+                año = int(input("\033[35mIngrese año: \033[0m"))
+                mes = int(input("\033[35mIngrese mes: \033[0m"))
+                dia = int(input("\033[35mIngrese dia: \033[0m"))
+                fecha_buscada = datetime(año, mes, dia).date()
+                break
+            except ValueError:
+                print("\033[31mFecha incorrecta intente de nuevo.\033[0m")
 
         lista_temp = []
 
         for i in datos_globales:
-            if i[5] == fecha:
+            if i[5] == fecha_buscada:
                 lista_temp.append(i)
 
         suma = 0
@@ -192,7 +224,7 @@ def generacion_Shows():
         
         if (suma + duracion) < 720:
 
-            datos_globales.append([id_show,tipo_Evento,duracion,espectadores,espacios_disponibles,fecha])
+            datos_globales.append([id_show,tipo_Evento,duracion,espectadores,espacios_disponibles,fecha_buscada])
 
             id_Act = id_show
             precio_b = random.randint(7200,12000)

@@ -4,17 +4,21 @@ from funciones_Estadisticas import estadistica_shows_mas_vendidos,estadistica_ma
 #se inicia el menu de estadisticass
 def menu_estadisticas():
     while True:
+        try:
         #se muestran las opciones que pueden elegir
-        usuario_i = int(input(
-            "\033[92m=== MENÚ DE ESTADÍSTICAS ===                 \033[0m\n"
-            "\033[35m  → [1] SHOWS MÁS VENDIDOS                   \033[0m\n"
-            "\033[35m  → [2] USUARIOS ACTIVOS                     \033[0m\n"
-            "\033[35m  → [3] SHOWS MÁS RECAUDADOS                 \033[0m\n"
-            "\033[35m  → [4] USUARIOS CON MÁS RESERVAS            \033[0m\n"
-            "\033[35m  → [5] VOLVER                               \033[0m\n"
-            "\033[1;35m Seleccione una opción: \033[0m"
-        ))
-
+            usuario_i = int(input(
+                "\033[92m=== MENÚ DE ESTADÍSTICAS ===                 \033[0m\n"
+                "\033[35m  → [1] SHOWS MÁS VENDIDOS                   \033[0m\n"
+                "\033[35m  → [2] USUARIOS ACTIVOS                     \033[0m\n"
+                "\033[35m  → [3] SHOWS MÁS RECAUDADOS                 \033[0m\n"
+                "\033[35m  → [4] USUARIOS CON MÁS RESERVAS            \033[0m\n"
+                "\033[35m  → [5] VOLVER                               \033[0m\n"
+                "\033[1;35m Seleccione una opción: \033[0m"
+            ))
+        except (ValueError,KeyboardInterrupt):
+            print()
+            print("\033[91mcoloque caracteres validos\033[0m")
+            continue
 
         func_shows = [
                 lambda: estadistica_shows_mas_vendidos(),
