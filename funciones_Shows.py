@@ -5,6 +5,7 @@ import random
 
 #region tareas
 #colorear y testear todo un par de veces
+#testeado en modo admin una vez casi todo si no es que todo tiene validaciones previas para evitar errores falta colorear
 
 def vista_show():
         matriz_ordenada = sorted(datos_globales, key=lambda x: x[5])
@@ -22,20 +23,22 @@ def busqueda_Show():
             while True:
                 try:
                     elec = int(input("\033[35mIngrese id: \033[0m"))
+                    break
                 except ValueError:
                     print("\033[31mOpción inválida.\033[0m")
                     continue
 
-                for i in datos_globales:
-                    if i[0] == elec:
-                        lista_temp.append(i)
+            
+            for i in datos_globales:
+                if i[0] == elec:
+                    lista_temp.append(i)
 
-                if len(lista_temp) > 0:
-                    ver_m(lista_temp) 
-                    break
+            if len(lista_temp) > 0:
+                ver_m(lista_temp) 
+                break
+            else:
+                print("\033[31mNo coincide con ningún id.\033[0m")
 
-                else:
-                    print("\033[31mNo coincide con ningún id.\033[0m")
 
                 
 
@@ -59,8 +62,10 @@ def busqueda_Show():
 
             if len(lista_temp) > 0:
                 ver_m(lista_temp) 
+                break
             else:
                 print("\033[31mNo hay fechas disponibles.\033[0m")
+
         else:
             print("opcion invalida")
 
@@ -120,6 +125,7 @@ def edicion_show():
                 print("\033[31mID no encontrado.\033[0m")
         except(ValueError,KeyboardInterrupt):
             print("hubo un error porfavor ingrese un numero correcto")
+
     if id_encontrado and show_encontrado:
         while True:
             try:
@@ -138,9 +144,15 @@ def edicion_show():
                 print("\033[91mIngrese un caracter válido.\033[0m")
 
         if opcion == 0:
-            show_encontrado[1] = input("\033[4;35mIngrese el nuevo tipo de evento: \033[0m")
-            show_encontrado[1]=show_encontrado[1].ljust(20, " ")
-
+            try:
+                tipo= input("\033[4;35mIngrese el nuevo tipo de evento: \033[0m")
+                if len(tipo)>0:
+                    show_encontrado[1]=tipo 
+                    show_encontrado[1]=show_encontrado[1].ljust(20, " ")
+                else:
+                    print("el tipo de evento no puede estar vacio")
+            except (ValueError,KeyboardInterrupt):
+                print("sus caracteres no son validos")
         elif opcion == 1:
             fecha = show_encontrado[5]
             suma = 0
@@ -159,12 +171,19 @@ def edicion_show():
                         print("\033[91mIngrese un número válido.\033[0m")
                         duracion = int(input("\033[35mIngresa la cantidad de minutos: \033[0m"))
                     show_encontrado[2] = duracion
-            except ValueError:
+            except (ValueError, KeyboardInterrupt):
                 print("ingrese caracteres validos")
 
         elif opcion == 2:
-
-            show_encontrado[1] = input("\033[4;35mIngrese el nuevo tipo de evento: \033[0m")
+            try:
+                tipo= input("\033[4;35mIngrese el nuevo tipo de evento: \033[0m")
+                if len(tipo)>0:
+                    show_encontrado[1]=tipo 
+                    show_encontrado[1]=show_encontrado[1].ljust(20, " ")
+                else:
+                    print("el tipo de evento no puede estar vacio")
+            except (ValueError,KeyboardInterrupt):
+                print("sus caracteres no son validos")
             show_encontrado[1]=show_encontrado[1].ljust(20, " ")
             fecha = show_encontrado[5]
 
@@ -184,10 +203,9 @@ def edicion_show():
                         print("\033[31mExceso de minutos en el dia, ingrese un valor menor.\033[0m")
                         duracion = int(input("\033[35mIngrese la cantidad de minutos: \033[0m"))
                     show_encontrado[2] = duracion
-            except ValueError:
+            except (ValueError, KeyboardInterrupt):
                     print("\033[31mDebe ingresar un número válido.\033[0m")
-                
-        print("\033[1;34mShow editado con exito.\033[0m")
+
 
 def generacion_Shows():
 
@@ -195,8 +213,16 @@ def generacion_Shows():
 
         tipo_Evento = input("\033[35mIngrese el tipo de evento: \033[0m")
         tipo_Evento=tipo_Evento.ljust(20, " ")
-
-        duracion = int(input("\033[35mIngrese la duracion del evento: \033[0m"))
+        while True:
+            try:
+                duracion = int(input("\033[35mIngrese la cantidad de minutos: \033[0m"))
+                if duracion > 0 and duracion < 720:
+                    break  
+                else:
+                    print("Error: Tiene que ser un número positivo y menor a 720 minutos")
+            except (ValueError, KeyboardInterrupt):
+                print("\033[31mDebe ingresar un número válido.\033[0m")
+                continue
 
         espectadores = 0
 
@@ -208,7 +234,7 @@ def generacion_Shows():
                 dia = int(input("\033[35mIngrese dia: \033[0m"))
                 fecha_buscada = datetime(año, mes, dia).date()
                 break
-            except ValueError:
+            except (ValueError,KeyboardInterrupt):
                 print("\033[31mFecha incorrecta intente de nuevo.\033[0m")
 
         lista_temp = []

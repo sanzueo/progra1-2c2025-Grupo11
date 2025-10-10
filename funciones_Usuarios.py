@@ -38,8 +38,13 @@ def vista_Usuarios(admin):
 
 def edicion_usuario(admin):
     if admin:
-        eleccion = int(input("Seleccione el id de usuario a editar: "))
-
+        while True:
+            try:
+                eleccion = int(input("Seleccione el id de usuario a editar: "))
+                break
+            except (ValueError,KeyboardInterrupt):
+                print("ponga caracteres validos")
+                continue
         if eleccion not in id_usuarios:
             print("ID no encontrad0.")
         else:
