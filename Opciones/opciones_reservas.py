@@ -10,7 +10,8 @@ def menu_reservas(admin):
                     "\n\033[92m=== MENÚ DE RESERVA ===          \033[0m\n"
                     "\033[35m  → [1] VER RESERVA                \033[0m\n"
                     "\033[35m  → [2] GENERAR RESERVA            \033[0m\n"
-                    "\033[35m  → [3] VOLVER AL MENU DE OPCIONES \033[0m\n"
+                    "\033[35m  → [3] BORRAR RESERVA            \033[0m\n"
+                    "\033[35m  → [4] VOLVER AL MENU DE OPCIONES \033[0m\n"
                     "\033[1;35m Seleccione una opción: \033[0m"
                     ))
             except (ValueError,KeyboardInterrupt):
@@ -25,8 +26,8 @@ def menu_reservas(admin):
                     "\n\033[92m=== MENÚ DE RESERVA ===         \033[0m\n"
                     "\033[35m  → [1] VER RESERVA               \033[0m\n"
                     "\033[35m  → [2] GENERAR RESERVA           \033[0m\n"
-                    "\033[35m  → [3] BUSCAR RESERVA            \033[0m\n"
                     "\033[35m  → [4] BORRAR RESERVA            \033[0m\n"
+                    "\033[35m  → [3] BUSCAR RESERVA            \033[0m\n"
                     "\033[35m  → [5] EDITAR RESERVA            \033[0m\n"
                     "\033[35m  → [6] VOLVER AL MENU DE OPCIONES\033[0m\n"
                     "\033[1;35m Seleccione una opción: \033[0m"
@@ -40,15 +41,16 @@ def menu_reservas(admin):
             func_reservas = [
                 lambda: vista_reserva(admin),
                 lambda: generacion_reservas(admin),
-                lambda: busqueda_Reserva(),
                 lambda: borrado_reserva(admin),
+                lambda: busqueda_Reserva(),
                 lambda: edicion_reserva(),
                 
             ]
         else:
             func_reservas = [
                 lambda: vista_reserva(admin),
-                lambda: generacion_reservas(admin)
+                lambda: generacion_reservas(admin),
+                lambda: borrado_reserva(admin),
             ]
 
         maximo = len(func_reservas)
@@ -57,7 +59,7 @@ def menu_reservas(admin):
             func_reservas[indice]()
 
 
-        elif (usuario_i==6 and admin==True) or (usuario_i==3 and admin==False):
+        elif (usuario_i==6 and admin==True) or (usuario_i==4 and admin==False):
             print("esta saliendo al menu de inicio")
             break
         #se delimita las opciones que podes con esto para que si elije mal alguna opcion pueda volver a ver las opciones y elija bien

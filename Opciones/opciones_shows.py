@@ -15,7 +15,7 @@ def menu_shows(admin):
                 print("\033[91mcoloque caracteres validos\033[0m")
                 continue
 
-        if admin==True:
+        if admin:
             try:
                 usuario_i=int(input(
                 "\n\033[92m=== MENÚ DE SHOWS ===         \033[0m\n"

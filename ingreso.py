@@ -115,9 +115,7 @@ def login():
                     break
                 except KeyboardInterrupt:
                     print("\033[91mpor favor ingrese su contraseña\033[0m")
-
-        #agarra el dni que escribio el usuario al iniciar sesion
-        dni_en_uso.append(dni_ingres)
+    
 
     
     #busca que las contraseñas de admin y el dni del admin esten en sus listas respectivas
@@ -126,6 +124,9 @@ def login():
         return "ADMIN"
     #busca que coincidan el dni con la contraseña
     elif busqueda(dni_ingres, contraseña):
+        dni_en_uso.clear()
+        #agarra el dni que escribio el usuario al iniciar sesion
+        dni_en_uso.append(dni_ingres)
         print("\033[32m Ingreso conseguido como USUARIO.\033[0m")
         return "Usuario"
 

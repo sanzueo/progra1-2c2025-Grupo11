@@ -40,7 +40,6 @@ def busqueda_Show():
                 print("\033[31mNo coincide con ningún id.\033[0m")
 
 
-                
 
         elif elec == 2:
             while True:
@@ -79,7 +78,11 @@ def borrado_Show():
             try:
                 eleccion = int(input("Ingrese ID del show: "))
                 if eleccion not in solo_ids_show:
-                    print("El ID ingresado no se encuentra en la base de datos.")
+                    salida_Emer = int(input("El ID ingresado no se encuentra. Ingrese -1 para salir o cualquier otro número para intentar de nuevo: "))
+                    if salida_Emer ==-1:
+                        menu=False
+                        print("Volviendo al menu principal")
+                        break
                     continue
                 break
             except ValueError:
@@ -111,6 +114,7 @@ def borrado_Show():
         menu=False
 
 def edicion_show():
+    show_encontrado=None
     id_encontrado = False
     while True:
         try:
@@ -119,10 +123,10 @@ def edicion_show():
                 if eleccion==i[0]:
                     id_encontrado=True
                     show_encontrado=i
-            if id_encontrado:
-                break
-            else:
+            if show_encontrado is None:
                 print("\033[31mID no encontrado.\033[0m")
+            elif id_encontrado:
+                break
         except(ValueError,KeyboardInterrupt):
             print("hubo un error porfavor ingrese un numero correcto")
 
@@ -193,7 +197,7 @@ def edicion_show():
                 if u[5] == fecha and u[0]!= show_encontrado[0]:
                     suma +=u[2]
             try:
-                if suma <= 720:
+                if suma < 720:
                     duracion = int(input("\033[35mIngrese la cantidad de minutos: \033[0m"))
                     while duracion <0:
                         print("tiene que ser un numero positivo")
