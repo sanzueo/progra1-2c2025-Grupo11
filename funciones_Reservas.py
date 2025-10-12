@@ -42,13 +42,11 @@ def vista_reserva(admin):
         #si hay mas de una reserva te muestra la cantidad de reservas que hizo el usuario
         if len(matriz_act) > 0:
             ver_m2(matriz_act)
-        #si no hay reservas te printea no hay reservas (no hay nada papu lince) anterioremente
+        #si no hay reservas te printea no hay reservas 
         else:
             print("no hay ninguna reserva")
 
 def generacion_reservas(admin):
-        print("la parte de que se puedan generar mas de una a la vez y que el precio se pueda ver antes de generar esta en proceso")
-        print("con proceso me refiero a que se va a empezar el sabado o domingo")
         #se genera un id aleatorio
         id_reserva = id_alt_r() 
         #si no es un admin se busca el id del usuario
@@ -61,50 +59,72 @@ def generacion_reservas(admin):
         ver_m(datos_globales) 
         
         busqueda = True
-        
         while busqueda:
             while True:
                 try:
                     #se pide un id para ver si puede o no entrar en ese show
+                    num_reserva = int(input("\033[35m¿Cuántas reservas desea hacer? \033[0m"))
+                    if num_reserva <= 0:
+                        print("el numero que ingreso no es valido")
+                        continue
                     show = int(input("\033[35mIngrese el numero de id del show que desea asistir: \033[0m"))
-                    break
+                    if show <= 999 or show > 9999:
+                        print("el id que ingreso no es valido")
+                        continue
+                    #se definen parametros booleanos para poder buscar si puede o no reservar ahi
+
+                    show_encontrado = False
+                    tiene_capacidad = False
+                    indice_show = -1
+                    
+                    #se revisa que tenga capacidad ademas de buscar si esta en la base de shows
+                    for i in range(len(datos_globales)):
+                        if datos_globales[i][0] == show:
+                            show_encontrado = True
+                            indice_show = i  
+                            if datos_globales[i][4] > 0 and datos_globales[i][4]>= num_reserva:
+                                tiene_capacidad = True
+                    
+                    #se printea una cosa o la otra dependiendo de si no lo encuentra o no tiene capacidad
+                    if not show_encontrado:
+                        print("\033[31mEl id ingresado no existe, por favor ingrese un id valido.\033[0m")
+                        continue
+                    elif not tiene_capacidad:
+                        print("\033[31mEste show no tiene capacidad disponible.\033[0m")
+                        continue
+                    else:
+                        #se para la busqueda
+                        busqueda = False
+                        break
                 except (ValueError, KeyboardInterrupt):
                     print("el id que selecciono parece tener errores de caracteres")
                     continue
-            #se definen parametros booleanos para poder buscar si puede o no reservar ahi
-
-            show_encontrado = False
-            tiene_capacidad = False
-            indice_show = -1
-            
-            #se revisa que tenga capacidad ademas de buscar si esta en la base de shows
-            for i in range(len(datos_globales)):
-                if datos_globales[i][0] == show:
-                    show_encontrado = True
-                    indice_show = i  
-                    if datos_globales[i][4] > 0:
-                        tiene_capacidad = True
-            
-            #se printea una cosa o la otra dependiendo de si no lo encuentra o no tiene capacidad
-            if not show_encontrado:
-                print("\033[31mEl id ingresado no existe, por favor ingrese un id valido.\033[0m")
-            elif not tiene_capacidad:
-                print("\033[31mEste show no tiene capacidad disponible.\033[0m")
-            else:
-                #se para la busqueda
-                busqueda = False
 
         #se suma y resta los espectadores y los espacios disponibles 
-        datos_globales[indice_show][4] -= 1  
-        datos_globales[indice_show][3] += 1  
+        datos_globales[indice_show][4] -= num_reserva  
+        datos_globales[indice_show][3] += num_reserva
+
+        for i in precios_show:
+            if i[0] == show:
+                precio_platea = i[1]*num_reserva
+
+
+        for i in precios_show:
+            if i[0] == show:
+                    precio_campo = i[2]*num_reserva
+
+        for i in precios_show:
+            if i[0] == show:
+                    precio_vip = i[3]*num_reserva
+ 
         while True:
             try:
                 ubicacion_u = int(input(
-                "\n\033[92m=====  MENU DE UBICACIONES  =====\033[0m\n"
-                "\n\033[35mPara Platea Seleccione 1:\033[0m\n"
-                "\n\033[35mPara Campo Seleccione 2:\033[0m\n"
-                f"\n\033[35m{colordorado}Para Vip Seleccione 3:\033[0m\n"
-                "\n\033[92m=================================\033[0m\n"   
+                "\n\033[92m=============  MENU DE UBICACIONES  =============\033[0m\n"
+                f"\n\033[35m  → [1] El costo de platea es de {precio_platea}\033[0m\n"
+                f"\n\033[35m  → [2] El costo de campo es de {precio_campo}\033[0m\n"
+                f"\n\033[35m{colordorado}  → [3] El costo de VIP es de {precio_vip}\033[0m\n"
+                "\n\033[92m================================================\033[0m\n"   
                 "\n\033[35mElegi tipo de ubicación: \033[0m"))
                 #validacion de is puso o no un numero correcto
                 if ubicacion_u not in(1,2,3):
@@ -122,18 +142,19 @@ def generacion_reservas(admin):
             ubicacion_e = "Platea   "
             for i in precios_show:
                 if i[0] == show:
-                    precio_act = i[1]
+                    precio_act = i[1]*num_reserva
 
         elif ubicacion_u == 2:
             ubicacion_e = "Campo    "
             for i in precios_show:
                 if i[0] == show:
-                        precio_act = i[2]
+                        precio_act = i[2]*num_reserva
+        
         elif ubicacion_u == 3:
             for i in precios_show:
                 ubicacion_e = "Vip       "
                 if i[0] == show:
-                        precio_act = i[3]
+                        precio_act = i[3]*num_reserva
         print(f"\033[1;34mReserva generada con exito. El precio de su entrada termino en ${precio_act}\033[0m")
         
         #agrega los datos a la base de datos
