@@ -1,4 +1,4 @@
-from nombres_teatroV2 import datos_globales_usuarios, dni_en_uso, datos_globales_reserva,id_usuarios
+from nombres_teatroV2 import datos_globales_usuarios, dni_en_uso, datos_globales_reserva,id_usuarios,datos_de_ingreso_dni
 from entidades.Usuarios import ver_m3,id_usuarios,ver_busqueda_usuarios
 from funciones_Reservas import obt_id_Actual
 import re
@@ -103,13 +103,13 @@ def edicion_usuario(admin):
                 while True:
                     try:
                         dni = int(input("\033[36m Escriba el dni por el que desea cambiar: \033[0m"))
-                        if dni > 0:
+                        if dni not in datos_de_ingreso_dni:
                             i[2]=dni
                             break
                         else:
-                            print("\033[91m El DNI no puede ser negativo, intente de nuevo.\033[0m")
+                            print("\033[91m El DNI por el cual pide cambiar esta siendo usado, intente de nuevo.\033[0m")
                     except ValueError:
-                        print("no se admite otra cosa que no sean enteros")
+                        print("no se admite otra cosa que no sean numeros enteros")
                 
             elif opcion == 2:
                 while True:
