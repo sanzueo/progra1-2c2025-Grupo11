@@ -185,7 +185,7 @@ def registrar():
     arroba = re.findall('@', email)
     punto  = re.findall(r'\.', email)   
 
-    if len(arroba) ==0 and len(punto) == 0:
+    if len(arroba) ==0 or len(punto) == 0:
         print("\033[91m Email inválido, debe contener '@' y '.' \033[0m")
         email = input("\033[36m Escriba su email: \033[0m")
     
