@@ -1,4 +1,4 @@
-from funciones_Usuarios import vista_Usuarios,borrado_usuarios,edicion_usuario
+from funciones.funciones_Usuarios import vista_Usuarios,borrado_usuarios,edicion_usuario
 
 def menu_usuarios(admin):
     while True:
