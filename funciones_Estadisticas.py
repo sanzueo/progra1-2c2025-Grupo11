@@ -64,35 +64,64 @@ def estadistica_mas_user_activos():
 # 3. Shows más recaudados
 def shows_mas_recaudados():
     #se crea un diccionario para las recaudaciones
-    """
+        
         recaudacion = {}  
         #agarra el show y el precio 
         for fila in datos_globales_reserva:
             id_show, precio = fila[3], fila[4]
             recaudacion[id_show] = recaudacion.get(id_show, 0) + precio
+        #ordena el diccionario por la recaudacion   
+        recaudacion = dict(sorted(recaudacion.items(), key=lambda item: item[1], reverse=True)) 
 
         print("\n\033[92m=== RECAUDACIÓN POR SHOW ===\033[0m")
         for show, total in recaudacion.items():
             print("Show", show, "→", "$", total)
     
-    Falta ordenarlas por recaudacion
-    """
+
 
 # 4. Usuarios con más reservas
 def usuarios_con_mas_re():
-    """    #crea un diccionario
+    #crea un diccionario
     reservas = {}  
+
     #agarra el id de usuario por cada reserva que tengas
     for fila in datos_globales_reserva:
         usuario_id = fila[1]
         reservas[usuario_id] = reservas.get(usuario_id, 0) + 1
+    reservas = dict(sorted(reservas.items(), key=lambda item: item[1], reverse=True))
+    maximo=len(reservas)
+        # Pedir posición inicial
+    while True:
+        try:
+            
+            principio = int(input(f"Seleccioná desde qué usuario querés empezar a ver (1 - {maximo}): "))
+            if principio <=0  or principio > maximo:
+                print("Número fuera de rango, intente nuevamente.")
+                continue
+            break
+        except (ValueError,KeyboardInterrupt):
+            print("Entrada inválida, intente nuevamente.")
+            continue
+
+    # Pedir cantidad a mostrar a partir de esa posición
+    while True:
+        try:
+            subir = int(input(f"¿Cuántos usuarios querés ver a partir del número {principio}? "))
+            if subir < 1 or (principio + subir -1) > maximo:
+                print("Número inválido, intente nuevamente.")
+                continue
+            break
+        except (ValueError,KeyboardInterrupt):
+            print("Entrada inválida, intente nuevamente.")
+            continue
+
+    final = principio + subir 
 
     print("\n\033[92m=== RESERVAS POR USUARIO ===\033[0m")
-    for usuario, total in reservas.items():
+    for usuario, total in list(reservas.items())[principio:final]:
         print("Usuario", usuario, "→", total)
 
-    falta organizarlos y poner un limite a la cantidad que muestre
-    """
+
 
 # Gráfico simple 
 def crear_Grafico(num, num2, act, inac):
