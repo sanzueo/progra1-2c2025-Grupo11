@@ -1,7 +1,7 @@
 from ingreso import *
-from Opciones.opciones_reservas import menu_reservas
-from Opciones.opciones_usuarios import menu_usuarios
-from Opciones.opciones_shows import menu_shows
+from menu.menu_reservas import menu_reservas
+from menu.menu_usuarios import menu_usuarios
+from menu.menu_shows import menu_shows
 from estadisticas import menu_estadisticas
 from colores import color
 

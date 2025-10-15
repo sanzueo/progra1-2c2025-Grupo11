@@ -1,4 +1,4 @@
-from funciones_Estadisticas import estadistica_shows_mas_vendidos,estadistica_mas_user_activos,shows_mas_recaudados,usuarios_con_mas_re
+from funciones.funciones_Estadisticas import estadistica_shows_mas_vendidos,estadistica_mas_user_activos,shows_mas_recaudados,usuarios_con_mas_re
 #region tareas
 #usar filter para rangos de edades
 
