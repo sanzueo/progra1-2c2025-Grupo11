@@ -49,7 +49,8 @@ def precio_ubi(ubicacion):
                     return precio 
 
 # Crear reservas aleatorias con el id de la reserva, el del usuario, la ubicacion y el precio de la reserva
-while len(datos_globales_reserva) < 4000:
+datos_reserva=open("datos_reserva","w",encoding="utf-8")
+while len(datos_globales_reserva) < 700:
     id_reserva = id_alt_r()
     id_usuario = random.choice(ids_usuario)
     ubicacion_u = random.choice(ubicacion)
@@ -59,6 +60,9 @@ while len(datos_globales_reserva) < 4000:
     precio=precio_ubi(ubicacion_u)
 
     datos_globales_reserva.append([id_reserva, id_usuario, ubicacion_u, show, precio])
+    linea=f"{id_reserva};{id_usuario};{ubicacion_u};{show};{precio}\n"
+    datos_reserva.write(linea)
+datos_reserva.close()
 
 #funcion para buscar reservas mostrando las del usuario que hizo esas reservas
 def ver_busqueda_reserva(matriz):

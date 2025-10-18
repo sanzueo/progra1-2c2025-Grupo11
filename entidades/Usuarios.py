@@ -19,7 +19,8 @@ def dni_user():
     return dni
 
 # Crear una lista la cual incluye informacion como el id del usuario nombre dni telefono correo y estado(activo o inactivo)
-while len(datos_globales_usuarios) != 400:
+datos_usuarios=open("datos_usuarios","w",encoding="utf-8")
+while len(datos_globales_usuarios) != 200:
     id_usuario = id_user()
     nombre = random.choice(nombres).ljust(10, " ")
     dni=dni_user()
@@ -30,6 +31,9 @@ while len(datos_globales_usuarios) != 400:
     estado = random.choice([True, False])
 
     datos_globales_usuarios.append([id_usuario, nombre, dni, telefono, correo, estado])
+    linea=f"{id_usuario};{nombre};{dni};{telefono};{correo};{estado}\n"
+    datos_usuarios.write(linea)
+datos_usuarios.close()
 
 # Guardar solo IDs y DNIs de usuarios activos
 for i in datos_globales_usuarios:
