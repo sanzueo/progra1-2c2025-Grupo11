@@ -128,5 +128,3 @@ def mostrar_tabla(dato, opcion):
                     print(f"\033[32m{fila[item]:<25}\033[0m", end="  ")
             print()
 
-
-mostrar_tabla(reservas, 1)
