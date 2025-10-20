@@ -46,7 +46,7 @@ def vista_reserva(admin):
         else:
             print("no hay ninguna reserva")
 
-def generacion_reservas(admin):
+def agregar_reservas(admin):
         #se genera un id aleatorio
         id_reserva = id_alt_r() 
         #si no es un admin se busca el id del usuario
