@@ -1,4 +1,4 @@
-from nombres_teatroV2 import datos_globales, datos_globales_reserva, solo_ids_show,precios_show
+from iniciacion_listas import datos_globales, datos_globales_reserva, solo_ids_show,precios_show
 from entidades.shows import ver_m, id_alt
 from datetime import datetime
 import random
