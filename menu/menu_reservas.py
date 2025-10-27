@@ -1,4 +1,4 @@
-from funciones.funciones_Reservas import vista_reserva,busqueda_Reserva,borrado_reserva,edicion_reserva, agregar_reservas
+from funciones.funciones_Reservas import vista_reserva,busqueda_Reserva,borrado_reserva,edicion_reserva,agregar_reservas
 
 #se inicia el menu de reservas
 def menu_reservas(admin):

@@ -1,4 +1,4 @@
-from funciones.funciones_Shows import vista_show,busqueda_Show,borrado_Show,edicion_show, agregar_Shows
+from funciones.funciones_Shows import vista_show,busqueda_Show,borrado_Show,edicion_show,agregar_Shows
 
 def menu_shows(admin):
     while True:
