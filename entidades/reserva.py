@@ -6,7 +6,7 @@ import json
 def leer_reservas():
     while True:
         try:
-            with open("datos_reserva", "r", encoding="utf-8") as archivo:
+            with open("../datos/datos_reserva.txt", "r", encoding="utf-8") as archivo:
                 reservas = []
                 for linea in archivo:
                     linea = linea.strip()  # elimina saltos de línea
@@ -23,14 +23,14 @@ def leer_reservas():
             continue
 
 
-with open("datos/datos_reservas.txt", "r", encoding="utf-8") as f_reservas:
+with open("../datos/datos_reservas.txt", "r", encoding="utf-8") as f_reservas:
     reservas_data=[]
     for linea in f_reservas:
         reservas = linea.strip().split(";")
         reservas_data.append(linea)
     
 
-with open("datos/datos_show.json", "r", encoding="utf-8") as arch_shows:
+with open("../datos/datos_show.json", "r", encoding="utf-8") as arch_shows:
     shows_cambio = json.load(arch_shows)
 for reservas_lista in reservas_data:
     print (reservas)
@@ -44,7 +44,7 @@ for reservas_lista in reservas_data:
                 break
 
 
-with open("datos/datos_show.json", "w", encoding="utf-8") as f_shows:
+with open("../datos/datos_show.json", "w", encoding="utf-8") as f_shows:
     json.dump(shows_cambio, f_shows, ensure_ascii=False, indent=4)
 
 print("Shows actualizados correctamente.")
