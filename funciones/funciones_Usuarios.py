@@ -1,5 +1,5 @@
-from iniciacion_listas import datos_globales_usuarios, dni_en_uso, datos_globales_reserva,id_usuarios,datos_de_ingreso_dni
-from entidades.Usuarios import ver_m3,id_usuarios,ver_busqueda_usuarios
+from iniciacion_listas import datos_globales_usuarios, dni_en_uso,datos_de_ingreso_dni
+from entidades.Usuarios import id_usuarios
 from funciones.funciones_Reservas import obt_id_Actual
 from funciones.funciones_globales import mostrar_tabla
 import re
@@ -45,7 +45,7 @@ def vista_Usuarios(admin):
             with open("datos/datos_usuarios.json", "r", encoding="utf-8")as archivo:
                 datos_usuarios=json.load(archivo)
                 for user in datos_usuarios:
-                    if id==user['id']:
+                    if user['id']==id:
                         print(user['id'],user['nombre'],user['telefono'],user['correo'],user['estado'])
 
 
@@ -98,7 +98,7 @@ def edicion_usuario(admin):
                 if user["id"] == eleccion:
                     if opcion==0:
                         try:
-                            nombre_nuevo=input("ingrese el nombre que desea de usuario")
+                            nombre_nuevo=str(input("ingrese el nombre que desea de usuario"))
                         except (ValueError,KeyboardInterrupt):
                             print("no se acepta el caracter que intento colocar")
                             continue
@@ -128,6 +128,7 @@ def edicion_usuario(admin):
                                     print("\033[91mEl número debe estar entre 1100000000 y 1199999999.\033[0m")
                             except (ValueError,KeyboardInterrupt):
                                 print("\033[91mError: solo se admiten números.\033[0m")
+                                
                             
                     elif opcion==3:
                         while True:
@@ -236,14 +237,18 @@ def borrado_usuarios():
         while True:
             try:
                 id_eliminar = int(input("Seleccione id a eliminar: "))
-                if id_eliminar not in id_usuarios:
-                    print("ID no encontrado")
-                    continue
-                else:
-                    break
+                break
             except(ValueError,KeyboardInterrupt):
                 print("porfavor ponga caracteres valido")
                 continue
+        with open("datos/datos_usuarios.json", "r",encoding="utf-8") as usuarios_revision:
+            usuarios=json.load(usuarios_revision)
+            id_usuarios = []
+            for u in usuarios:
+                id_usuarios.append(u["id"])
+            if id_eliminar not in id_usuarios:
+                print("el usuario que esta intentando eliminar no esta en la base de datos")
+                return
             
         print("\033[1;91m Recuerde que esta acción es irrevertible \033[0m")
         print()
@@ -263,38 +268,31 @@ def borrado_usuarios():
                 print("porfavor ponga caracteres valido")
                 continue
 
-        usuarios_eliminar=[]
         if opcion == 1:
-            """
-                        with open("datos_usuarios.json","r", encoding="utf-8") as archivo:
-                            usuarios = json.load(archivo)
-                            for user in usuarios:
-                                if user["id"]==id_eliminar:
-                                    user["estado"]=False
-                            usuarios_eliminar.append(user)
-                        with open("datos/datos_usuarios.json", "w", encoding="utf-8") as archivo:
-                            json.dump(usuarios_eliminar, archivo, indent=4, ensure_ascii=False)
-                        
-                        
+            for user in usuarios:
+                if user["id"]==id_eliminar:
+                    user["estado"]=False
+            with open("datos/datos_usuarios.json", "w", encoding="utf-8") as archivo:
+                json.dump(usuarios, archivo, indent=4, ensure_ascii=False)
             
-                        with open("datos/datos_reserva.txt","r", encoding="utf-8") as archivo:
-                            usuarios = json.load(archivo)
-                            for user in usuarios:
-                                if user["id"]==id_eliminar:
-                                    
-                            usuarios_eliminar.append(user)
-                        with open("datos/datos_reservas.txt", "w", encoding="utf-8") as archivo:
-                            json.dump(usuarios_eliminar, archivo, indent=4, ensure_ascii=False)
-            """
-#tecnicamente no es un json o un txt depende de lo que usemos esta 
-# funcion va a variar sobre todo en la lectura por ahora lo deje como para un json aunque 
-# seguramente sea un txt
-            for i in datos_globales_usuarios:
-                if i[0] == id_eliminar:
-                    i[5] = False   
-            for i in datos_globales_reserva[:]:
-                if i[1] == id_eliminar:
-                    datos_globales_reserva.remove(i)
-            print(f"Usuario con ID {id_eliminar} y las reservas que tiene asociadas fueron eliminados correctamente.")
+            
+            with open("datos/datos_reservas.txt","r", encoding="utf-8") as arch_reservas:
+                reservas=[]
+                for linea in arch_reservas:
+                    partes=linea.strip().split(";")
+                    reservas.append(partes)
+                
+                reservas_correctas=[]
+                for i in reservas:
+                    id_usuario=int(i[1])
+                    if id_usuario != id_eliminar:
+                        reservas_correctas.append(i)
+
+            with open("datos/datos_reservas.txt", "w", encoding="utf-8") as arch_reservas:
+                for r in reservas_correctas:
+                    linea = ";".join(r)
+                    arch_reservas.write(linea + "\n")
+
         elif opcion == 2:
                 print("volviendo al menu")
+                return

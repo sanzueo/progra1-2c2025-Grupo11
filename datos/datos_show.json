@@ -4,7 +4,7 @@
         "nombre-show": "Concierto de Rock",
         "duracion-show": 120,
         "espectadores": 500,
-        "espacios-disponibles": 150,
+        "espacios-disponibles": 499,
         "fecha": "2024-07-15"
     },
     {
@@ -12,15 +12,15 @@
         "nombre-show": "Obra de Teatro: La Noche",
         "duracion-show": 95,
         "espectadores": 220,
-        "espacios-disponibles": 30,
+        "espacios-disponibles": 779,
         "fecha": "2024-08-01"
     },
     {
         "id-show": 3,
         "nombre-show": "Festival Indie",
         "duracion-show": 240,
-        "espectadores": 1200,
-        "espacios-disponibles": 400,
+        "espectadores": 840,
+        "espacios-disponibles": 159,
         "fecha": "2024-09-10"
     },
     {
@@ -28,7 +28,7 @@
         "nombre-show": "Recital de Piano",
         "duracion-show": 75,
         "espectadores": 150,
-        "espacios-disponibles": 20,
+        "espacios-disponibles": 849,
         "fecha": "2024-10-05"
     },
     {
@@ -36,7 +36,7 @@
         "nombre-show": "Espectáculo de Ballet",
         "duracion-show": 110,
         "espectadores": 300,
-        "espacios-disponibles": 60,
+        "espacios-disponibles": 699,
         "fecha": "2024-11-20"
     },
     {
@@ -44,7 +44,7 @@
         "nombre-show": "Stand-up Comedy",
         "duracion-show": 80,
         "espectadores": 180,
-        "espacios-disponibles": 40,
+        "espacios-disponibles": 819,
         "fecha": "2024-12-02"
     },
     {
@@ -52,7 +52,7 @@
         "nombre-show": "Ópera: La Traviata",
         "duracion-show": 150,
         "espectadores": 450,
-        "espacios-disponibles": 75,
+        "espacios-disponibles": 549,
         "fecha": "2025-01-18"
     },
     {
@@ -60,7 +60,7 @@
         "nombre-show": "Musical Familiar",
         "duracion-show": 100,
         "espectadores": 350,
-        "espacios-disponibles": 80,
+        "espacios-disponibles": 649,
         "fecha": "2025-02-14"
     },
     {
@@ -68,7 +68,7 @@
         "nombre-show": "Conferencia: Tecnología y Arte",
         "duracion-show": 60,
         "espectadores": 120,
-        "espacios-disponibles": 25,
+        "espacios-disponibles": 879,
         "fecha": "2025-03-03"
     },
     {
@@ -76,7 +76,7 @@
         "nombre-show": "DJ Set Electrónico",
         "duracion-show": 180,
         "espectadores": 800,
-        "espacios-disponibles": 200,
+        "espacios-disponibles": 199,
         "fecha": "2025-04-12"
     }
 ]

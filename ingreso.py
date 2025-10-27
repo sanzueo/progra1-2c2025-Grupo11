@@ -1,4 +1,4 @@
-from nombres_teatroV2 import *
+from iniciacion_listas import *
 from entidades.Usuarios import id_user
 import re
 
@@ -210,3 +210,20 @@ def registrar():
     #se le dice al usuario que se a registrado con exito
     print("\033[1;36m Usuario registrado con éxito. \033[0m")
     print("")
+
+
+"""
+                        with open("datos_usuarios.json","r", encoding="utf-8") as archivo:
+                            usuarios = json.load(archivo)
+                            for user in usuarios:
+                                if user["id"]==id_eliminar:
+                                    user["estado"]=False
+                            usuarios_eliminar.append(user)
+                        with open("datos/datos_usuarios.json", "w", encoding="utf-8") as archivo:
+                            json.dump(usuarios_eliminar, archivo, indent=4, ensure_ascii=False)                     
+
+"""
+
+
+#hacer que cuando te registres aparezca appendeado al archivo json de usuario toda la info de forma ordenada
+#esto va a ayudar a resolver parte cambia la w por una a y saca las comparaciones aunque la laectura requiere que el    

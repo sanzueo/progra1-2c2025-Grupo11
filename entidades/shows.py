@@ -1,5 +1,5 @@
 import random
-from nombres_teatroV2 import *
+from iniciacion_listas import *
 from datetime import datetime, timedelta
 
 # Función para generar IDs de shows aleatoriamente
@@ -20,7 +20,9 @@ def fecha_alt():
     return fecha_aleatoria.date()
 
 # Crear 10 shows aleatorios con (id, tipo, duracion, espectadores, espacios disponibles y fecha del evento)
-while len(datos_globales) != 10:
+datos_Show=open("datos_Show","w",encoding="utf-8")
+
+while len(datos_globales) != 3:
     id_show = id_alt()
     tipo_Evento = random.choice(tipos_show)
     duracion = random.choice([60,120,180])
@@ -28,6 +30,13 @@ while len(datos_globales) != 10:
     espacios_disponibles = 999
     fecha = fecha_alt()
     datos_globales.append([id_show, tipo_Evento, duracion, espectadores, espacios_disponibles, fecha])
+
+    linea = f"{id_show};{tipo_Evento};{duracion};{espectadores};{espacios_disponibles};{fecha}\n"
+    datos_Show.write(linea)
+
+datos_Show.close()
+
+#esto de atras es temporal para que no falle todo
 
 
 #creacion de precios 

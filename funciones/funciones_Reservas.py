@@ -1,8 +1,8 @@
 from iniciacion_listas import datos_globales_reserva, datos_globales,datos_globales_usuarios, dni_en_uso,precios_show, matriz_act
-from entidades.reserva import ver_m2, id_alt_r, ver_busqueda_reserva
+from entidades.reserva import id_alt_r
 from entidades.Usuarios import id_user
 from entidades.shows import ver_m
-from datetime import datetime
+from funciones.funciones_globales import mostrar_tabla
 
 #region por hacer
 #hacer un modulo de colores o un diccionario con ellos
@@ -27,7 +27,7 @@ def vista_reserva(admin):
     #se separa la vista de el admin y el no admin para diferenciar que es lo que pueden o no ver  
     if admin:
         #se muestra la matriz de las resrvas que hay
-        ver_m2(datos_globales_reserva)
+        mostrar_tabla(datos_globales_reserva)
         
     #muestra las reservas que hizo ese usuario exclusivamente 
     elif admin == False:
@@ -41,7 +41,7 @@ def vista_reserva(admin):
                 matriz_act.append(i)
         #si hay mas de una reserva te muestra la cantidad de reservas que hizo el usuario
         if len(matriz_act) > 0:
-            ver_m2(matriz_act)
+            mostrar_tabla(matriz_act)
         #si no hay reservas te printea no hay reservas 
         else:
             print("no hay ninguna reserva")
@@ -197,7 +197,7 @@ def busqueda_Reserva():
             print("\033[31mID de reserva no encontrada.\033[0m")
         else:
             #si lo encuentra muestra la reserva
-            ver_busqueda_reserva(reserva_enct)
+            mostrar_tabla(reserva_enct)
     
     #agarra el caso 2
     elif eleccion == 2:
@@ -223,7 +223,7 @@ def busqueda_Reserva():
         else:
 
             #si lo encuentra muestra la reservas que tiene ese usuario
-            ver_busqueda_reserva(reserva_enct)
+            mostrar_tabla(reserva_enct)
 
 def borrado_reserva(admin):
     if admin == False: 
@@ -357,7 +357,7 @@ def borrado_reserva(admin):
         
 def edicion_reserva():        
         #se le muestra las reservas que hay para identificar el id mas rapidamente
-        ver_m2(datos_globales_reserva)
+        mostrar_tabla(datos_globales_reserva)
 
         show_encontrado=False
 
