@@ -1,5 +1,5 @@
 import random
-from nombres_teatroV2 import datos_globales_reserva,ubicacion, ids_usuario, ids_reserva, datos_globales, shows_con_capacidad,precios_show
+from iniciacion_listas import datos_globales_reserva,ubicacion, ids_usuario, ids_reserva, datos_globales, shows_con_capacidad,precios_show
 from entidades.shows import solo_ids_show
 
 # Función para generar IDs de reserva en forma aleatoria

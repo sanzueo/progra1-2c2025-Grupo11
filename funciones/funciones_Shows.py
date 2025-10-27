@@ -211,7 +211,7 @@ def edicion_show():
                     print("\033[31mDebe ingresar un número válido.\033[0m")
 
 
-def Agregar_Shows():
+def agregar_Shows():
 
         id_show = id_alt()
 

@@ -1,4 +1,4 @@
-from funciones.funciones_Shows import vista_show,busqueda_Show,borrado_Show,edicion_show,generacion_Shows
+from funciones.funciones_Shows import vista_show,busqueda_Show,borrado_Show,edicion_show,agregar_Shows
 
 def menu_shows(admin):
     while True:
@@ -37,7 +37,7 @@ def menu_shows(admin):
                 lambda: busqueda_Show(),
                 lambda: borrado_Show(),
                 lambda: edicion_show(),
-                lambda: generacion_Shows()
+                lambda: agregar_Shows()
             ]
         else:
             func_shows = [
