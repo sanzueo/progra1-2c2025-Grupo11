@@ -1,4 +1,4 @@
-from funciones.funciones_Reservas import vista_reserva,busqueda_Reserva,borrado_reserva,edicion_reserva,generacion_reservas
+from funciones.funciones_Reservas import vista_reserva,busqueda_Reserva,borrado_reserva,edicion_reserva, agregar_reservas
 
 #se inicia el menu de reservas
 def menu_reservas(admin):
@@ -40,7 +40,7 @@ def menu_reservas(admin):
         if admin:
             func_reservas = [
                 lambda: vista_reserva(admin),
-                lambda: generacion_reservas(admin),
+                lambda: agregar_reservas(admin),
                 lambda: borrado_reserva(admin),
                 lambda: busqueda_Reserva(),
                 lambda: edicion_reserva(),
@@ -49,7 +49,7 @@ def menu_reservas(admin):
         else:
             func_reservas = [
                 lambda: vista_reserva(admin),
-                lambda: generacion_reservas(admin),
+                lambda: agregar_reservas(admin),
                 lambda: borrado_reserva(admin),
             ]
 

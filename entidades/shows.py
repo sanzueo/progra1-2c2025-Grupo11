@@ -1,5 +1,5 @@
 import random
-from nombres_teatroV2 import *
+from iniciacion_listas import *
 from datetime import datetime, timedelta
 
 # Función para generar IDs de shows aleatoriamente

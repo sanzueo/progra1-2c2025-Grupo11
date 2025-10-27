@@ -1,4 +1,4 @@
-from nombres_teatroV2 import datos_globales_usuarios, dni_en_uso, datos_globales_reserva,id_usuarios,datos_de_ingreso_dni
+from iniciacion_listas import datos_globales_usuarios, dni_en_uso, datos_globales_reserva,id_usuarios,datos_de_ingreso_dni
 from entidades.Usuarios import ver_m3,id_usuarios,ver_busqueda_usuarios
 from funciones.funciones_Reservas import obt_id_Actual
 import re

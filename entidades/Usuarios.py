@@ -1,5 +1,5 @@
 import random
-from nombres_teatroV2 import id_usuarios,dni_usuarios,datos_globales_usuarios,nombres,ids_usuario
+from iniciacion_listas import id_usuarios,dni_usuarios,datos_globales_usuarios,nombres,ids_usuario
 
 
 # Función para generar IDs de usuarios aleatoriamente 

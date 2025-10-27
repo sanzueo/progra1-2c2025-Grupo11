@@ -1,4 +1,4 @@
-from nombres_teatroV2 import datos_globales_reserva, datos_globales_usuarios, ids_shows, datos_globales
+from iniciacion_listas import datos_globales_reserva, datos_globales_usuarios, ids_shows, datos_globales
 
 
 # 1. Shows más vendidos

@@ -1,4 +1,4 @@
-from nombres_teatroV2 import *
+from iniciacion_listas import *
 from entidades.Usuarios import id_user
 import re
 
